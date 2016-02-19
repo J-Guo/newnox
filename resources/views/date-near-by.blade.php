@@ -25,6 +25,7 @@
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">
         	<form name="form" action="payment-details" method="post">
+                {{csrf_field()}}
             <div class="page-content">
 
                 <div class="card">

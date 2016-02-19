@@ -25,6 +25,7 @@
         <div class="page" data-page="settings">
             <div class="page-content">
             	<form name="reg-form" action="asigned-task" method="post">
+                    {{csrf_field()}}
                 <div class="content-block-title">Basic profile details of you.</div>
                     <div class="list-block">
                     	

@@ -29,6 +29,7 @@
 
                 <div class="list login-form-box">
                     <form class="form nice-label" name="form" action="otp" method="post">
+                        {{csrf_field()}}
 
                         <div class="form-row">
                             <!--<label for="login"><span class="icon-phone"></span></label>-->

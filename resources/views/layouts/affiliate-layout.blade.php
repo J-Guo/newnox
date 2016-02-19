@@ -95,7 +95,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('areview')}}" class="item-link close-panel item-content">
+                        <a href="{{url('areviews')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa  fa-star-o"></i>
                             </div>

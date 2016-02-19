@@ -49,6 +49,7 @@ $today = date("d/m/Y");
                     </div>
                 </div>
                 <form name="form1" action="date-near-by" method="post">
+                    {{csrf_field()}}
                     <div class="card card-header-map">
                         
                         <div class="card-content">

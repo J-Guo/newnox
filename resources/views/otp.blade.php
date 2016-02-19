@@ -22,6 +22,7 @@
                 </svg>
             </div>
 			<form name="form" action="reg-profile" method="post">
+                {{csrf_field()}}
             <div class="login-view-box mt-50">
 
                 <div class="list login-form-box">
