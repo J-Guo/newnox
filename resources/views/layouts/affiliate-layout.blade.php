@@ -25,7 +25,7 @@
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>NOX</title>
+    <title>Emlido - Feel satisfy</title>
 
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/framework7/dist/css/framework7.ios.min.css">
