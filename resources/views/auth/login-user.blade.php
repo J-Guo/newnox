@@ -1,10 +1,8 @@
-<link href="../../public/assets/themes/red/style.css" rel="stylesheet" type="text/css" />
-
 @extends('layouts.login-layout')
 
 @section('content')
 
-<div class="pages navbar-fixed toolbar-fixed">
+<div class="pages navbar-fixed">
     <div data-page="login" class="page">
 
         <div class="page-content">
@@ -28,30 +26,24 @@
             <div class="login-view-box mt-50">
 
                 <div class="list login-form-box">
-                	<form name="form" action="otp" method="post">
-                    <div class="content-block-title text-center"><label>ENTER YOUR MOBILE NUMBER</label></div>
-                	
-                        <div class="row text-center mt-20 mb-20">
-                            <div class="col-one center">
-                                <input type="text" class="inputs" maxlength="10"/> 
-                            </div>
+                    <form class="form nice-label" name="form" action="otp" method="post">
+                        {{csrf_field()}}
+
+                        <div class="form-row">
+                            <!--<label for="login"><span class="icon-phone"></span></label>-->
+                            <input type="text" class="inputs" align="middle" placeholder="MOBILE NUMBER">
                         </div>
-                      
-						<div class="list login-form-box">
-                    	</div>
-                    
-                        <div class="item-inner">
-                            <div class="content-block">
-                                <p class="buttons-row">
-                                    <input type="submit" name="user" class="button button-primary" value="Find a date">
+                       	
+						<div class="list mt-20 mb-20"></div>
+                        <div class="buttons-row">
+                            <input type="submit" name="user" class="button button-primary" value="Find a date">
                                     
-                                    <input type="submit" name="affiliates" class="button button-primary" value="Affilate Login">
-                                </p>
-                            </div>
+                            <input type="submit" name="affiliates" class="button button-primary" value="Affilate Login">
                         </div>
-                    </div>
                     </form>
                 </div>
+                
+
             </div>
 
         </div>

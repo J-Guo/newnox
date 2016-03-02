@@ -24,77 +24,51 @@ Route::group(['middleware'=>'web'],function(){
             return view('welcome');
         });
 
-        Route::get('login', function () {
-            return view('login-user');
-        });
+        //show login pages for both user and affiliate
+        Route::get('login','PagesController@showLoginPage');
 
-        Route::get('main', function () {
-            return view('main');
-        });
+        //show otp page for both user and affiliate
+        Route::get('otp', 'PagesController@showOTPPage');
 
+        //handle otp
         Route::post('otp', function () {
-            return view('otp');
+            return view('auth.otp');
         });
 
-        Route::get('otp', function () {
-            return view('otp');
-        });
+        //show main pages for user
+        Route::get('main','PagesController@showMainPage');
 
-        Route::post('reg-profile', function () {
-            return view('reg-profile');
-        });
+        Route::post('main','PagesController@showMainPage');
 
-        Route::get('reg-profile', function () {
-            return view('reg-profile');
-        });
+        //show profile page for user
+        Route::post('reg-profile', 'PagesController@showUserRegProfile');
+        //show profile page for user
+        Route::get('reg-profile', 'PagesController@showUserRegProfile');
 
-        Route::get('post-a-task', function () {
-            return view('post-a-task');
-        });
+        //show date nearby page for user
+        Route::get('date-near-by', 'PagesController@showDateNearby');
+        //show date nearby page for user
+        Route::post('date-near-by', 'PagesController@showDateNearby');
 
-        Route::post('post-a-task', function () {
-            return view('post-a-task');
-        });
+        //show payment detail page for user
+        Route::get('payment-details', 'PagesController@showPaymentDetail');
+        //show payment detail page for user
+        Route::post('payment-details', 'PagesController@showPaymentDetail');
 
-        Route::get('date-near-by', function () {
-            return view('date-near-by');
-        });
+        //show assigned date for user
+        Route::get('asigned-task', 'PagesController@showAssignedDate');
+        //show assigned date for user
+        Route::post('asigned-task', 'PagesController@showAssignedDate');
 
-        Route::post('date-near-by', function () {
-            return view('date-near-by');
-        });
+        //show profile page for user
+        Route::post('user-profile', 'PagesController@showUserProfile');
+        //show profile page for user
+        Route::get('user-profile', 'PagesController@showUserProfile');
 
-        Route::get('payment-details', function () {
-            return view('payment-details');
-        });
-
-        Route::post('payment-details', function () {
-            return view('payment-details');
-        });
-
-        Route::get('asigned-task', function () {
-            return view('asigned-task');
-        });
-
-        Route::post('asigned-task', function () {
-            return view('asigned-task');
-        });
-
-        Route::post('user-profile', function () {
-            return view('user-profile');
-        });
-
-        Route::get('user-profile', function () {
-            return view('user-profile');
-        });
-
-        Route::post('reviews', function () {
-            return view('reviews');
-        });
-
-        Route::get('reviews', function () {
-            return view('reviews');
-        });
+        //show review page for user
+        Route::post('reviews', 'PagesController@showUserReview');
+        //show review page for user
+        Route::get('reviews', 'PagesController@showUserReview');
 
 
         /*
@@ -103,37 +77,30 @@ Route::group(['middleware'=>'web'],function(){
         |--------------------------------------------------------------------------
         |
         */
-        Route::get('faq', function () {
-            return view('affiliate.faq');
-        });
+        //show FAQ page for affiliate
+        Route::get('faq', 'PagesController@showFAQ');
 
-        Route::get('apersonal-detail', function(){
-            return view('affiliate.personal-detail');
-        });
+        //show personal detail page for affiliate
+        Route::get('apersonal-detail', 'PagesController@showAPersonalDetail');
 
-        Route::get('aprofile', function(){
-            return view('affiliate.profile');
-        });
+        //show profile page for affiliate
+        Route::get('aprofile', 'PagesController@showAProfile');
 
-        Route::get('make-offer', function(){
-            return view('affiliate.make-offer');
-        });
+        //show task nearby page for affiliate
+        Route::get('task-nearby','PagesController@showTaskNearby');
 
-        Route::get('task-nearby',function(){
-            return view('affiliate.task-nearby');
-        });
+        //show make offer page for affiliate
+        Route::get('make-offer', 'PagesController@showMakeOffer');
 
-        Route::get('task-list',function(){
-            return view('affiliate.task-list');
-        });
 
-        Route::get('assigned-task',function(){
-            return view('affiliate.assigned-task');
-        });
+        //show task list page for affiliate
+        Route::get('task-list','PagesController@showTaskList');
 
-        Route::get('areviews',function(){
-            return view('affiliate.reviews');
-        });
+        //show assigned task page for affiliate
+        Route::get('assigned-task','PagesController@showAssignedTask');
+
+        //show review page for affiliate
+        Route::get('areviews','PagesController@showAReview');
     });
 
 
