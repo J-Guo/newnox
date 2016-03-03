@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Role;
 
 class LoginController extends Controller
 {
@@ -71,11 +73,37 @@ class LoginController extends Controller
          */
 
         if($integer_otp == 2222){
+
+            //register user
+            Auth::loginUsingId(2);
+
             //redirect page depends on user type
-            if($userType =="client"){
+            if($userType =="user"){
+
+                //get current user
+                $user = Auth::user();
+                //if user does not have current role, attach it
+                if(!$user->hasRole('user')){
+                    //find current role
+                    $role = Role::where('name','user')->first();
+                    //attach it
+                    $user->attachRole($role);
+                }
+
                 return redirect('reg-profile');
             }
             if($userType="affiliate"){
+
+                //get current user
+                $user = Auth::user();
+                //if user does not have current role, attach it
+                if(!$user->hasRole('affiliate')){
+                    //find current role
+                    $role = Role::where('name','affiliate')->first();
+                    //attach it
+                    $user->attachRole($role );
+                }
+
                 return redirect('faq');
             }
         }
@@ -86,6 +114,18 @@ class LoginController extends Controller
 //            dd($request->input());
         }
 
+
+    }
+
+
+    /**
+     * handle users logout
+     * @return View
+     */
+    public function handleLogout(){
+
+        Auth::logout();
+        return redirect('login');
 
     }
 }

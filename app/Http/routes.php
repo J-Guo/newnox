@@ -1,14 +1,36 @@
 <?php
 
-
 Route::group(['middleware'=>'web'],function(){
 
+    //show login pages for both user and affiliate
+    Route::get('login','PagesController@showLoginPage');
 
-    Route::get('signin','HomeController@showSignin');
-    Route::post('signin','HomeController@handleSignin');
-    Route::get('signout','HomeController@handleSignout');
+    //show otp page for both user and affiliate
+    Route::get('otp', 'PagesController@showOTPPage');
+    Route::post('otp', 'LoginController@sendOTP');
 
-    Route::group(['middleware'=>'auth'],function(){
+    //submit OTP and verifyit
+    Route::post('verify','LoginController@verifyOTP');
+
+    Route::get('logout','LoginController@handleLogout');
+
+
+//    Route::get('signin','HomeController@showSignin');
+//    Route::post('signin','HomeController@handleSignin');
+//    Route::get('signout','HomeController@handleSignout');
+
+    /*
+     * Authentication middleware for both users and affiliates
+     * Users and affiliates can access application until they login
+     */
+    Route::group(['middleware'=>['auth']],function(){
+
+
+        /*
+        * Entrust role middleware for users
+        * only users can access the following pages
+        */
+        Route::group(['middleware'=>'role:user'],function(){
 
         /*
         |--------------------------------------------------------------------------
@@ -24,15 +46,7 @@ Route::group(['middleware'=>'web'],function(){
             return view('welcome');
         });
 
-        //show login pages for both user and affiliate
-        Route::get('login','PagesController@showLoginPage');
 
-        //show otp page for both user and affiliate
-        Route::get('otp', 'PagesController@showOTPPage');
-        Route::post('otp', 'LoginController@sendOTP');
-
-        //submit OTP and verifyit
-        Route::post('verify','LoginController@verifyOTP');
 
         //show main pages for user
         Route::get('main','PagesController@showMainPage');
@@ -69,13 +83,22 @@ Route::group(['middleware'=>'web'],function(){
         //show review page for user
         Route::get('reviews', 'PagesController@showUserReview');
 
+        });
 
-        /*
+
+   /*
+    * Entrust role middleware for affiliates
+    * only affiliates can access the following pages
+    */
+    Route::group(['middleware'=>'role:affiliate'],function(){
+
+       /*
         |--------------------------------------------------------------------------
         | Affiliate Routes File
         |--------------------------------------------------------------------------
         |
         */
+
         //show FAQ page for affiliate
         Route::get('faq', 'PagesController@showFAQ');
 
@@ -100,6 +123,8 @@ Route::group(['middleware'=>'web'],function(){
 
         //show review page for affiliate
         Route::get('areviews','PagesController@showAReview');
+        });
+
     });
 
 
