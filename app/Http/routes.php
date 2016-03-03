@@ -29,11 +29,10 @@ Route::group(['middleware'=>'web'],function(){
 
         //show otp page for both user and affiliate
         Route::get('otp', 'PagesController@showOTPPage');
+        Route::post('otp', 'LoginController@sendOTP');
 
-        //handle otp
-        Route::post('otp', function () {
-            return view('auth.otp');
-        });
+        //submit OTP and verifyit
+        Route::post('verify','LoginController@verifyOTP');
 
         //show main pages for user
         Route::get('main','PagesController@showMainPage');

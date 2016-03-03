@@ -1,5 +1,16 @@
 @extends('layouts.login-layout')
 
+@section('header')
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+    </style>
+@stop
+
 @section('content') 
 <div class="pages navbar-fixed toolbar-fixed">
     <div data-page="login" class="page">
@@ -21,33 +32,45 @@
                     </g>
                 </svg>
             </div>
-			<form name="form" action="reg-profile" method="post">
-                {{csrf_field()}}
+
+            <form name="form" action="verify" method="post" id="token-form">
             <div class="login-view-box mt-50">
+
+
+                {{csrf_field()}}
+                <input name="userid" type="hidden" value="{{(isset($userid) ? $userid : old('userid') )}}" />
+                <input name="mobileNum" type="hidden" value="{{(isset($mobileNum) ? $mobileNum : old('mobileNum') )}}" />
+                <input name="userType" type="hidden" value="{{(isset($userType) ? $userType : old('userType') )}}" />
 
                 <div class="list login-form-box">
                 	<div class="content-block-title text-center"><label>Please input your 4 digit password</label></div>
                 	
                     <div class="row text-center mt-20 mb-20">
                         <div class="col-one-four">
-                            <input type="text" class="inputs-single" maxlength="1"/> 
+                            <input type="tel" name="digit1" class="inputs-single" maxlength="1"/>
+                        </div>
+                        <div class="col-one-four">
+                            <input type="tel" name="digit2" class="inputs-single" maxlength="1"/>
                             
                         </div>
                         <div class="col-one-four">
-                            <input type="text" class="inputs-single" maxlength="1"/> 
                             
+                            <input type="tel" name="digit3" class="inputs-single" maxlength="1"/>
                         </div>
                         <div class="col-one-four">
                             
-                            <input type="text" class="inputs-single" maxlength="1"/> 
-                        </div>
-                        <div class="col-one-four">
-                            
-                            <input type="text" class="inputs-single" maxlength="1"/> 
+                            <input type="tel" name="digit4" class="inputs-single" maxlength="1"/>
                         </div>
                     </div>
                 </div>
             </div>
+                <!-- Show Authentication Failed Information-->
+                @if(session()->has('message') )
+                    <div class="alert alert-info text-center">
+                        <strong>Login Failed!:</strong>
+                        <span>{{ session()->get('message') }}</span>
+                    </div>
+                @endif
 
 			<div class="login-view-box mt-50">
 

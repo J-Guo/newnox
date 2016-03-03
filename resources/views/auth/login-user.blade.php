@@ -26,19 +26,28 @@
             <div class="login-view-box mt-50">
 
                 <div class="list login-form-box">
-                    <form class="form nice-label" name="form" action="otp" method="post">
+                    <form class="form nice-label" id="phone-form" action="otp" method="POST">
                         {{csrf_field()}}
 
-                        <div class="form-row">
-                            <!--<label for="login"><span class="icon-phone"></span></label>-->
-                            <input type="text" class="inputs" align="middle" placeholder="MOBILE NUMBER">
+                         <div class="form-row">
+                            <input type="text" class="inputs" align="middle" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" required>
                         </div>
-                       	
+                        <!-- Determine usre type -->
+                        <input type="hidden" id="userType" name="userType" value="user">
+
+                        <!-- Show Authentication Failed Information-->
+                        @if(session()->has('message') )
+                            <div class="alert alert-info text-center">
+                                <strong>Login Failed!:</strong>
+                                <span>{{ session()->get('message') }}</span>
+                            </div>
+                        @endif
+
 						<div class="list mt-20 mb-20"></div>
                         <div class="buttons-row">
-                            <input type="submit" name="user" class="button button-primary" value="Find a date">
+                            <input type="submit" id="userSubmit" class="button button-primary" value="Find a date">
                                     
-                            <input type="submit" name="affiliates" class="button button-primary" value="Affilate Login">
+                            <input type="submit" id="affiliateSubmit" class="button button-primary" value="Affilate Login">
                         </div>
                     </form>
                 </div>
@@ -51,4 +60,23 @@
     </div>
 </div>
 
+@stop
+
+@section('footer')
+<!-- Parsley Form Validator-->
+<script src="{{ asset('assets/js/pages/parsley.min.js')}}"></script>
+<!-- Initialize Page Scripts -->
+<script>
+    $(document).ready(function() {
+
+        //set validation to check mobile number input
+        $('#phone-form').parsley();
+
+        //set user type based on submit button
+        $('#affiliateSubmit').on("click",function(){
+            $('#userType').val('affiliate');
+        });
+
+    });
+</script>
 @stop
