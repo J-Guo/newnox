@@ -1,13 +1,7 @@
-<?php
-date_default_timezone_set("Australia/Sydney");
-$today = date("d/m/Y");
-?>
-
-<link href="../../public/assets/themes/red/style.css" rel="stylesheet" type="text/css" />
 @extends('layouts.main-layout')
 
 @section("header")
-    <link rel="stylesheet" href="{{asset('assets/css/map6.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/map-style.css')}}">
 @stop
 
 @section('content')
@@ -30,97 +24,102 @@ $today = date("d/m/Y");
         </div>
 
         <!-- Pages -->
-        <div class="pages navbar-fixed toolbar-fixed ">
-            <div class="page" data-page="settings">
-                <div class="page-content">
-                    <div class="content-block-title mb-20 text-center">search affiliate for your dates</div>
-                    <div class="card card-header-map">
+        <div class="navbar-fixed toolbar-fixed ">
 
-                        <div class="card-content">
-                            <div class="card-content-inner contact-type-list">
-                                <form @submit.prevent="locateAddress" id="locationForm">
-                                    <input type="text" id="address" v-model="address" placeholder="123 Example St">
-                                    <button type="submit" class="">Search</button>
-                                </form>
+            <div class="over-lay top">
+                <form @submit.prevent="locateAddress" id="locationForm">
+                    <input type="search" id="address" v-model="address" class="search" placeholder="Seach location here" required>
+                    <input type="submit" class="search-button" value="Search">
+                    <a href="#" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
+                </form>
+            </div>
 
-                                <div  id="User-Map"></div>
+            <div id="User-Map"></div>
+
+            <div class="over-lay bottom">
+                <div class="content-block mt-10 mb-5">
+
+                    <div class="buttons-row">
+                        <a href="#tab1" class="tab-link active button button-secondary">Date</a>
+                        <a href="#tab2" class="tab-link button button-secondary">Price</a>
+                        <a href="#tab3" class="tab-link button button-secondary">Gender</a>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <div class="content-block mt-5 mb-10">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Wish a Date :</div>
+                                                <div class="item-input">
+                                                    <input type="date" placeholder="Birth day" value="2016-02-17">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <form name="form1" action="date-near-by" method="post">
-                        {{csrf_field()}}
-                        <div class="card card-header-map">
 
-                            <div class="card-content">
-
-
-                                <div class="card-content-inner contact-type-list">
-                                    <div class="list-block">
-                                        <ul>
-                                            <!-- Text inputs -->
-                                            <li>
-                                                <div class="item-content">
-                                                    <div class="item-inner">
-                                                        <div class="item-title label">Wish a Date :</div>
-                                                        <div class="item-inputa">
-                                                            <input type="date" placeholder="Birth day" value="2016-02-17">
-                                                        </div>
+                    <div id="tab2" class="tab">
+                        <div class="content-block mt-5 mb-10">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Rate Range : </div>
+                                                <div class="item-input">
+                                                    <div class="range-slider">
+                                                        <input type="range" min="0" max="100" value="50" step="0.1" class="">
                                                     </div>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="card card-header-map">
-
-                            <div class="card-content">
-                                <div class="card-content-inner contact-type-list">
-
-                                    <div class="text-center mb-25">
-                                        Select a price range
-                                    </div>
-
-
-                                    <div class="list-block">
-                                        <ul>
-                                            <!-- Text inputs -->
-                                            <li>
-                                                <div class="item-content">
-                                                    <div class="item-inner">
-
-                                                        <div class="item-input mb-15">
-                                                            <div class=" dark range-slider">
-                                                                <input type="range" min="0" max="100" value="50" step="1">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                    <div id="tab3" class="tab">
+                        <div class="content-block mt-5 mb-10">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Choose Gender :</div>
+                                                <div class="item-input">
+                                                    <select class="">
+                                                        <option>Female</option>
+                                                        <option>Male</option>
+                                                    </select>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-
-                        <div class="list login-form-box col-33">
-
-                            <div class="item-inner">
-                                <div class="row text-center ml-10 mr-10 mt-20 mb-20">
-                                    <input type="submit" class="button button-primary" name="submit" value="Search Date Nearby" />
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+
+
             </div>
+
+
+
         </div>
 
-        <!--@include('layouts.emlida-footer')-->
 
     </div>
 

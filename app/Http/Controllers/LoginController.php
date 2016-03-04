@@ -75,7 +75,7 @@ class LoginController extends Controller
         if($integer_otp == 2222){
 
             //register user
-            Auth::loginUsingId(2);
+            Auth::loginUsingId(1);
 
             //redirect page depends on user type
             if($userType =="user"){

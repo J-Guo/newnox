@@ -12,9 +12,14 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $owner = new Role();
-        $owner->name         = 'affiliate';
-        $owner->display_name = 'Project Affiliate'; // optional
-        $owner->save();
+//        $user = new Role();
+//        $user->name         = 'affiliate';
+//        $user->display_name = 'Project Affiliate'; // optional
+//        $user->save();
+
+        $affiliate = new Role();
+        $affiliate->name         = 'user';
+        $affiliate->display_name = 'Project User'; // optional
+        $affiliate->save();
     }
 }
