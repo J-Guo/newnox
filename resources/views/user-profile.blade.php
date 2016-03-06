@@ -36,7 +36,7 @@
                             </a>
                         </div>-->
                         <div class="col-100">
-                            <img src="images/Untitled.jpg" class="ava" alt=""/>
+                            <img src="{{$profilePhotoURL}}" class="ava" alt=""/>
                         </div>
                         <!--<div class="col-33">
                             <a href="#" class="button-header mt-15">
@@ -51,7 +51,7 @@
                         <div class="col-100 tablet-50 mb-5">
                             <div class="followers">
                                 <span></span>
-                                <span>David James</span>
+                                <span>{{(isset($displayName) ? $displayName : "Emlido User" )}}</span>
                             </div>
                         </div>
                         <!--<div class="col-50 tablet-50">

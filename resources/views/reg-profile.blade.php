@@ -24,8 +24,9 @@
     <div class="pages navbar-fixed toolbar-fixed ">
         <div class="page" data-page="settings">
             <div class="page-content">
-            	<form name="reg-form" action="main" method="post">
-                    {{csrf_field()}}
+                <!-- Form to submit user profile information including image upload-->
+            	<form name="reg-form" action="create-profile" enctype="multipart/form-data" method="post">
+                {{csrf_field()}}
                 <div class="content-block-title">Basic profile details of you.</div>
                     <div class="list-block">
                     	
@@ -37,7 +38,7 @@
                                     <div class="item-inner">
                                         <div class="item-title label">Name</div>
                                         <div class="item-input">
-                                          <input type="text" placeholder="Display Name">
+                                          <input type="text" name="displayName" placeholder="Display Name">
                                         </div>
                                     </div>
                                 </div>
@@ -49,9 +50,9 @@
                                     <div class="item-inner">
                                         <div class="item-title label">Gender</div>
                                         <div class="item-input">
-                                            <select>
-                                                <option>Male</option>
-                                                <option>Female</option>
+                                            <select name="gender">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
                                             </select>
                                         </div>
                                     </div>
@@ -65,17 +66,17 @@
                                     <div class="item-inner">
                                         <div class="item-title label">Age</div>
                                         <div class="item-input">
-                                            <select>
-                                                <?php for($i=18;$i<=75;$i++){ ?>
-                                                <option><?php echo $i; ?></option>
-                                                <?php } ?>
+                                            <select name="age">
+                                                @for ($i = 18; $i <= 75; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             
-                            <!-- Date -->
+                            <!-- Profie Photo -->
                             <li class="mt-10">
                                 <div class="item-content">
                                     <div class="item-media"><span class="icon-picture"></span></div>
@@ -83,8 +84,7 @@
                                         <div class="item-title label">Profile pic</div>
                                         <div class="item-input">
                                               <div class="uploadFile timelineUploadBG">
-                                                <input type="file" name="photoimg" class="custom-file-input">
-                                                
+                                                <input type="file" name="avatar" class="custom-file-input">
                                               </div>
                                         </div>
                                         <img src="images/Untitled.jpg" height="75px" width="75px" alt="image"/>

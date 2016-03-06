@@ -46,11 +46,6 @@ class PagesController extends Controller
         return view('asigned-task');
     }
 
-    //show profile page for user
-    public function showUserProfile(){
-        return view('user-profile');
-    }
-
     //show review page for user
     public function showUserReview(){
         return view('reviews');

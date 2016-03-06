@@ -57,6 +57,8 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('reg-profile', 'PagesController@showUserRegProfile');
         //show profile page for user
         Route::get('reg-profile', 'PagesController@showUserRegProfile');
+        //create profile for new user
+        Route::post('create-profile','UsersController@createProfile');
 
         //show date nearby page for user
         Route::get('date-near-by', 'PagesController@showDateNearby');
@@ -76,7 +78,7 @@ Route::group(['middleware'=>'web'],function(){
         //show profile page for user
         Route::post('user-profile', 'PagesController@showUserProfile');
         //show profile page for user
-        Route::get('user-profile', 'PagesController@showUserProfile');
+        Route::get('user-profile', 'UsersController@showUserProfile');
 
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');
@@ -126,6 +128,10 @@ Route::group(['middleware'=>'web'],function(){
         });
 
     });
+
+
+    //Unit Test Pages
+    Route::get('test-image','ImagesController@getProfileImage');
 
 
 });

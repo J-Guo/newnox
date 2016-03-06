@@ -60,7 +60,7 @@
                     </li>
                     
                     <li>
-                        <a href="post-a-task" class="item-link close-panel item-content">
+                        <a href="main" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-home"></i>
                             </div>

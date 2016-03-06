@@ -20,7 +20,6 @@
         </div>
     </div>
 
-
     <!-- Pages -->
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">
