@@ -50,12 +50,14 @@ Route::group(['middleware'=>'web'],function(){
 
         //show main pages for user
         Route::get('main','PagesController@showMainPage');
+        Route::get('main-listview','PagesController@showMainListviewPage');
 
         Route::post('main','PagesController@showMainPage');
 
-        //show profile page for user
+
+        //show create profile page for user
         Route::post('reg-profile', 'PagesController@showUserRegProfile');
-        //show profile page for user
+        //show create profile page for user
         Route::get('reg-profile', 'PagesController@showUserRegProfile');
         //create profile for new user
         Route::post('create-profile','UsersController@createProfile');
@@ -79,6 +81,11 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('user-profile', 'PagesController@showUserProfile');
         //show profile page for user
         Route::get('user-profile', 'UsersController@showUserProfile');
+
+        //show edit profile page for usere
+        Route::get('edit-profile','UsersController@showEditProfile');
+        //hanlde user edit profile request
+        Route::post('edit-profile','UsersController@editProfile');
 
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');

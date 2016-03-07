@@ -1,4 +1,3 @@
-<link href="../../public/assets/themes/red/style.css" rel="stylesheet" type="text/css" />
 @extends('layouts.main-layout')
 
 @section('content') 
@@ -11,7 +10,7 @@
                     <span class="kkicon icon-menu"></span>
                 </a>
             </div>
-            <div class="center sliding">Profile</div>
+            <div class="center sliding">Create Profile</div>
             <div class="right">
                 <a href="#" class="link icon-only open-panel" data-panel="right">
                     <span class="kkicon icon-alarm"></span>
@@ -25,7 +24,7 @@
         <div class="page" data-page="settings">
             <div class="page-content">
                 <!-- Form to submit user profile information including image upload-->
-            	<form name="reg-form" action="create-profile" enctype="multipart/form-data" method="post">
+            	<form id="reg-form" action="create-profile" enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="content-block-title">Basic profile details of you.</div>
                     <div class="list-block">
@@ -38,7 +37,7 @@
                                     <div class="item-inner">
                                         <div class="item-title label">Name</div>
                                         <div class="item-input">
-                                          <input type="text" name="displayName" placeholder="Display Name">
+                                          <input type="text" name="displayName" placeholder="Display Name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -84,10 +83,10 @@
                                         <div class="item-title label">Profile pic</div>
                                         <div class="item-input">
                                               <div class="uploadFile timelineUploadBG">
-                                                <input type="file" name="avatar" class="custom-file-input">
+                                                <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" required>
                                               </div>
                                         </div>
-                                        <img src="images/Untitled.jpg" height="75px" width="75px" alt="image"/>
+                                        <img src="images/Untitled.jpg" id="avatar-preview" height="75px" width="75px" alt="image"/>
                                     </div>
                                 </div>
                             </li>                        
@@ -101,7 +100,7 @@
                         
                         <div class="item-inner">
                             <div class="row text-center ml-10 mr-10 mt-20 mb-20">
-                                <input type="submit" class="button button-primary" name="submit" value="Save Your Details" />
+                                <input type="submit" class="button button-primary" id="submitButton" value="Save Your Details" />
                             </div>
                         </div>
                     </div>
@@ -118,3 +117,35 @@
 
 @stop
 
+@section('footer')
+<!-- Parsley Form Validator-->
+<script src="{{ asset('assets/js/pages/parsley.min.js')}}"></script>
+<!--Scripts for image upload preview -->
+<script>
+    $('document').ready(function(){
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#avatar-preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#avatar").change(function () {
+            readURL(this);
+        });
+
+
+        //set validation for reg-form
+        $("#reg-form").parsley();
+
+
+    });
+
+</script>
+@stop

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Role;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -24,7 +25,7 @@ class LoginController extends Controller
         //get user type from user input
         $userType = $request->input('userType');
 
-        //chech user mobile phone number is correct or not
+        //check user mobile phone number is correct or not
 
         /**
          * Some functions here need to be done....
@@ -61,6 +62,8 @@ class LoginController extends Controller
         //convert it into integer
         $integer_otp = (int) $otp;
 
+        //get user mobile number
+        $mobileNum =$request->input("mobileNum");
         //get user id password from user input
         $authyid = $request->input('userid');
         //get user type from user input
@@ -74,8 +77,21 @@ class LoginController extends Controller
 
         if($integer_otp == 2222){
 
-            //register user
-            Auth::loginUsingId(1);
+            //check user exist or not
+            $results = User::where('mobile',$mobileNum)->first();
+
+            //if user does not exist, register for him
+            if(empty($results )){
+                $newUser = new User();
+                $newUser->mobile = $mobileNum;
+                $newUser->save();
+
+            }
+
+            //get the registered user
+            $currentUser = User::where('mobile',$mobileNum)->first();
+            //logging the user
+            Auth::login($currentUser);
 
             //redirect page depends on user type
             if($userType =="user"){
@@ -89,6 +105,9 @@ class LoginController extends Controller
                     //attach it
                     $user->attachRole($role);
                 }
+
+                //check user is new user or old user
+                //some functions should be done here....
 
                 return redirect('reg-profile');
             }
@@ -104,14 +123,15 @@ class LoginController extends Controller
                     $user->attachRole($role );
                 }
 
+                //check user is new user or old user
+                //some functions should be done here....
+
                 return redirect('faq');
             }
         }
         else{
- //           dd($request->input());
             return redirect()->back()->withInput()
                 ->with('message','Please input correct Token');
-//            dd($request->input());
         }
 
 
