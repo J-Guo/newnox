@@ -48,7 +48,7 @@ class PagesController extends Controller
 
     //show assigned date for user
     public function showAssignedDate(){
-        return view('asigned-task');
+        return view('assigned-date');
     }
 
     //show review page for user

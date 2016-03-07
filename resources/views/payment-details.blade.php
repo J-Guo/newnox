@@ -24,7 +24,7 @@
     <div class="pages navbar-fixed toolbar-fixed ">
         <div class="page" data-page="settings">
             <div class="page-content">
-            	<form name="reg-form" action="asigned-task" method="post">
+            	<form name="reg-form" action="assigned-date" method="post">
                     {{csrf_field()}}
                 <div class="content-block-title">Basic profile details of you.</div>
                     <div class="list-block">

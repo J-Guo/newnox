@@ -56,13 +56,12 @@
             <nav>
                 <ul>
                     <li class="divider">
-                        Admin Console
+                        Main
                     </li>
-                    
                     <li>
-                        <a href="main" class="item-link close-panel item-content">
+                        <a href="{{url('main')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa fa-home"></i>
+                                <i class="fa fa-map-marker"></i>
                             </div>
                             <div class="item-inner">
                                 <div class="item-title">Main View</div>
@@ -70,93 +69,71 @@
                         </a>
                     </li>
                     <li>
-                        <a href="user-profile" class="item-link close-panel item-content">
+                        <a href="{{url('date-near-by')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa fa-file-text-o"></i>
+                                <i class="fa  fa-heart-o"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">My Profile</div>
+                                <div class="item-title">Querying List</div>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="date-near-by" class="item-link close-panel item-content">
+                        <a href="{{url('user-profile')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa fa-list-ol"></i>
+                                <i class="fa  fa-photo"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Query List</div>
+                                <div class="item-title">Gallery</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('edit-profile')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-edit"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Edit Profie</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('payment-details')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-credit-card"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Payment Detail</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('reviews')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-star-o"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Review</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider">
+                        Tasks
+                    </li>
+                    <li>
+                        <a href="{{url('assigned-date')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa fa-weixin"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Assignedd Task</div>
                                 <div class="item-after">
                                     <span class="badge badge-secondary">5</span>
                                 </div>
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="asigned-task" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-tasks"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Assigned Task</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="gallery-3col.html" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Help</div>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="contact.html" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-envelope-o"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Contact us</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider">
-                        Social
-                    </li>
-                    <li>
-                        <a href="twitter.html" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Twitter</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="flickr.html" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-facebook"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Facebook</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="flickr.html" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-flickr"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Instagram</div>
-                            </div>
-                        </a>
-                    </li>
-                    
                 </ul>
             </nav>
             <p style="font-size:10px; text-align:center" class="mt-25">Copyright &copy; Traxnet Technologies P/L</p>

@@ -73,9 +73,9 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('payment-details', 'PagesController@showPaymentDetail');
 
         //show assigned date for user
-        Route::get('asigned-task', 'PagesController@showAssignedDate');
+        Route::get('assigned-date', 'PagesController@showAssignedDate');
         //show assigned date for user
-        Route::post('asigned-task', 'PagesController@showAssignedDate');
+        Route::post('assigned-date', 'PagesController@showAssignedDate');
 
         //show profile page for user
         Route::post('user-profile', 'PagesController@showUserProfile');
