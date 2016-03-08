@@ -109,7 +109,7 @@ class LoginController extends Controller
                 //check user is new user or old user
                 //some functions should be done here....
 
-                return redirect('reg-profile');
+                return redirect('profile/create');
             }
             if($userType="affiliate"){
 

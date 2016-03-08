@@ -86,7 +86,7 @@
                                                 <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" required>
                                               </div>
                                         </div>
-                                        <img src="images/Untitled.jpg" id="avatar-preview" height="75px" width="75px" alt="image"/>
+                                        <img src="{{url("avatars/default.jpg")}}" id="avatar-preview" height="75px" width="75px" alt="image"/>
                                     </div>
                                 </div>
                             </li>                        

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+
+
+
     /**
      * create profile for new user
      * @return View
@@ -35,7 +38,7 @@ class UsersController extends Controller
         //store image into storage folder
         $result = Storage::put(
             'avatars/'. $name,
-            file_get_contents($request->file('avatar')->getRealPath())
+            file_get_contents($file->getRealPath())
         );
 
         //if storage is successful
@@ -76,10 +79,10 @@ class UsersController extends Controller
         //get current user
         $user = Auth::user();
         //get default storage url
-        $storageURL = "..".DIRECTORY_SEPARATOR."storage".DIRECTORY_SEPARATOR."app".DIRECTORY_SEPARATOR."avatars";
+        $storageURL = "avatars";
         //get profile photo url from db
         $imageURL = $user->profile_photo;
-        //generate the whole url
+        //generate the whole url than can access image through images request handler
         $profilePhotoURL =  $storageURL.DIRECTORY_SEPARATOR.$imageURL;
 
         return view('user-profile')
@@ -94,7 +97,6 @@ class UsersController extends Controller
     public function showEditProfile(){
 
         $user = Auth::user();
-
 
         return view('edit-profile')->with('user',$user);
     }
@@ -122,7 +124,7 @@ class UsersController extends Controller
         //store image into storage folder
         $result = Storage::put(
             'avatars/'. $name,
-            file_get_contents($request->file('avatar')->getRealPath())
+            file_get_contents($file->getRealPath())
         );
 
         //if storage is successful
@@ -135,7 +137,7 @@ class UsersController extends Controller
             $user->save();
 
             //redirect to main page
-            return redirect('edit-profile')
+            return redirect('profile/edit')
                 ->with('message','Profile Updated Successful');
         }
         else{

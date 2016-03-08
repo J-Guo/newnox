@@ -12,6 +12,7 @@ Route::group(['middleware'=>'web'],function(){
     //submit OTP and verifyit
     Route::post('verify','LoginController@verifyOTP');
 
+    //handle user logout
     Route::get('logout','LoginController@handleLogout');
 
 
@@ -24,6 +25,15 @@ Route::group(['middleware'=>'web'],function(){
      * Users and affiliates can access application until they login
      */
     Route::group(['middleware'=>['auth']],function(){
+
+
+        /*
+         * Intervention Images Request Handler
+         * handle all the images request from user and affiliate
+         * show images in html img tag
+        */
+        //get user avatar
+        Route::get('avatars/{imageName}','ImagesController@getAvatar');
 
 
         /*
@@ -54,13 +64,18 @@ Route::group(['middleware'=>'web'],function(){
 
         Route::post('main','PagesController@showMainPage');
 
-
         //show create profile page for user
-        Route::post('reg-profile', 'PagesController@showUserRegProfile');
-        //show create profile page for user
-        Route::get('reg-profile', 'PagesController@showUserRegProfile');
+        Route::get('profile/create', 'PagesController@showUserRegProfile');
         //create profile for new user
-        Route::post('create-profile','UsersController@createProfile');
+        Route::post('profile/create', 'UsersController@createProfile');
+        //show profile page for user
+        Route::post('user-profile', 'PagesController@showUserProfile');
+        //show profile page for user
+        Route::get('user-profile', 'UsersController@showUserProfile');
+        //show edit profile page for usere
+        Route::get('profile/edit','UsersController@showEditProfile');
+        //hanlde user edit profile request
+        Route::post('profile/edit','UsersController@editProfile');
 
         //show date nearby page for user
         Route::get('date-near-by', 'PagesController@showDateNearby');
@@ -77,14 +92,7 @@ Route::group(['middleware'=>'web'],function(){
         //show assigned date for user
         Route::post('assigned-date', 'PagesController@showAssignedDate');
 
-        //show profile page for user
-        Route::post('user-profile', 'PagesController@showUserProfile');
-        //show profile page for user
-        Route::get('user-profile', 'UsersController@showUserProfile');
-        //show edit profile page for usere
-        Route::get('edit-profile','UsersController@showEditProfile');
-        //hanlde user edit profile request
-        Route::post('edit-profile','UsersController@editProfile');
+
 
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');
