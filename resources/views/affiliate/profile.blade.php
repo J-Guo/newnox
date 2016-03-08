@@ -27,38 +27,19 @@
                     <div class="nice-header header-fix-top">
 
                         <div class="ava-box row">
-                            <!--<div class="col-33">
-                                <a href="#" class="button-header mt-15">
-                                    <span>
-                                        <span class="icon-heart"></span>
-                                    </span>
-                                </a>
-                            </div>-->
                             <div class="col-100">
-                                <img src="images/Untitled.jpg" class="ava" alt=""/>
+                                <img src="{{$profilePhotoURL}}" class="ava" alt=""/>
                             </div>
-                            <!--<div class="col-33">
-                                <a href="#" class="button-header mt-15">
-                                    <span>
-                                        <span class="icon-users-plus"></span>
-                                    </span>
-                                </a>
-                            </div>-->
                         </div>
 
                         <div class="row follow mt-10">
                             <div class="col-100 tablet-50 mb-5">
                                 <div class="followers">
                                     <span></span>
-                                    <span>David James</span>
+                                    <span>{{(isset($displayName) ? $displayName : "Emlido User" )}}</span>
                                 </div>
                             </div>
-                            <!--<div class="col-50 tablet-50">
-                                <div class="following">
-                                    <span>Following</span>
-                                    <span>33</span>
-                                </div>
-                            </div>-->
+
                         </div>
 
                         <div class="balance">
@@ -174,4 +155,5 @@
 
             </div>
         </div>
+    </div>
 @stop

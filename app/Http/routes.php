@@ -81,7 +81,6 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('user-profile', 'PagesController@showUserProfile');
         //show profile page for user
         Route::get('user-profile', 'UsersController@showUserProfile');
-
         //show edit profile page for usere
         Route::get('edit-profile','UsersController@showEditProfile');
         //hanlde user edit profile request
@@ -95,11 +94,11 @@ Route::group(['middleware'=>'web'],function(){
         });
 
 
-   /*
-    * Entrust role middleware for affiliates
-    * only affiliates can access the following pages
-    */
-    Route::group(['middleware'=>'role:affiliate'],function(){
+       /*
+        * Entrust role middleware for affiliates
+        * only affiliates can access the following pages
+        */
+        Route::group(['middleware'=>'role:affiliate'],function(){
 
        /*
         |--------------------------------------------------------------------------
@@ -115,7 +114,11 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('apersonal-detail', 'PagesController@showAPersonalDetail');
 
         //show profile page for affiliate
-        Route::get('aprofile', 'PagesController@showAProfile');
+        Route::get('aprofile', 'UsersController@showAProfile');
+        //show edit profie page for affiliate
+        Route::get('aprofile/edit', 'UsersController@showEditAProfile');
+        //handle edit profile for affiliate
+        Route::post('aprofile/edit', 'UsersController@editAProfile');
 
         //show task nearby page for affiliate
         Route::get('task-nearby','PagesController@showTaskNearby');

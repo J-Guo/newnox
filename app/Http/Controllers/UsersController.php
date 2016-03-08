@@ -145,4 +145,33 @@ class UsersController extends Controller
 
 
     }
+
+
+    //show profile page for affiliate
+    public function showAProfile(){
+
+        //get current user
+        $user = Auth::user();
+        //get default storage url
+        $storageURL = "..".DIRECTORY_SEPARATOR."storage".DIRECTORY_SEPARATOR."app".DIRECTORY_SEPARATOR."avatars";
+        //get profile photo url from db
+        $imageURL = $user->profile_photo;
+        //generate the whole url
+        $profilePhotoURL =  $storageURL.DIRECTORY_SEPARATOR.$imageURL;
+
+        return view('affiliate.profile')
+            ->with('profilePhotoURL',$profilePhotoURL)
+            ->with('displayName',$user->display_name);
+    }
+
+    /**
+     * show edit profile page for existing affiliate
+     * @return View
+     */
+    public function showEditAProfile(){
+
+        $user = Auth::user();
+
+        return view('affiliate.edit-profile')->with('user',$user);
+    }
 }

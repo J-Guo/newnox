@@ -66,11 +66,6 @@ class PagesController extends Controller
         return view('affiliate.personal-detail');
     }
 
-    //show profile page for affiliate
-    public function showAProfile(){
-        return view('affiliate.profile');
-    }
-
     //show task nearby page for affiliate
     public function showTaskNearby(){
         return view('affiliate.task-nearby');

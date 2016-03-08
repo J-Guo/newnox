@@ -8,6 +8,5 @@
 </head>
 <body>
 
-<img src="{{$url}}" alt="">
 </body>
 </html>
