@@ -80,27 +80,22 @@
                                 <i class="fa fa-female"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Profile</div>
+                                <div class="item-title">Gallery</div>
                             </div>
                         </a>
                     </li>
+
+
                     <li>
-                        <a href="{{url('aprofile/edit')}}" class="item-link close-panel item-content">
+                        <a href="{{url('assigned-task')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa  fa-edit"></i>
+                                <i class="fa fa-weixin"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Edit Profile</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('faq')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-question"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">FAQ</div>
+                                <div class="item-title">Assignedd Task</div>
+                                <div class="item-after">
+                                    <span class="badge badge-secondary">5</span>
+                                </div>
                             </div>
                         </a>
                     </li>
@@ -115,18 +110,49 @@
                         </a>
                     </li>
                     <li class="divider">
-                        Tasks
+                        Setting
                     </li>
                     <li>
-                        <a href="{{url('assigned-task')}}" class="item-link close-panel item-content">
+                        <a href="{{url('aprofile/edit')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa fa-weixin"></i>
+                                <i class="fa  fa-edit"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Assignedd Task</div>
-                                <div class="item-after">
-                                    <span class="badge badge-secondary">5</span>
-                                </div>
+                                <div class="item-title">Edit Profile</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{url('apersonal-detail')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa fa-bank"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Edit Bank Detail</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider">
+                        Other
+                    </li>
+                    <li>
+                        <a href="{{url('faq')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa fa-question"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">FAQ</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('logout')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-sign-out"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Logout</div>
                             </div>
                         </a>
                     </li>
