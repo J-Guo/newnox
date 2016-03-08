@@ -24,7 +24,7 @@
         <div class="page" data-page="settings">
             <div class="page-content">
                 <!-- Form to submit user profile information including image upload-->
-            	<form id="reg-form" action="create-profile" enctype="multipart/form-data" method="post">
+            	<form id="reg-form" action="{{url('profile/create')}}" enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="content-block-title">Basic profile details of you.</div>
                     <div class="list-block">
@@ -37,7 +37,7 @@
                                     <div class="item-inner">
                                         <div class="item-title label">Name</div>
                                         <div class="item-input">
-                                          <input type="text" name="displayName" placeholder="Display Name" required>
+                                          <input type="text" name="displayName" placeholder="Display Name" required />
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                         <div class="item-title label">Profile pic</div>
                                         <div class="item-input">
                                               <div class="uploadFile timelineUploadBG">
-                                                <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" required>
+                                                <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" required />
                                               </div>
                                         </div>
                                         <img src="{{url("avatars/default.jpg")}}" id="avatar-preview" height="75px" width="75px" alt="image"/>
@@ -140,10 +140,8 @@
             readURL(this);
         });
 
-
         //set validation for reg-form
         $("#reg-form").parsley();
-
 
     });
 

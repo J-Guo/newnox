@@ -77,11 +77,11 @@
                                         <div class="item-inner">
                                             <div class="item-title label">Age</div>
                                             <div class="item-input">
-                                                <select name="age">
-                                                    @for ($i = 18; $i <= 75; $i++)
-                                                        <option value="{{$i}}">{{$i}}</option>
-                                                    @endfor
-                                                </select>
+                                                {{Form::selectRange('age',
+                                                18,
+                                                75,
+                                                isset($user) ? $user->age :18)
+                                                }}
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
 @stop
 
 @section('footer')
-            <!-- Parsley Form Validator-->
+    <!-- Parsley Form Validator-->
     <script src="{{ asset('assets/js/pages/parsley.min.js')}}"></script>
     <!--Scripts for image upload preview -->
     <script>

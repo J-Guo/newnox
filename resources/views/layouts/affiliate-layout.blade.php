@@ -85,6 +85,16 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{url('aprofile/edit')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-edit"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Edit Profile</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('faq')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-question"></i>

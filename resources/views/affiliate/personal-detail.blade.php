@@ -63,23 +63,23 @@
             <div class="login-view-box mt-50">
 
             <div class="list login-form-box">
-                <form class="form nice-label" id="affiliateDetail" action="aprofile" method="GET">
-
+                <form class="form nice-label" id="affiliateDetail" action="{{url('apersonal-detail')}}" method="POST">
+                    {{csrf_field()}}
                     <div class="form-row">
-                        <label for="login"><span class="icon-woman"></span></label>
-                        <input type="text" id="login" placeholder="Your Name">
+                        <label for="name"><span class="icon-woman"></span></label>
+                        <input type="text" name="userName" id="name" placeholder="Your Name">
                     </div>
                     <div class="form-row">
-                        <label for="email"><span class="icon-home2"></span></label>
-                        <input type="email" id="email" placeholder="Bank Name">
+                        <label for="bankName"><span class="icon-home2"></span></label>
+                        <input type="text" name="bankName" id="bankName" placeholder="Bank Name">
                     </div>
                     <div class="form-row">
-                        <label for="email"><span class="icon-bag-dollar"></span></label>
-                        <input type="email" id="email" placeholder="BSB">
+                        <label for="bsb"><span class="icon-bag-dollar"></span></label>
+                        <input type="tel" name="bsbNo" id="bsbNo" placeholder="BSB">
                     </div>
                     <div class="form-row">
                         <label for="email"><span class="icon-at-sign"></span></label>
-                        <input type="email" id="email" placeholder="Account No.">
+                        <input type="tel" name="accountNo" id="accountNo" placeholder="Account No.">
                     </div>
 
                     <!-- Submit Button-->

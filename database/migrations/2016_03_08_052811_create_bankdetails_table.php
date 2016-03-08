@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreateBankdetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,16 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('bank_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('owner');//foreign key, should be user's mobile number
-            $table->string('image_url');//the stored path of image
+            $table->integer('affiliate');
+            $table->string('name');
+            $table->string('bank_name');
+            $table->string('bsb');
+            $table->string('account_no');
+            $table->string('status')->nullable();
             $table->timestamps();
-            $table->foreign('owner')
+            $table->foreign('affiliate')
                   ->references('id')
                   ->on('users');
         });
@@ -30,6 +34,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('images');
+        Schema::drop('bank_details');
     }
 }

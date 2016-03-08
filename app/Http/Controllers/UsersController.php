@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Bank_Detail;
 
 class UsersController extends Controller
 {
-
-
-
     /**
      * create profile for new user
      * @return View
@@ -176,4 +174,79 @@ class UsersController extends Controller
 
         return view('affiliate.edit-profile')->with('user',$user);
     }
+
+    /**
+     * edit profile page for affiliate
+     * @return View
+     */
+    public function editAProfile(Request $request){
+
+        //get current user
+        $user = Auth::user();
+
+        //get user input
+        $displayName = $request->input('displayName'); //display name, need santinize it before save
+        $age = $request->input('age'); //age
+        $gender = $request->input('gender'); //gender
+        $file = $request->file('avatar');
+
+        //get file extension
+        $extension = $file->getClientOriginalExtension();
+        //generate a unique image name based on user mobile and time
+        $name = $user->mobile.time().".".$extension;
+
+        //store image into storage folder
+        $result = Storage::put(
+            'avatars/'. $name,
+            file_get_contents($file->getRealPath())
+        );
+
+        //if storage is successful
+        if($result){
+            //save user information in db
+            $user->display_name = $displayName;
+            $user->age = $age;
+            $user->gender =$gender;
+            $user->profile_photo = $name;
+            $user->save();
+
+            //redirect to main page
+            return redirect('aprofile/edit')
+                ->with('message','Profile Updated Successful');
+        }
+        else{
+            return redirect()->back()->withInput()
+                ->with('message','Upload Avatar failed, please try again');
+        }
+
+    }
+
+   /**
+    * edit personal detail page for affiliate
+    * @return View
+   */
+   public function editPersonalDetail(Request $request){
+
+       //get affiliate name
+       $userName = $request->input('userName');
+       //get bank name
+       $bankName = $request->input('bankName');
+       //get bsb
+       $bsbNo =  $request->input('bsbNo');
+       //get account number
+       $accNo = $request->input('accountNo');
+
+       //create a new bank detail instance
+       $bankDetail = new Bank_Detail();
+       $bankDetail->affiliate = Auth::user()->id;
+       $bankDetail->name = $userName;
+       $bankDetail->bank_name = $bankName;
+       $bankDetail->bsb =  $bsbNo;
+       $bankDetail->account_no=  $accNo;
+       //and save information
+       $bankDetail->save();
+
+       return redirect('task-nearby');
+       //dd($accNo );
+   }
 }

@@ -12,10 +12,10 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-//        $user = new Role();
-//        $user->name         = 'affiliate';
-//        $user->display_name = 'Project Affiliate'; // optional
-//        $user->save();
+        $user = new Role();
+        $user->name         = 'affiliate';
+        $user->display_name = 'Project Affiliate'; // optional
+        $user->save();
 
         $affiliate = new Role();
         $affiliate->name         = 'user';

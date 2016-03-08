@@ -33,7 +33,7 @@
                         @endif
 
                                 <!-- Form to submit user profile edit information including image upload-->
-                        <form id="reg-form" action="edit-profile" enctype="multipart/form-data" method="post">
+                        <form id="reg-form" action="{{url('aprofile/edit')}}" enctype="multipart/form-data" method="post">
                             {{csrf_field()}}
                             <div class="content-block-title">Basic profile details of you.</div>
                             <div class="list-block">
@@ -99,7 +99,7 @@
                                                                accept='image/x-png, image/jpeg' class="custom-file-input" required>
                                                     </div>
                                                 </div>
-                                                <img src="{{ isset($user) ? url('../')."/storage/app/avatars/".$user->profile_photo :'images/Untitled.jpg'}}"
+                                                <img src="{{ isset($user) ? url("avatars/".$user->profile_photo) :url("avatars/default.jpg")}}"
                                                      id="avatar-preview" height="75px" width="75px" alt="image"/>
                                             </div>
                                         </div>

@@ -118,8 +118,10 @@ Route::group(['middleware'=>'web'],function(){
         //show FAQ page for affiliate
         Route::get('faq', 'PagesController@showFAQ');
 
-        //show personal detail page for affiliate
+        //show personal(bank) detail page for affiliate
         Route::get('apersonal-detail', 'PagesController@showAPersonalDetail');
+        //handle personal detail edit request for affiliate
+        Route::post('apersonal-detail', 'UsersController@editPersonalDetail');
 
         //show profile page for affiliate
         Route::get('aprofile', 'UsersController@showAProfile');
