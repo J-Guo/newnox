@@ -62,7 +62,8 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('main','PagesController@showMainPage');
         Route::get('main-listview','PagesController@showMainListviewPage');
 
-        Route::post('main','PagesController@showMainPage');
+        //handle user post a task submit
+        Route::post('post-task','TasksController@postTask');
 
         //show create profile page for user
         Route::get('profile/create', 'PagesController@showUserRegProfile');
@@ -89,8 +90,6 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('assigned-date', 'PagesController@showAssignedDate');
         //show assigned date for user
         Route::post('assigned-date', 'PagesController@showAssignedDate');
-
-
 
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');

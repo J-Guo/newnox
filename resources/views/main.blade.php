@@ -1,15 +1,7 @@
-<?php
-date_default_timezone_set("Australia/Sydney");
-$today = date("d/m/Y");
-?>
-
-
-
 @extends('layouts.main-layout')
-<link href="assets/themes/red/style.css" rel="stylesheet" type="text/css" />
 @section("header")
 
-    <link rel="stylesheet" href="{{asset('assets/css/map6.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/map-style.css')}}">
 
     <style>
 
@@ -97,15 +89,6 @@ $today = date("d/m/Y");
 
         }
 
-        .rcorners3 {
-            border-radius: 50%;
-            background-color: #f44336;
-            opacity:1;
-            padding:3px 0 0 3px;
-            width: 100%;
-            height: 100%;
-            font-size:40px;
-        }
         /*.round-button-circle:hover {
             background:#ff3333;
         }
@@ -157,32 +140,30 @@ $today = date("d/m/Y");
                 <form @submit.prevent="locateAddress" id="locationForm">
                     <input type="search" id="address" v-model="address" class="search" placeholder="Seach location here" required>
                     <input type="submit" class="search-button" value="Search">
-                    <a href="main-listview" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
+                    <a href="post-a-task-list" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
                 </form>
 
 
             </div>
-            <div  id="User-Map" style="height:100%;"></div>
+            <div  id="User-Map"></div>
 
             <div class="over-lay bottom">
 
             </div>
 
+            <form id="dateForm" name="dataForm" action="{{url('post-task')}}" method="POST">
+            {{csrf_field()}}
             <div class="over-lay bottom">
-
-
-
                 <div class="content-block mt-10 mb-5">
-
                     <div class="buttons-row">
-                        <a href="#tab1" class="tab-link active button button-secondary">Date</a>
-                        <a href="#tab2" class="tab-link button button-secondary">Price</a>
-                        <a href="#tab3" class="tab-link button button-secondary">Gender</a>
+                        <a href="#date" class="tab-link active button button-secondary">Date</a>
+                        <a href="#rate" class="tab-link button button-secondary">Price</a>
+                        <a href="#gender" class="tab-link button button-secondary">Gender</a>
                     </div>
                 </div>
 
                 <div class="tabs">
-                    <div id="tab1" class="tab active">
+                    <div id="date" class="tab active">
                         <div class="content-block mt-5 mb-10">
                             <div class="list-block mt-5 mb-0">
                                 <ul>
@@ -192,7 +173,7 @@ $today = date("d/m/Y");
                                             <div class="item-inner">
                                                 <div class="item-input label">Wish a Date :</div>
                                                 <div class="item-input">
-                                                    <input type="date" placeholder="Birth day" value="2016-02-17">
+                                                    <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +183,7 @@ $today = date("d/m/Y");
                         </div>
                     </div>
 
-                    <div id="tab2" class="tab">
+                    <div id="rate" class="tab">
                         <div class="content-block mt-5 mb-10">
                             <div class="list-block mt-5 mb-0">
                                 <ul>
@@ -213,7 +194,7 @@ $today = date("d/m/Y");
                                                 <div class="item-input label">Rate Range : </div>
                                                 <div class="item-input">
                                                     <div class="range-slider">
-                                                        <input type="range" min="0" max="100" value="50" step="0.1" class="">
+                                                        <input type="range" name="price" min="100" max="1000" value="250" step="50">
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,7 +205,7 @@ $today = date("d/m/Y");
                         </div>
                     </div>
 
-                    <div id="tab3" class="tab">
+                    <div id="gender" class="tab">
                         <div class="content-block mt-5 mb-10">
                             <div class="list-block mt-5 mb-0">
                                 <ul>
@@ -232,13 +213,18 @@ $today = date("d/m/Y");
                                     <li>
                                         <div class="item-content">
                                             <div class="item-inner">
-                                                <div class="item-input label">Choose Gender :</div>
                                                 <div class="item-input">
-                                                    <select class="">
-                                                        <option>Female</option>
-                                                        <option>Male</option>
+                                                    <select name="preference">
+                                                        <option value="female">Female</option>
+                                                        <option value="male">Male</option>
                                                     </select>
                                                 </div>
+                                                <div class="item-input label">
+                                                    <div class="col-33">
+                                                        <input type="submit" form="dateForm" class="button button-primary button-fill button-small" value="Submit">
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </li>
@@ -247,11 +233,8 @@ $today = date("d/m/Y");
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-
+            </form>
 
         </div>
 
@@ -273,4 +256,3 @@ $today = date("d/m/Y");
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAomTWe6-_JXMoza7hm9olIQLZ8TEq5PdY&callback=app.createMap"
             async defer></script>
 @stop
-
