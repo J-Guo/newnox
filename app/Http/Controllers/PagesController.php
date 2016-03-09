@@ -61,10 +61,7 @@ class PagesController extends Controller
         return view('affiliate.faq');
     }
 
-    //show task nearby page for affiliate
-    public function showTaskNearby(){
-        return view('affiliate.task-nearby');
-    }
+
 
     //show make offer page for affiliate
     public function showMakeOffer(){

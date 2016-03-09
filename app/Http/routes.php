@@ -133,7 +133,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('aprofile/edit', 'UsersController@editAProfile');
 
         //show task nearby page for affiliate
-        Route::get('task-nearby','PagesController@showTaskNearby');
+        Route::get('task-nearby','TasksController@showTaskNearby');
 
         //show make offer page for affiliate
         Route::get('make-offer', 'PagesController@showMakeOffer');

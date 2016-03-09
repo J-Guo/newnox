@@ -39,11 +39,12 @@ class LoginController extends Controller
         //check user mobile phone number is correct or not
         //create message and send it
         try{
-            $message = $client->account->messages->sendMessage(
-                $from,
-                $mobileNum,
-                $smsBody
-            );
+            //use it when project goes alive
+//            $message = $client->account->messages->sendMessage(
+//                $from,
+//                $mobileNum,
+//                $smsBody
+//            );
 
             return view("auth.otp")
                 ->with('mobileNum',$mobileNum)

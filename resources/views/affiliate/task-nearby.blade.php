@@ -22,8 +22,12 @@
         <div class="page no-toolbar" data-page="blog">
             <div class="page-content">
 
+                <!-- show tasks nearby-->
+                @if(!isset($posted_tasks))
+                 <h2>Oops, May do not have task right now, try it later :)</h2>
+                @else
+                @foreach($posted_tasks as $key => $task)
                 <div class="card">
-
                     <div class="card-content">
                         <div class="list-block media-list">
                             <ul>
@@ -32,7 +36,6 @@
                                         <div class="row">
                                             <div class="col-100">
                                                 <img src="images/avatar-3.jpg" width="100">
-
 
                                     <span class="rating blog-rating">
                                         <span class="icon-star" style="color:#F90; width:18%"></span>
@@ -45,9 +48,9 @@
                                         </div>
                                     </div>
                                     <div class="item-inner">
-
-                                        <div class="item-subtitle"><p>Price: <strong>$220</strong></p></div>
-                                        <div class="item-subtitle"><p>Date: 11/02/2017</p></div>
+                                        <!-- Output all values of each task -->
+                                        <div class="item-subtitle"><p>Price: <strong>${{$task->price}}</strong></p></div>
+                                        <div class="item-subtitle"><p>Date: {{$task->date}}</p></div>
                                         <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
                                         <div class="item-inner">
                                             <div class="row text-center">
@@ -61,86 +64,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card">
-
-                    <div class="card-content">
-                        <div class="list-block media-list">
-                            <ul>
-                                <li class="item-content">
-                                    <div class="item-media">
-                                        <div class="row">
-                                            <div class="col-100">
-                                                <img src="images/avatar-2.jpg" width="100">
-
-
-                                    <span class="rating blog-rating small">
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star"></span>
-                                    </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-inner">
-
-                                        <div class="item-subtitle"><p>Price: <strong>$240</strong></p></div>
-                                        <div class="item-subtitle"><p>Date: 17/02/2017</p></div>
-                                        <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
-                                        <div class="item-inner">
-                                            <div class="row text-center">
-                                                <input type="button" class="button button-primary button-small" name="submit" value="Make An Offer">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-
-                    <div class="card-content">
-                        <div class="list-block media-list">
-                            <ul>
-                                <li class="item-content">
-                                    <div class="item-media">
-                                        <div class="row">
-                                            <div class="col-100">
-                                                <img src="images/avatar-1.jpg" width="100">
-
-
-                                    <span class="rating blog-rating small">
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star" style="color:#F90;"></span>
-                                        <span class="icon-star"></span>
-                                    </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-inner">
-
-                                        <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
-                                        <div class="item-subtitle"><p>Date: 22/02/2017</p></div>
-                                        <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
-                                        <div class="item-inner">
-                                            <div class="row text-center">
-                                                <input type="button" class="button button-primary button-small" name="submit" value="Make An Offer">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                @endif
+            <!-- End tasks Nearby-->
 
             </div>
         </div>
