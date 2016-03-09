@@ -69,8 +69,6 @@ Route::group(['middleware'=>'web'],function(){
         //create profile for new user
         Route::post('profile/create', 'UsersController@createProfile');
         //show profile page for user
-        Route::post('user-profile', 'PagesController@showUserProfile');
-        //show profile page for user
         Route::get('user-profile', 'UsersController@showUserProfile');
         //show edit profile page for usere
         Route::get('profile/edit','UsersController@showEditProfile');
@@ -118,10 +116,15 @@ Route::group(['middleware'=>'web'],function(){
         //show FAQ page for affiliate
         Route::get('faq', 'PagesController@showFAQ');
 
-        //show personal(bank) detail page for affiliate
-        Route::get('apersonal-detail', 'PagesController@showAPersonalDetail');
-        //handle personal detail edit request for affiliate
-        Route::post('apersonal-detail', 'UsersController@editPersonalDetail');
+        //show create bank detail page for affiliate
+        Route::get('bank-detail/create', 'UsersController@showBankDetail');
+        //handle bank detail create request for affiliate
+        Route::post('bank-detail/create', 'UsersController@createBankDetail');
+        //show edit bank detail page for affiliate
+        Route::get('bank-detail/edit','UsersController@showBankDetailEdit');
+        //handle bank detail edit request for affiliate
+        Route::post('bank-detail/edit','UsersController@editBankDetail');
+
 
         //show profile page for affiliate
         Route::get('aprofile', 'UsersController@showAProfile');

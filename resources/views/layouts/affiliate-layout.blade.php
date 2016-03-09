@@ -124,7 +124,7 @@
                     </li>
 
                     <li>
-                        <a href="{{url('apersonal-detail')}}" class="item-link close-panel item-content">
+                        <a href="{{url('bank-detail/edit')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-bank"></i>
                             </div>

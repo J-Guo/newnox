@@ -110,7 +110,7 @@
             </div>
             <!-- Submit Button-->
             <div class="content-block mb-15">
-                <form action="apersonal-detail" method="GET" id="acceptForm">
+                <form action="{{url('bank-detail/create')}}" method="GET" id="acceptForm">
                 <input type="submit" form="acceptForm" class="button button-primary" value="Accpet">
                 </form>
             </div>

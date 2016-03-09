@@ -63,7 +63,7 @@
             <div class="login-view-box mt-50">
 
             <div class="list login-form-box">
-                <form class="form nice-label" id="affiliateDetail" action="{{url('apersonal-detail')}}" method="POST">
+                <form class="form nice-label" id="affiliateDetail" action="{{url('bank-detail/create')}}" method="POST">
                     {{csrf_field()}}
                     <div class="form-row">
                         <label for="name"><span class="icon-woman"></span></label>

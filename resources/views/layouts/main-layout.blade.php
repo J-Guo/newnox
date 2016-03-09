@@ -89,6 +89,32 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{url('assigned-date')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa fa-weixin"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Assignedd Task</div>
+                                <div class="item-after">
+                                    <span class="badge badge-secondary">5</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('reviews')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-star-o"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Review</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider">
+                       Setting
+                    </li>
+                    <li>
                         <a href="{{url('profile/edit')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa  fa-edit"></i>
@@ -108,29 +134,16 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('reviews')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-star-o"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Review</div>
-                            </div>
-                        </a>
-                    </li>
                     <li class="divider">
-                        Tasks
+                        Other
                     </li>
                     <li>
-                        <a href="{{url('assigned-date')}}" class="item-link close-panel item-content">
+                        <a href="{{url('logout')}}" class="item-link close-panel item-content">
                             <div class="item-media">
-                                <i class="fa fa-weixin"></i>
+                                <i class="fa  fa-sign-out"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Assignedd Task</div>
-                                <div class="item-after">
-                                    <span class="badge badge-secondary">5</span>
-                                </div>
+                                <div class="item-title">Logout</div>
                             </div>
                         </a>
                     </li>

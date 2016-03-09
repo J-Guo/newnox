@@ -221,11 +221,19 @@ class UsersController extends Controller
 
     }
 
+    /**
+     * show bank detail create page for affiliate
+     * @return View
+     */
+    public function showBankDetail(){
+        return view('affiliate.bank-detail');
+    }
+
    /**
-    * edit personal detail page for affiliate
+    * create bank detail for affiliate
     * @return View
    */
-   public function editPersonalDetail(Request $request){
+   public function createBankDetail(Request $request){
 
        //get affiliate name
        $userName = $request->input('userName');
@@ -235,6 +243,10 @@ class UsersController extends Controller
        $bsbNo =  $request->input('bsbNo');
        //get account number
        $accNo = $request->input('accountNo');
+
+       /*
+        * some validations should be done here....
+        */
 
        //create a new bank detail instance
        $bankDetail = new Bank_Detail();
@@ -249,4 +261,50 @@ class UsersController extends Controller
        return redirect('task-nearby');
        //dd($accNo );
    }
+
+    /**
+     * show bank detail edit page for affiliate
+     * @return View
+     */
+    public function showBankDetailEdit(){
+
+        $affiliate = Auth::user();
+        $bankDetail = Bank_Detail::where('affiliate',$affiliate->id)->first();
+
+        return view('affiliate.edit-bank-detail')
+               ->with('bankDetail',$bankDetail);
+
+    }
+
+    /**
+     * edit bank detail for affiliate
+     * @return View
+     */
+    public function editBankDetail(Request $request){
+
+        //get affiliate name
+        $userName = $request->input('userName');
+        //get bank name
+        $bankName = $request->input('bankName');
+        //get bsb
+        $bsbNo =  $request->input('bsbNo');
+        //get account number
+        $accNo = $request->input('accountNo');
+
+        /*
+        * some validations should be done here....
+        */
+
+        //create a new bank detail instance
+        $bankDetail = Bank_Detail::where('affiliate',Auth::user()->id)->first();
+        $bankDetail->name = $userName;
+        $bankDetail->bank_name = $bankName;
+        $bankDetail->bsb =  $bsbNo;
+        $bankDetail->account_no=  $accNo;
+        //and save information
+        $bankDetail->save();
+
+        return redirect('task-nearby');
+
+    }
 }
