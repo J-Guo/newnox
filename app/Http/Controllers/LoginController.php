@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Services_Twilio;
+use Services_Twilio_RestException;
 use App\Role;
 use App\User;
 
@@ -20,26 +21,37 @@ class LoginController extends Controller
      */
     public function sendOTP(Request $request){
 
-        //get user mobile number
-        $mobileNum =$request->input("mobileNum");
+        //set your AccountSid and AuthToken
+        $AccountSid = config('services.twilio.sid');
+        $AuthToken =  config('services.twilio.token');
+        $from = config('services.twilio.from_number');
         //get user type from user input
         $userType = $request->input('userType');
 
+        //get user mobile number
+        $mobileNum =$request->input("mobileNum");
+        //set message body (OTP)
+        $smsBody = "2222";
+
+        //create message client
+        $client = new Services_Twilio($AccountSid, $AuthToken);
+
         //check user mobile phone number is correct or not
+        //create message and send it
+        try{
+            $message = $client->account->messages->sendMessage(
+                $from,
+                $mobileNum,
+                $smsBody
+            );
 
-        /**
-         * Some functions here need to be done....
-         */
-
-        if(true){
-
-        return view("auth.otp")
-            ->with('mobileNum',$mobileNum)
-            ->with('userType',$userType);
+            return view("auth.otp")
+                ->with('mobileNum',$mobileNum)
+                ->with('userType',$userType);
         }
-        else{
-        //mobile phone number is incorrect
-        return redirect('login')->with('message','Please input correct mobile number');
+        catch(Services_Twilio_RestException $e){
+            return redirect()->back()->withInput()
+                ->with('message',$e->getMessage()) ;
         }
 
     }
