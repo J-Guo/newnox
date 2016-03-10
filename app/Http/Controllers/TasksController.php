@@ -58,17 +58,16 @@ class TasksController extends Controller
         //get current user
         $user = Auth::user();
         //get posted task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
         //set array for offer and corresponding sender (affiliate)
         $sentOfferArray = [];
 
-        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
-
+        //if user has posted a task
         if(!empty($posted_task)){
         //get posted task id
         $posted_task_id = $posted_task->id;
         //get all offer  which are sent to this task
         $task_offers = Task_Offer::where('task_id',$posted_task_id)->get();
-
 
         foreach($task_offers as $task_offer){
             //get the id of offer sent to this task
@@ -117,6 +116,14 @@ class TasksController extends Controller
          */
         foreach($posted_tasks as $task){
 
+        $task_id = $task->id;
+
+        //check affiliate has sent an offer to this task or not
+        //if has sent, task will not be shown
+        $check_result = $this->isOfferSentTo($task_id);;
+
+        //if affiliate has not sent an offer to this task
+        if(!$check_result){
         //find the poster
         $poster = User::find($task->task_poster);
 
@@ -130,6 +137,9 @@ class TasksController extends Controller
 
         }
 
+        }
+
+        //if no any task has been posted
         if(empty($postedTaskArray))
             return view('affiliate.task-nearby');
         else
@@ -137,6 +147,34 @@ class TasksController extends Controller
                    ->with('postedTaskArray',$postedTaskArray);
 
 //        dd(empty($postedTaskArray));
+
+    }
+
+    /*
+     *check affiliate has sent an offer to this task or not
+     */
+    private function isOfferSentTo($task_id){
+
+     //get the ids of all offers sent by affiliate
+     $offers = Sent_Offer::where('offer_maker',Auth::user()->id)->get(['id']);
+
+     if(empty($offers))
+         return false;  //if affiliate has not sent any offer
+     else{
+         //get all task_offer relationship
+         $task_offers = Task_Offer::whereIn('offer_id',$offers)->get();
+         if(empty($task_offers))
+             return false;
+         else{
+             //check every task that affiliate has sent offer to
+             foreach($task_offers as $task_offer){
+                 //if affiliate has sent an offer to this task
+                 if($task_offer->task_id == $task_id)
+                     return true;
+             }
+             return false;
+         }
+     }
 
     }
 
