@@ -143,9 +143,11 @@ Route::group(['middleware'=>'web'],function(){
 
         //show make offer page for affiliate
         Route::post('make-offer', 'TasksController@showMakeOffer');
+        //handle send offer action from affiliate
+        Route::post('send-offer','TasksController@sendOffer');
 
         //show task list page for affiliate
-        Route::get('task-list','PagesController@showTaskList');
+        Route::get('task-list','TasksController@showTaskList');
 
         //show assigned task page for affiliate
         Route::get('assigned-task','PagesController@showAssignedTask');

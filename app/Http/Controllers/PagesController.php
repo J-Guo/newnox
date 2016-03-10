@@ -61,11 +61,6 @@ class PagesController extends Controller
         return view('affiliate.faq');
     }
 
-    //show task list page for affiliate
-    public function showTaskList(){
-        return view('affiliate.task-list');
-    }
-
     //show assigned task page for affiliate
     public function showAssignedTask(){
         return view('affiliate.assigned-task');
