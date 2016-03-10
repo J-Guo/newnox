@@ -23,10 +23,10 @@
             <div class="page-content">
 
                 <!-- show tasks nearby-->
-                @if(!isset($posted_tasks))
+                @if(!isset($postedTaskArray) || empty($postedTaskArray))
                  <h2>Oops, May do not have task right now, try it later :)</h2>
                 @else
-                @foreach($posted_tasks as $key => $task)
+                @foreach($postedTaskArray as $key => $poster_task_merged)
                 <form id="taskNearby{{$key}}" name="offerForm" action="make-offer" method="POST">
                     {{csrf_field()}}
                 <div class="card">
@@ -37,7 +37,8 @@
                                     <div class="item-media">
                                         <div class="row">
                                             <div class="col-100">
-                                                <img src="images/avatar-3.jpg" width="100">
+                                                <img src="{{url('avatars/'.$poster_task_merged['poster']->profile_photo)}}"
+                                                     width="100">
 
                                     <span class="rating blog-rating">
                                         <span class="icon-star" style="color:#F90; width:18%"></span>
@@ -51,12 +52,12 @@
                                     </div>
                                     <div class="item-inner">
                                         <!-- Output all values of each task -->
-                                        <input type="hidden" name="task_poster" value="{{$task->task_poster}}" />
-                                        <input type="hidden" name="task_id" value="{{$task->id}}" />
-                                        <div class="item-subtitle"><p>Price: <strong>${{$task->price}}</strong></p></div>
-                                        <input type="hidden" name="price" value="{{$task->price}}" />
-                                        <div class="item-subtitle"><p>Date: {{$task->date}}</p></div>
-                                        <input type="hidden" name="date" value="{{$task->date}}" />
+                                        <input type="hidden" name="task_poster" value="{{$poster_task_merged['task']->task_poster}}" />
+                                        <input type="hidden" name="task_id" value="{{$poster_task_merged['task']->id}}" />
+                                        <div class="item-subtitle"><p>Price: <strong>${{$poster_task_merged['task']->price}}</strong></p></div>
+                                        <input type="hidden" name="price" value="{{$poster_task_merged['task']->price}}" />
+                                        <div class="item-subtitle"><p>Date: {{$poster_task_merged['task']->date}}</p></div>
+                                        <input type="hidden" name="date" value="{{$poster_task_merged['task']->date}}" />
                                         <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
 
                                         <div class="item-inner">

@@ -28,7 +28,8 @@
 
                         <div class="ava-box row">
                             <div class="col-100">
-                                <img src="{{$profilePhotoURL}}" class="ava" alt=""/>
+                                <img src="{{ isset($imageURL) ? url("avatars/".$imageURL) :url("avatars/default.jpg")}}"
+                                     class="ava" alt=""/>
                             </div>
                         </div>
 

@@ -76,15 +76,11 @@ class UsersController extends Controller
 
         //get current user
         $user = Auth::user();
-        //get default storage url
-        $storageURL = "avatars";
         //get profile photo url from db
         $imageURL = $user->profile_photo;
-        //generate the whole url than can access image through images request handler
-        $profilePhotoURL =  $storageURL.DIRECTORY_SEPARATOR.$imageURL;
 
         return view('user-profile')
-            ->with('profilePhotoURL',$profilePhotoURL)
+            ->with('imageURL',$imageURL)
             ->with('displayName',$user->display_name);
     }
 
@@ -160,15 +156,11 @@ class UsersController extends Controller
 
         //get current user
         $user = Auth::user();
-        //get default storage url
-        $storageURL = "..".DIRECTORY_SEPARATOR."storage".DIRECTORY_SEPARATOR."app".DIRECTORY_SEPARATOR."avatars";
         //get profile photo url from db
         $imageURL = $user->profile_photo;
-        //generate the whole url
-        $profilePhotoURL =  $storageURL.DIRECTORY_SEPARATOR.$imageURL;
 
         return view('affiliate.profile')
-            ->with('profilePhotoURL',$profilePhotoURL)
+            ->with('imageURL',$imageURL)
             ->with('displayName',$user->display_name);
     }
 

@@ -35,7 +35,8 @@
                             </a>
                         </div>-->
                         <div class="col-100">
-                            <img src="{{$profilePhotoURL}}" class="ava" alt=""/>
+                            <img src="{{ isset($imageURL) ? url("avatars/".$imageURL) :url("avatars/default.jpg")}}"
+                                 class="ava" alt=""/>
                         </div>
                         <!--<div class="col-33">
                             <a href="#" class="button-header mt-15">

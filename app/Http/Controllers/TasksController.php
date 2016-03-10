@@ -61,12 +61,31 @@ class TasksController extends Controller
          */
         $posted_tasks = Posted_Task::all();
 
+        //set array to store poster and posted task information
+        $postedTaskArray =[];
 
-        if($posted_tasks->isEmpty())
+        foreach($posted_tasks as $task){
+
+        $poster = User::find($task->task_poster);
+
+        $poster_task_mergerd = [
+            "poster" => $poster,
+            "task"   => $task
+        ];
+
+        //store poster task merged information into array
+        $postedTaskArray[] = $poster_task_mergerd;
+
+        }
+
+
+        if(empty($postedTaskArray))
             return view('affiliate.task-nearby');
         else
             return view('affiliate.task-nearby')
-                   ->with('posted_tasks',$posted_tasks);
+                   ->with('postedTaskArray',$postedTaskArray);
+
+//        dd(empty($postedTaskArray));
 
     }
 
@@ -159,11 +178,12 @@ class TasksController extends Controller
                 "poster" => $poster
             ];
 
-            $taskList = [$offer_poster_merged];
+            //add offer and poster merged into array
+            $taskList[] = $offer_poster_merged;
 
         }
 
-//       dd($taskList[0]["poster"]);
+//       dd($taskList);
 
         return view('affiliate.task-list')->with('taskList',$taskList);
     }
