@@ -58,13 +58,17 @@ class TasksController extends Controller
         //get current user
         $user = Auth::user();
         //get posted task by this user
+        //set array for offer and corresponding sender (affiliate)
+        $sentOfferArray = [];
+
         $posted_task = Posted_Task::where('task_poster',$user->id)->first();
+
+        if(!empty($posted_task)){
         //get posted task id
         $posted_task_id = $posted_task->id;
         //get all offer  which are sent to this task
         $task_offers = Task_Offer::where('task_id',$posted_task_id)->get();
-        //set array for offer and corresponding sender (affiliate)
-        $sentOfferArray = [];
+
 
         foreach($task_offers as $task_offer){
             //get the id of offer sent to this task
@@ -78,6 +82,8 @@ class TasksController extends Controller
                 'sender'=> $affiliate
             ];
             $sentOfferArray[] = $offer_affiliate_merged;
+
+        }
 
         }
 
