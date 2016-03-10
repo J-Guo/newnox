@@ -61,13 +61,6 @@ class PagesController extends Controller
         return view('affiliate.faq');
     }
 
-
-
-    //show make offer page for affiliate
-    public function showMakeOffer(){
-        return view('affiliate.make-offer');
-    }
-
     //show task list page for affiliate
     public function showTaskList(){
         return view('affiliate.task-list');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Posted_Task;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class TasksController extends Controller
 {
@@ -64,6 +65,32 @@ class TasksController extends Controller
         else
             return view('affiliate.task-nearby')
                    ->with('posted_tasks',$posted_tasks);
+
+    }
+
+    /**
+     * show make offer page for affiliate
+     * @return View
+     */
+    public function showMakeOffer(Request $request){
+
+        //get task poster id
+        $task_poster_id = $request->input('task_poster');
+        //get task poster instance
+        $task_poster = User::find($task_poster_id)->first();
+
+        //get task id
+        $task_id = $request->input('task_id');
+        //get task instance
+        $posted_task = Posted_Task::find($task_id)->first();
+
+
+   // dd($request->input());
+
+        return view('affiliate.make-offer')
+            ->with('task_poster',$task_poster)
+            ->with('posted_task',$posted_task);
+
 
     }
 }

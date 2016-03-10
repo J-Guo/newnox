@@ -110,7 +110,8 @@
             </div>
             <!-- Submit Button-->
             <div class="content-block mb-15">
-                <form action="{{url('bank-detail/create')}}" method="GET" id="acceptForm">
+                <form action="{{url('begin-task')}}" method="POST" id="acceptForm">
+                {{csrf_field()}}
                 <input type="submit" form="acceptForm" class="button button-primary" value="Accpet">
                 </form>
             </div>

@@ -27,6 +27,8 @@
                  <h2>Oops, May do not have task right now, try it later :)</h2>
                 @else
                 @foreach($posted_tasks as $key => $task)
+                <form id="taskNearby{{$key}}" name="offerForm" action="make-offer" method="POST">
+                    {{csrf_field()}}
                 <div class="card">
                     <div class="card-content">
                         <div class="list-block media-list">
@@ -49,12 +51,17 @@
                                     </div>
                                     <div class="item-inner">
                                         <!-- Output all values of each task -->
+                                        <input type="hidden" name="task_poster" value="{{$task->task_poster}}" />
+                                        <input type="hidden" name="task_id" value="{{$task->id}}" />
                                         <div class="item-subtitle"><p>Price: <strong>${{$task->price}}</strong></p></div>
+                                        <input type="hidden" name="price" value="{{$task->price}}" />
                                         <div class="item-subtitle"><p>Date: {{$task->date}}</p></div>
+                                        <input type="hidden" name="date" value="{{$task->date}}" />
                                         <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
+
                                         <div class="item-inner">
                                             <div class="row text-center">
-                                                <input type="button" class="button button-primary button-small" name="submit" value="Make An Offer">
+                                                <input type="submit" class="button button-primary button-small" id="makeOffer" name="makeOffer" value="Make An Offer">
                                             </div>
                                         </div>
                                     </div>
@@ -64,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                </form> <!-- End Offer Form-->
                 @endforeach
                 @endif
             <!-- End tasks Nearby-->

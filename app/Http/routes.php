@@ -115,6 +115,12 @@ Route::group(['middleware'=>'web'],function(){
         //show FAQ page for affiliate
         Route::get('faq', 'PagesController@showFAQ');
 
+        //handle begin task request for affiliate
+        Route::post('begin-task','UsersController@beginTask');
+
+        //create profile for new affiliate
+        Route::post('aprofile/create','UsersController@createAProfile');
+
         //show create bank detail page for affiliate
         Route::get('bank-detail/create', 'UsersController@showBankDetail');
         //handle bank detail create request for affiliate
@@ -125,7 +131,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('bank-detail/edit','UsersController@editBankDetail');
 
 
-        //show profile page for affiliate
+        //show profile(gallery) page for affiliate
         Route::get('aprofile', 'UsersController@showAProfile');
         //show edit profie page for affiliate
         Route::get('aprofile/edit', 'UsersController@showEditAProfile');
@@ -136,8 +142,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('task-nearby','TasksController@showTaskNearby');
 
         //show make offer page for affiliate
-        Route::get('make-offer', 'PagesController@showMakeOffer');
-
+        Route::post('make-offer', 'TasksController@showMakeOffer');
 
         //show task list page for affiliate
         Route::get('task-list','PagesController@showTaskList');

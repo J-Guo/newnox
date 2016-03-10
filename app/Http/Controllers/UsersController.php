@@ -147,6 +147,14 @@ class UsersController extends Controller
     }
 
 
+
+    /*
+     |--------------------------------------------------------------------------
+     | Affiliate Parts
+     |--------------------------------------------------------------------------
+     */
+
+
     //show profile page for affiliate
     public function showAProfile(){
 
@@ -162,6 +170,75 @@ class UsersController extends Controller
         return view('affiliate.profile')
             ->with('profilePhotoURL',$profilePhotoURL)
             ->with('displayName',$user->display_name);
+    }
+
+    /**
+     * handle begin task request for affiliate
+     * if affiliate is new, show profile create page
+     * else show task nearby page
+     * @return View
+     */
+    public function beginTask(){
+
+        /*
+         * some functions should be done here
+         * to check affiliate is new or not
+         * if affiliate already has a profie as user
+         * the create profile page will not be shown
+         */
+
+        if(true){
+        return view('affiliate.create-profile');
+        }
+        else{
+        return redirect('task-nearby');
+        }
+    }
+
+    /**
+     * create profile for new affiliate
+     * @return View
+     */
+    public function createAProfile(Request $request){
+
+        //get current user
+        $user = Auth::user();
+
+        //get user input
+        $displayName = $request->input('displayName'); //display name, need santinize it before save
+        $age = $request->input('age'); //age
+        $gender = $request->input('gender'); //gender
+        $file = $request->file('avatar');
+
+        //get file extension
+        $extension = $file->getClientOriginalExtension();
+        //generate a unique image name based on user mobile and time
+        $name = $user->mobile.time().".".$extension;
+
+        //store image into storage folder
+        $result = Storage::put(
+            'avatars/'. $name,
+            file_get_contents($file->getRealPath())
+        );
+
+        //if storage is successful
+        if($result){
+            //save user information in db
+            $user->display_name = $displayName;
+            $user->age = $age;
+            $user->gender =$gender;
+            $user->profile_photo = $name;
+            $user->save();
+
+            //redirect to task nearby
+            return redirect('task-nearby');
+        }
+        else{
+
+            return redirect()->back()->withInput()
+                ->with('message','Upload Avatar failed, please try again');
+
+        }
     }
 
     /**
