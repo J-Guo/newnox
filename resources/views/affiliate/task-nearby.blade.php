@@ -38,7 +38,7 @@
                                         <div class="row">
                                             <div class="col-100">
                                                 <img src="{{url('avatars/'.$poster_task_merged['poster']->profile_photo)}}"
-                                                     width="100">
+                                                     width="100" height="100">
 
                                     <span class="rating blog-rating">
                                         <span class="icon-star" style="color:#F90; width:18%"></span>

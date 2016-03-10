@@ -36,11 +36,6 @@ class PagesController extends Controller
         return view('main-listview');
     }
 
-    //show date nearby page for user
-    public function showDateNearby(){
-        return view('date-near-by');
-    }
-
     //show payment detail page for user
     public function showPaymentDetail(){
         return view('payment-details');

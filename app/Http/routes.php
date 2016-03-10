@@ -77,7 +77,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('profile/edit','UsersController@editProfile');
 
         //show date nearby page for user
-        Route::get('date-near-by', 'PagesController@showDateNearby');
+        Route::get('date-near-by', 'TasksController@showDateNearby');
         //show date nearby page for user
         Route::post('date-near-by', 'PagesController@showDateNearby');
 
@@ -129,7 +129,6 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('bank-detail/edit','UsersController@showBankDetailEdit');
         //handle bank detail edit request for affiliate
         Route::post('bank-detail/edit','UsersController@editBankDetail');
-
 
         //show profile(gallery) page for affiliate
         Route::get('aprofile', 'UsersController@showAProfile');
