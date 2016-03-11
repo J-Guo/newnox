@@ -27,7 +27,7 @@
             <h2>Oops, You dont get any offers from affiliates please wait for a moment</h2>
             @else
                 @foreach($sentOfferArray as $offer_affiliate_merged)
-                <form name="form" action="payment-details" method="post">
+                <form id="confirmForm" action="{{url('confirm-date')}}" method="post">
                     {{csrf_field()}}
 
                         <div class="card">
@@ -56,9 +56,13 @@
                                                 <div class="item-subtitle"><p>Price: <strong>${{$offer_affiliate_merged['offer']->price}}</strong></p></div>
                                                 <div class="item-subtitle"><p>Date: {{$offer_affiliate_merged['offer']->date}}</p></div>
                                                 <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
+                                                <input type="hidden" name="offer_maker"
+                                                       value="{{$offer_affiliate_merged['offer']->offer_maker}}" />
+                                                <input type="hidden" name="offer_id"
+                                                       value="{{$offer_affiliate_merged['offer']->id}}" />
                                                 <div class="item-inner">
                                                     <div class="row text-center">
-                                                        <input type="submit" class="button button-primary button-small" name="confirm" value="Confirm Booking" />
+                                                        <input type="submit"  class="button button-primary button-small" name="confirm" value="Confirm Date" />
                                                     </div>
                                                 </div>
                                             </div>

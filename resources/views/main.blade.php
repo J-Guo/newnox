@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/map-style.css')}}">
 
     <style>
-
         .over-lay
         {
             position:absolute; z-index:10000; margin:0 1% 0 1%; width:98%;height:auto; background:#666; opacity:0.9;
@@ -18,42 +17,17 @@
             bottom:5px;
         }
 
+        .right{
+            right:20px;
+        }
+
         .white
         {
             color:#dbdbdb;
         }
         form {
-            width:500px;
+            /*width:80%;*/
             margin:10px;
-        }
-        .search {
-            top:-10px;
-            height:30px;
-            padding:15px;
-            background:#999;
-            border:0px solid #dbdbdb;
-            color:#FFF;-webkit-appearance: none;
-            font-size:medium;
-            width:40%;
-        }
-        /*.search:hover
-        {
-            background-color:#FFF;
-            color:#333;
-        }*/
-        .search-button {
-            position:relative;
-            padding:6px 15px;
-            height:32px;
-            left:-3px;
-            top:-2px;
-            border:2px solid #333333;
-            background-color:#333333;
-            color:#fafafa;
-        }
-        .search-button:hover  {
-            background-color:#F00;
-            /*color:#207cca;*/
         }
 
         .listview-icon
@@ -89,28 +63,81 @@
 
         }
 
-        /*.round-button-circle:hover {
-            background:#ff3333;
+        .textbox {
+            -moz-border-radius-topleft: 30px;
+            -webkit-border-top-left-radius: 30px;
+            border-top-left-radius: 30px;
+            -moz-border-radius-bottomleft: 30px;
+            -webkit-border-bottom-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border: 1px solid #848484;
+            outline:0;
+            height:35px;
+            width: 95%;
+            padding-left:20px;
+            border:none;
+            -webkit-appearance: none;
         }
-        .round-button a {
-            display:block;
-            float:left;
-            width:100%;
-            padding-top:50%;
-            padding-bottom:50%;
-            line-height:1em;
-            margin-top:-0.5em;
 
-            text-align:center;
-            color:#e2eaf3;
-            font-family:Verdana;
-            font-size:1.2em;
-            font-weight:bold;
-            text-decoration:none;
-        }*/
+        .btn {
+            -moz-border-radius-topright: 30px;
+            -webkit-border-top-right-radius: 30px;
+            border-top-right-radius: 30px;
+            -moz-border-radius-bottomright: 30px;
+            -webkit-border-bottom-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            font-family: Arial;
+            color: #ffffff;
+            background: #d93434;
+            padding: 8px 10px 8px 8px;
+            text-decoration: none;
+            border:none;
+            width:60px;
+            height:36px;
+            -webkit-appearance: none;
+            z-index:10000;
+        }
+
+
+        .btn:hover {
+            background: #e60000;
+            text-decoration: none;
+        }
+
+
+        .btn2 {
+            -moz-border-radius-top: 30px;
+            -webkit-border-top-radius: 30px;
+            border-top-radius: 30px;
+            -moz-border-radius-bottom: 30px;
+            -webkit-border-bottom-radius: 30px;
+            border-bottom-radius: 30px;
+            font-family: Arial;
+            color: #ffffff;
+            background: #d93434;
+            padding: 8px 10px 8px 8px;
+            text-decoration: none;
+            border:none;
+            width:60px;
+            height:36px;
+            -webkit-appearance: none;
+
+        }
+
+        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color:#2c2c2c;
+        }
+        ::-moz-placeholder { /* Firefox 19+ */
+            color: #2c2c2c;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+            color: #2c2c2c;
+        }
+        :-moz-placeholder { /* Firefox 18- */
+            color: #2c2c2c;
+        }
 
     </style>
-
 @stop
 
 @section('content')
@@ -133,120 +160,117 @@
         </div>
 
         <!-- Pages -->
-        <div class="navbar-fixed toolbar-fixed ">
+        <div class="navbar-fixed toolbar-fixed" data-page="contact">
 
             <div class="over-lay top">
-
-                <form @submit.prevent="locateAddress" id="locationForm">
-                    <input type="search" id="address" v-model="address" class="search" placeholder="Seach location here" required>
-                    <input type="submit" class="search-button" value="Search">
-                    <a href="post-a-task-list" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
-                </form>
-
-
+                <div class="forms">
+                    <form @submit.prevent="locateAddress" id="locationForm">
+                        <p class="buttons-row">
+                            <input type="search" id="address" v-model="address" name="name" placeholder="Seach location here" required class="textbox">
+                            <input type="submit" class="btn" value="Search">
+                            <button form="" onclick="window.location.href='{{url('main-listview')}}'" class="btn2 ml-10"> <i class="fa fa-2x fa-list mt-0"></i> </button>
+                        </p>
+                    </form>
+                </div>
             </div>
+
             <div  id="User-Map"></div>
-
             <div class="over-lay bottom">
-
             </div>
 
             <form id="dateForm" name="dataForm" action="{{url('post-task')}}" method="POST">
-            {{csrf_field()}}
-            <div class="over-lay bottom">
-                <div class="content-block mt-10 mb-5">
-                    <div class="buttons-row">
-                        <a href="#date" class="tab-link active button button-secondary">Date</a>
-                        <a href="#rate" class="tab-link button button-secondary">Price</a>
-                        <a href="#gender" class="tab-link button button-secondary">Gender</a>
-                    </div>
-                </div>
-
-                <div class="tabs">
-                    <div id="date" class="tab active">
-                        <div class="content-block mt-5 mb-10">
-                            <div class="list-block mt-5 mb-0">
-                                <ul>
-                                    <!-- Text inputs -->
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-input label">Wish a Date :</div>
-                                                <div class="item-input">
-                                                    <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                {{csrf_field()}}
+                <div class="over-lay bottom">
+                    <div class="content-block mt-10 mb-5">
+                        <div class="buttons-row">
+                            <a href="#date" class="tab-link active button button-secondary">Date</a>
+                            <a href="#rate" class="tab-link button button-secondary">Price</a>
+                            <a href="#gender" class="tab-link button button-secondary">Gender</a>
                         </div>
                     </div>
 
-                    <div id="rate" class="tab">
-                        <div class="content-block mt-5 mb-10">
-                            <div class="list-block mt-5 mb-0">
-                                <ul>
-                                    <!-- Text inputs -->
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-input label">Rate Range : </div>
-                                                <div class="item-input">
-                                                    <div class="range-slider">
-                                                        <input type="range" name="price" min="100" max="1000" value="250" step="50">
+                    <div class="tabs">
+                        <div id="date" class="tab active">
+                            <div class="content-block mt-5 mb-10">
+                                <div class="list-block mt-5 mb-0">
+                                    <ul>
+                                        <!-- Text inputs -->
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-input label">Wish a Date :</div>
+                                                    <div class="item-input">
+                                                        <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div id="gender" class="tab">
-                        <div class="content-block mt-5 mb-10">
-                            <div class="list-block mt-5 mb-0">
-                                <ul>
-                                    <!-- Text inputs -->
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-input">
-                                                    <select name="preference">
-                                                        <option value="female">Female</option>
-                                                        <option value="male">Male</option>
-                                                    </select>
-                                                </div>
-                                                <div class="item-input label">
-                                                    <div class="col-33">
-                                                        <input type="submit" form="dateForm" class="button button-primary button-fill button-small" value="Submit">
+                        <div id="rate" class="tab">
+                            <div class="content-block mt-5 mb-10">
+                                <div class="list-block mt-5 mb-0">
+                                    <ul>
+                                        <!-- Text inputs -->
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-input label">Rate Range : </div>
+                                                    <div class="item-input">
+                                                        <div class="range-slider">
+                                                            <input type="range" name="price" min="100" max="1000" value="250" step="50">
+                                                        </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="gender" class="tab">
+                            <div class="content-block mt-5 mb-10">
+                                <div class="list-block mt-5 mb-0">
+                                    <ul>
+                                        <!-- Text inputs -->
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-input">
+                                                        <select name="preference">
+                                                            <option value="female">Female</option>
+                                                            <option value="male">Male</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="item-input label">
+                                                        <div class="col-33">
+                                                            <input type="submit" form="dateForm" class="button button-primary button-fill button-small" value="Submit">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
 
         </div>
-
-
     </div>
 
 
     @stop
 
-    @section("footer")
-
-            <!--Build Vue.js -->
+@section("footer")
+    <!--Build Vue.js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.14/vue.min.js"></script>
     <!--Build Loading Overlay -->
     <script type="text/javascript" src="{{asset('assets/js/loadingoverlay.js')}}"></script>

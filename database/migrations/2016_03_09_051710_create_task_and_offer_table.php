@@ -16,6 +16,7 @@ class CreateTaskAndOfferTable extends Migration
             $table->increments('id');
             $table->integer('task_id');
             $table->integer('offer_id');
+            $table->string('status');
             $table->timestamps();
             $table->foreign('task_id')
                   ->references('id')->on('posted_tasks');

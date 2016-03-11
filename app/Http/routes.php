@@ -81,6 +81,9 @@ Route::group(['middleware'=>'web'],function(){
         //show date nearby page for user
         Route::post('date-near-by', 'PagesController@showDateNearby');
 
+        //handle user confirm booking request
+        Route::post('confirm-date','TasksController@confirmDate');
+
         //show payment detail page for user
         Route::get('payment-details', 'PagesController@showPaymentDetail');
         //show payment detail page for user
