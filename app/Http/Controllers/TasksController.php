@@ -98,8 +98,6 @@ class TasksController extends Controller
      */
     public function confirmDate(Request $request){
 
-
-
         /*
          *some functions should be done here...
          *check whether user's payment method is stored
@@ -113,20 +111,23 @@ class TasksController extends Controller
         $user = Auth::user();
         //get posted task by this user
         $posted_task = Posted_Task::where('task_poster',$user->id)->first();
-        //set current task as assigned task
-        $posted_task->status = "assigned";
+
 
         //get the offer id
         $offer_id = $request->input('offer_id');
         //get the offer instance
         $sent_offer = Sent_Offer::find($offer_id);
-        //set offer as assigned
-        $sent_offer->status = "assigned";
 
+        $task_offer = Task_Offer::where('task_id',$posted_task->id)
+                                ->where('offer_id',$sent_offer->id)->first();
 
-        //update task and offer status
+        //set current task is assigned and save it
+        $posted_task->status = 'assigned';
+        $sent_offer->status ='assigned';
+        $task_offer->status = 'assigned';
         $posted_task->save();
         $sent_offer->save();
+        $task_offer->save();
 
         return redirect('assigned-date');
 
@@ -135,6 +136,30 @@ class TasksController extends Controller
             return "Please fill your payment method";
         }
 
+    }
+
+    /**
+     * show assigned date (chatroom) for user
+     * @return View
+     */
+    public function showAssignedDate(){
+
+        //get current user
+        $user = Auth::user();
+        //get posted task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
+        //get the offer which is sent to this task
+        $task_offer = Task_Offer::where('task_id',$posted_task->id)
+                                ->where('status','assigned')->first();
+        //get the offer instance
+        $sent_offer = Sent_Offer::find($task_offer->offer_id);
+        //get the affiliate who made the offer
+        $affiliate  = User::find($sent_offer->offer_maker);
+
+        dd($affiliate);
+
+        //begin chat with the affiliate
+//        return view('assigned-date');
     }
 
 

@@ -90,9 +90,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('payment-details', 'PagesController@showPaymentDetail');
 
         //show assigned date for user
-        Route::get('assigned-date', 'PagesController@showAssignedDate');
-        //show assigned date for user
-        Route::post('assigned-date', 'PagesController@showAssignedDate');
+        Route::get('assigned-date', 'TasksController@showAssignedDate');
 
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');

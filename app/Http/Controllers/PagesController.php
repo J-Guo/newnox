@@ -41,10 +41,7 @@ class PagesController extends Controller
         return view('payment-details');
     }
 
-    //show assigned date for user
-    public function showAssignedDate(){
-        return view('assigned-date');
-    }
+
 
     //show review page for user
     public function showUserReview(){
