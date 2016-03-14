@@ -16,4 +16,13 @@ class Posted_Task extends Model
     protected $fillable = [
         'task_poster', 'price', 'date','place','status','preference',
     ];
+
+    /**
+     * A Posted taks can have many offers from affiliate
+     */
+    public function offers()
+    {
+        //second parameter is foreign_key
+        return $this->hasMany('App\Models\Sent_Offer','posted_task_id');
+    }
 }
