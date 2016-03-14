@@ -57,8 +57,10 @@ class TasksController extends Controller
 
         //get current user
         $user = Auth::user();
-        //get posted task by this user
-        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
+        //get posted and not assigned task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+                                    ->where('status','posted')
+                                    ->first();
         //set array for offer and corresponding sender (affiliate)
         $sentOfferArray = [];
 
@@ -146,8 +148,17 @@ class TasksController extends Controller
 
         //get current user
         $user = Auth::user();
-        //get posted task by this user
-        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
+        //get assigned task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+                                    ->where('status','assigned')
+                                    ->first();
+
+        //set array to store offer and affiliate information
+        $assignedDateArray = [];
+
+
+        if(!empty($posted_task)){
+
         //get the offer which is sent to this task
         $task_offer = Task_Offer::where('task_id',$posted_task->id)
                                 ->where('status','assigned')->first();
@@ -156,10 +167,17 @@ class TasksController extends Controller
         //get the affiliate who made the offer
         $affiliate  = User::find($sent_offer->offer_maker);
 
-        dd($affiliate);
+        $assignedDateArray = [
+            'affiliate'=>$affiliate,
+            'offer'=>$sent_offer
+        ];
+
+        }
+
+//        dd($affiliate);
 
         //begin chat with the affiliate
-//        return view('assigned-date');
+        return view('assigned-date')->with('assignedDateArray',$assignedDateArray);
     }
 
 
@@ -354,5 +372,44 @@ class TasksController extends Controller
 //       dd($taskList);
 
         return view('affiliate.task-list')->with('taskList',$taskList);
+    }
+
+    /**
+     * show assigned task page (chatroom) for affiliate
+     * @return View
+     */
+    public function showAssignedTask(){
+
+        //get current user
+        $user = Auth::user();
+        //get assigned offer by this affiliate
+        $sent_offer = Sent_Offer::where('offer_maker',$user->id)
+            ->where('status','assigned')
+            ->first();
+
+        //set array to store offer and affiliate information
+        $assignedTaskArray = [];
+
+
+        if(!empty($sent_offer)){
+
+            //get the assigned task
+            $task_offer = Task_Offer::where('offer_id',$sent_offer->id)
+                ->where('status','assigned')->first();
+            //get the offer instance
+            $posted_task = Posted_Task::find($task_offer->task_id);
+            //get the affiliate who made the offer
+            $user  = User::find($posted_task->task_poster);
+
+            $assignedTaskArray = [
+                'user'=> $user,
+                'offer'=>$sent_offer
+            ];
+
+        }
+
+//        dd($assignedTaskArray);
+        return view('affiliate.assigned-task')
+            ->with('assignedTaskArray', $assignedTaskArray);
     }
 }

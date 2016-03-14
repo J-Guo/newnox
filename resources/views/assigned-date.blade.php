@@ -10,7 +10,7 @@
                         <span class="kkicon icon-menu"></span>
                     </a>
                 </div>
-                <div class="center sliding">dates near by</div>
+                <div class="center sliding">Assigned Date</div>
                 <div class="right">
                     <a href="#" class="link icon-only open-panel" data-panel="right">
                         <span class="kkicon icon-alarm"></span>
@@ -23,11 +23,16 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
             <div class="page no-toolbar" data-page="blog">
+
+                <!-- Chat Room-->
+                <div class="page-content">
                 <form name="form" action="payment-details" method="post">
-                    <div class="page-content">
 
+                @if(!isset($assignedDateArray) || empty($assignedDateArray))
+                <h2> You do not have any assigned date</h2>
+                @else
+                        <!-- Chat Room Header-->
                         <div class="card">
-
                             <div class="card-content">
                                 <div class="list-block media-list">
                                     <ul>
@@ -35,9 +40,9 @@
                                             <div class="item-media">
                                                 <div class="row mt-15">
                                                     <div class="col-100">
-                                                        <img src="images/maria.jpg" width="95">
-                            
-                                
+                                                        <img src="{{ isset($assignedDateArray) ? url("avatars/".$assignedDateArray['affiliate']->profile_photo) :url("avatars/default.jpg")}}"
+                                                             width="100">
+
                                     <span class="rating blog-rating">
                                         <span class="icon-star" style="color:#F90; width:18%"></span>
                                         <span class="icon-star" style="color:#F90; width:18%"></span>
@@ -50,21 +55,21 @@
                                             </div>
                                             <div class="item-inner">
                                                 <div class="item-subtitle"><h3>Juleka Jeba</h3></div>
-                                                <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
-                                                <div class="item-subtitle"><p>Date: 22/02/2016</p></div>
+                                                <div class="item-subtitle"><p>Price:
+                                                        <strong>${{isset($assignedDateArray) ? $assignedDateArray['offer']->price:''}}</strong></p></div>
+                                                <div class="item-subtitle"><p>Date:
+                                                        {{isset($assignedDateArray) ? $assignedDateArray['offer']->date:''}}</p></div>
                                                 <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
 
                                             </div>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-
+                        <!-- Chat Room Body-->
                         <div class="card">
-
                             <div class="card-content">
                                 <!-- Chat Room Content-->
                                 <div class="messages messages-auto-layout">
@@ -101,9 +106,13 @@
                             </div>
                         </div>
 
-
+                     @endif
+                     </form>
                     </div>
-                </form>
+
+                <!-- End Chat Room-->
+
+
             </div>
         </div>
     </div>

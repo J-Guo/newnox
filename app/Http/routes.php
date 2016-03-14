@@ -16,10 +16,6 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('logout','LoginController@handleLogout');
 
 
-//    Route::get('signin','HomeController@showSignin');
-//    Route::post('signin','HomeController@handleSignin');
-//    Route::get('signout','HomeController@handleSignout');
-
     /*
      * Authentication middleware for both users and affiliates
      * Users and affiliates can access application until they login
@@ -79,7 +75,7 @@ Route::group(['middleware'=>'web'],function(){
         //show date nearby page for user
         Route::get('date-near-by', 'TasksController@showDateNearby');
         //show date nearby page for user
-        Route::post('date-near-by', 'PagesController@showDateNearby');
+//        Route::post('date-near-by', 'PagesController@showDateNearby');
 
         //handle user confirm booking request
         Route::post('confirm-date','TasksController@confirmDate');
@@ -150,7 +146,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('task-list','TasksController@showTaskList');
 
         //show assigned task page for affiliate
-        Route::get('assigned-task','PagesController@showAssignedTask');
+        Route::get('assigned-task','TasksController@showAssignedTask');
 
         //show review page for affiliate
         Route::get('areviews','PagesController@showAReview');

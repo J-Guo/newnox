@@ -53,11 +53,6 @@ class PagesController extends Controller
         return view('affiliate.faq');
     }
 
-    //show assigned task page for affiliate
-    public function showAssignedTask(){
-        return view('affiliate.assigned-task');
-    }
-
     //show review page for affiliate
     public function showAReview(){
         return view('affiliate.reviews');

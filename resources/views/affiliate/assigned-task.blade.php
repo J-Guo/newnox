@@ -23,8 +23,12 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
             <div class="page no-toolbar" data-page="blog">
-                <form name="form" action="payment-details" method="post">
+
                     <div class="page-content">
+                        <form name="form" action="payment-details" method="post">
+                        @if(!isset($assignedTaskArray) || empty($assignedTaskArray))
+                            <h2> You do not have any assigned task</h2>
+                        @else
 
                         <div class="card">
 
@@ -35,7 +39,8 @@
                                             <div class="item-media">
                                                 <div class="row mt-15">
                                                     <div class="col-100">
-                                                        <img src="images/avatar-1.jpg" width="95">
+                                                        <img src="{{ isset($assignedTaskArray) ? url("avatars/".$assignedTaskArray['user']->profile_photo) :url("avatars/default.jpg")}}"
+                                                             width="95">
 
 
                                     <span class="rating blog-rating">
@@ -50,8 +55,10 @@
                                             </div>
                                             <div class="item-inner">
                                                 <div class="item-subtitle"><h3>Juleka Jeba</h3></div>
-                                                <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
-                                                <div class="item-subtitle"><p>Date: 22/02/2016</p></div>
+                                                <div class="item-subtitle"><p>Price:
+                                                        <strong>${{isset($assignedTaskArray) ? $assignedTaskArray['offer']->price:''}}</strong></p></div>
+                                                <div class="item-subtitle"><p>Date:
+                                                        {{isset($assignedTaskArray) ? $assignedTaskArray['offer']->date:''}}</p></div>
                                                 <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
 
                                             </div>
@@ -101,9 +108,10 @@
                             </div>
                         </div>
 
-
+                        @endif
+                        </form>
                     </div>
-                </form>
+
             </div>
         </div>
     </div>
