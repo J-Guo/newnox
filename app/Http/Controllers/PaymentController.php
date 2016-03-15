@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sent_Offer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,7 +38,13 @@ class PaymentController extends Controller
      */
     public function showRequestPaymentList(){
 
-        return view('affiliate.request-payment');
+        //get all assigned offers
+        $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
+                            ->where('status','assigned')
+                            ->get();
+
+//        dd($offers);
+        return view('affiliate.request-payment')->with('offers',$offers);
     }
 
     /**

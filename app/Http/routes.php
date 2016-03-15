@@ -96,7 +96,7 @@ Route::group(['middleware'=>'web'],function(){
         //show review list page for user
         Route::get('reviews', 'PagesController@showUserReviewList');
         //show review page for user
-        Route::post('reviews/{reviewid}', 'PagesController@showUserReview');
+        Route::post('reviews/{taskid}', 'PagesController@showUserReview');
 
         });
 
@@ -158,8 +158,13 @@ Route::group(['middleware'=>'web'],function(){
         //show specific request payment page for affiliate
         Route::post('request-payment/{taskid}','PaymentController@showRequestPayment');
 
+        //show reviews list page for affiliate
+        Route::get('areviews','PagesController@showAReviewList');
         //show review page for affiliate
-        Route::get('areviews','PagesController@showAReview');
+        Route::post('areviews/{taskid}', 'PagesController@showAReview');
+
+
+
         });
 
     });

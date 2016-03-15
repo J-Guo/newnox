@@ -56,7 +56,7 @@ class PagesController extends Controller
      * @param $reviewid
      * @return View
      */
-    public function showUserReview($reviewid){
+    public function showUserReview($taskid){
 
         return view('review');
     }
@@ -66,9 +66,22 @@ class PagesController extends Controller
         return view('affiliate.faq');
     }
 
-    //show review page for affiliate
-    public function showAReview(){
+    /**
+     * show review page for affiliate
+     * @return View
+     */
+    public function showAReviewList(){
         return view('affiliate.reviews');
+    }
+
+    /**
+     * show review page for affiliate
+     * @param $taskid
+     * @return View
+     */
+    public function showAReview($taskid){
+
+        return view('affiliate.review');
     }
 
 
