@@ -100,6 +100,16 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{url('request-payment')}}" class="item-link close-panel item-content">
+                            <div class="item-media">
+                                <i class="fa  fa-paypal"></i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title">Request Payment</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('areviews')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa  fa-star-o"></i>

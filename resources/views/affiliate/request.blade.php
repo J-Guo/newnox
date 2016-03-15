@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('layouts.affiliate-layout')
 
 @section('content')
 
@@ -10,7 +10,7 @@
                         <span class="kkicon icon-menu"></span>
                     </a>
                 </div>
-                <div class="center sliding">Release Payment</div>
+                <div class="center sliding">Request Payment</div>
                 <div class="right">
                     <a href="#" class="link icon-only open-panel" data-panel="right">
                         <span class="kkicon icon-alarm"></span>
@@ -23,7 +23,7 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
             <div class="page no-toolbar" data-page="blog">
-                <form name="form" action="{{url('releasepayment')}}" method="post">
+                <form name="form" action="{{url('requestpayment')}}" method="post">
                     <div class="page-content">
 
                         <div class="card">
@@ -35,7 +35,7 @@
                                             <div class="item-media">
                                                 <div class="row">
                                                     <div class="col-100 mt-15">
-                                                        <img src="{{url('avatars/default2.jpg')}}" width="105">
+                                                        <img src="{{url('avatars/default.jpg')}}" width="105">
 
 
                                                     </div>
@@ -62,7 +62,7 @@
 
                         <div class="content-block">
                             <div class="input-submit">
-                               <input type="submit" class="button button-primary button-fill" value="Release Payment">
+                                <input type="submit" class="button button-primary button-fill" value="Request Payment">
                             </div>
                         </div>
 

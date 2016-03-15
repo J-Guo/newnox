@@ -29,4 +29,22 @@ class PaymentController extends Controller
         return view('release');
 
     }
+
+    /**
+     * show request payment list page for affiliate
+     * @return View
+     */
+    public function showRequestPaymentList(){
+
+        return view('affiliate.request-payment');
+    }
+
+    /**
+     * show specific request payment page for affiliate
+     * @return View
+     */
+    public function showRequestPayment(){
+
+        return view('affiliate.request');
+    }
 }

@@ -153,6 +153,11 @@ Route::group(['middleware'=>'web'],function(){
         //show assigned task page for affiliate
         Route::get('assigned-task','TasksController@showAssignedTask');
 
+        //show request payment list page for affiliate
+        Route::get('request-payment','PaymentController@showRequestPaymentList');
+        //show specific request payment page for affiliate
+        Route::post('request-payment/{taskid}','PaymentController@showRequestPayment');
+
         //show review page for affiliate
         Route::get('areviews','PagesController@showAReview');
         });
