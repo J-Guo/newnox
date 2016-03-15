@@ -88,6 +88,11 @@ Route::group(['middleware'=>'web'],function(){
         //show assigned date for user
         Route::get('assigned-date', 'TasksController@showAssignedDate');
 
+        //show release payment list page for user
+        Route::get('release-payment','PaymentController@showReleasePaymentList');
+        //show specific release payment page for user
+        Route::post('release-payment/{taskid}','PaymentController@showReleasePayment');
+
         //show review page for user
         Route::post('reviews', 'PagesController@showUserReview');
         //show review page for user

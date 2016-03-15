@@ -1,4 +1,3 @@
-<link href="../../public/assets/themes/red/style.css" rel="stylesheet" type="text/css" />
 @extends('layouts.main-layout')
 
 @section('content')
@@ -43,7 +42,7 @@
                             </div>
                           </div>
                           <div class="item-inner">
-							<div class="item-subtitle"><h3>Juleka Jeba</strong></h3></div>
+							<div class="item-subtitle"><h3><strong>Juleka Jeba</strong></h3></div>
                             <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
                             <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
                             <div class="item-subtitle"><span class="rating blog-rating">
