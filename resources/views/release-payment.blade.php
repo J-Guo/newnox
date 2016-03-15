@@ -24,8 +24,6 @@
             <div class="page-content">
                 <!-- show dates nearby-->
 
-
-
                 <div class="card">
                 <form name="releaseForm" action="{{url('release-payment/1')}}" method="POST">
                     {{csrf_field()}}

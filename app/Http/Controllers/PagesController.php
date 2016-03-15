@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class PagesController extends Controller
 {
@@ -42,10 +43,22 @@ class PagesController extends Controller
     }
 
 
-
-    //show review page for user
-    public function showUserReview(){
+    /**
+     * show reviews list for user
+     * @return View
+     */
+    public function showUserReviewList(){
         return view('reviews');
+    }
+
+    /**
+     * show review page for user
+     * @param $reviewid
+     * @return View
+     */
+    public function showUserReview($reviewid){
+
+        return view('review');
     }
 
     //show FAQ page for affiliate

@@ -93,10 +93,10 @@ Route::group(['middleware'=>'web'],function(){
         //show specific release payment page for user
         Route::post('release-payment/{taskid}','PaymentController@showReleasePayment');
 
+        //show review list page for user
+        Route::get('reviews', 'PagesController@showUserReviewList');
         //show review page for user
-        Route::post('reviews', 'PagesController@showUserReview');
-        //show review page for user
-        Route::get('reviews', 'PagesController@showUserReview');
+        Route::post('reviews/{reviewid}', 'PagesController@showUserReview');
 
         });
 
