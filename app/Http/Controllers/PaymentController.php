@@ -38,9 +38,9 @@ class PaymentController extends Controller
      */
     public function showRequestPaymentList(){
 
-        //get all assigned offers
+        //get all assigned and requesting offers
         $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
-                            ->where('status','assigned')
+                            ->whereIn('status',['assigned','requesting'])
                             ->get();
 
 //        dd($offers);
@@ -51,8 +51,30 @@ class PaymentController extends Controller
      * show specific request payment page for affiliate
      * @return View
      */
-    public function showRequestPayment(){
+    public function showRequestPayment($offerid){
 
-        return view('affiliate.request');
+        $offer = Sent_Offer::find($offerid);
+
+        return view('affiliate.request')->with('offer',$offer);
+    }
+
+    /**
+     * handle request payment action from affiliate
+     * @param Request $request
+     * @return Redirector
+     */
+    public function handleRequestPayment(Request $request){
+
+        $offer_id = $request->input('offerID');
+        $offer = Sent_Offer::find($offer_id);
+        $task = $offer->task;
+        $offer->status = 'requesting';
+        $task->status = 'requesting';
+        $offer->save();
+        $task->save();
+
+        //dd($request->input());
+        return redirect('request-payment');
+
     }
 }

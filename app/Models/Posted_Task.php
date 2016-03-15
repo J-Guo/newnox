@@ -20,9 +20,13 @@ class Posted_Task extends Model
     /**
      * A Posted taks can have many offers from affiliate
      */
-    public function offers()
-    {
+    public function offers(){
         //second parameter is foreign_key
         return $this->hasMany('App\Models\Sent_Offer','posted_task_id');
+    }
+
+    public function poster(){
+        //second parameter is foreign_key
+        return $this->belongsTo('App\User','task_poster');
     }
 }

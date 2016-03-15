@@ -156,14 +156,14 @@ Route::group(['middleware'=>'web'],function(){
         //show request payment list page for affiliate
         Route::get('request-payment','PaymentController@showRequestPaymentList');
         //show specific request payment page for affiliate
-        Route::post('request-payment/{taskid}','PaymentController@showRequestPayment');
+        Route::post('request-payment/{offerid}','PaymentController@showRequestPayment');
+        //handle request payment action from affiliate
+        Route::post('request-payment','PaymentController@handleRequestPayment');
 
         //show reviews list page for affiliate
         Route::get('areviews','PagesController@showAReviewList');
         //show review page for affiliate
         Route::post('areviews/{taskid}', 'PagesController@showAReview');
-
-
 
         });
 

@@ -23,7 +23,9 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
             <div class="page no-toolbar" data-page="blog">
-                <form name="form" action="{{url('requestpayment')}}" method="post">
+                <form name="form" action="{{url('request-payment')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="offerID" value="{{$offer->id}}">
                     <div class="page-content">
 
                         <div class="card">
@@ -35,23 +37,27 @@
                                             <div class="item-media">
                                                 <div class="row">
                                                     <div class="col-100 mt-15">
-                                                        <img src="{{url('avatars/default.jpg')}}" width="105">
-
+                                                        <img src="{{url('avatars/'.$offer->task->poster->profile_photo)}}"
+                                                             width="100" height="100">
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item-inner">
                                                 <div class="item-subtitle"><h3><strong>Juleka Jeba</strong></h3></div>
-                                                <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
-                                                <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
-                                                <div class="item-subtitle"><span class="rating blog-rating">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
-                                    </span></div>
+                                                <div class="item-subtitle"><p>Price: <strong>$
+                                                        {{$offer->price}}</strong></p></div>
+                                                <div class="item-subtitle"><p>Date:
+                                                        {{$offer->date}}</p></div>
+                                                <div class="item-subtitle">
+                                                    <span class="rating blog-rating">
+                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
+                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
+                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
+                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
+                                                        <span class="icon-star" style="width:20%"></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </li>
 
