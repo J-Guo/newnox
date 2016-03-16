@@ -164,6 +164,8 @@ Route::group(['middleware'=>'web'],function(){
 
         //show reviews list page for affiliate
         Route::get('areviews','PagesController@showAReviewList');
+        //handle make review action for affiliate
+        Route::post('areviews','PagesController@makeAffiliateReview');
         //show review page for affiliate
         Route::post('areviews/{offerid}', 'PagesController@showAReview');
 

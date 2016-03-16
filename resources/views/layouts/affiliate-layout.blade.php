@@ -35,6 +35,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
     <link rel="stylesheet" href="{{asset('assets/themes/red/style.css')}}" id="theme-style">
+    @yield('header')
 </head>
 <body class="">
 

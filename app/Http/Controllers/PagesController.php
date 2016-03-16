@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\models\Affiliate_Review;
 use App\Models\Posted_Task;
 use App\Models\Sent_Offer;
 use App\models\User_Review;
@@ -108,7 +109,7 @@ class PagesController extends Controller
         $user_review->posted_task_id = $offer->task->id;
         $offer->task->status = "reviewed"; //set task as reviewed
         $user_review->rate = $rating;
-
+        //save changes
         $user_review->save();
         $offer->task->save();
 
@@ -145,6 +146,35 @@ class PagesController extends Controller
         $offer = Sent_Offer::find($offerid);
 
         return view('affiliate.review')->with('offer',$offer);
+    }
+
+    /**
+     * handle make review action for affiliate
+     * @param Request $request
+     * @return Redirector
+     */
+    public function makeAffiliateReview(Request $request){
+
+        //get rating from affiliate
+        $rating = $request->input('rating');
+        //get offerid
+        $offerid = $request->input('offerid');
+        //get offer instance
+        $offer = Sent_Offer::find($offerid);
+
+        $affiliate_review = new Affiliate_Review();
+        $affiliate_review->reviewer = Auth::user()->id;
+        $affiliate_review->reviewee = $offer->task->poster->id;
+        $affiliate_review->sent_offer_id = $offer->id;
+        $offer->status = "reviewed"; //set this offer as reviewed
+        $affiliate_review->rate = $rating;
+
+        $offer->save();
+        $affiliate_review->save();
+
+//        dd($request->input());
+
+        return redirect('areviews')->with('message','Review has been made');
     }
 
 

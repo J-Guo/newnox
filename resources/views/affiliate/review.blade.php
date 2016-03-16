@@ -1,5 +1,10 @@
 @extends('layouts.affiliate-layout')
 
+@section('header')
+<!-- Five Stars Review Form Style-->
+<link rel="stylesheet" href="{{asset('assets/css/pages/review-form.css')}}">
+@stop
+
 @section('content')
     <div class="view another-view">
         <div class="navbar">
@@ -24,6 +29,8 @@
 
                 <div class="page-content">
                     <form name="form" action="{{url('areviews')}}" method="post">
+                        {{csrf_field()}}
+                        <input type="hidden" name="offerid" value="{{$offer->id}}">
                         <div class="card">
 
                             <div class="card-content">
@@ -70,18 +77,16 @@
 
                                             <div class="item-inner">
 
-                                                <div class="item-inner row">
-                                                    <div class="col-66"><p>Give reviews here</p></div>
-                                                    <div class="col-33">
-                                    <span class="rating blog-rating" style="text-align:center">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
-                                    </span>
-                                                    </div>
-                                                </div>
+                                        <!-- Review Form-->
+                                        <h4>Please Review This Task</h4>
+
+                                        <div class="acidjs-rating-stars">
+                                            <input type="radio" name="rating" id="rating-0" value="5" /><label for="rating-0"></label>
+                                            <input type="radio" name="rating" id="rating-1" value="4" /><label for="rating-1"></label>
+                                            <input type="radio" checked="checked" name="rating" id="rating-2" value="3" /><label for="rating-2"></label>
+                                            <input type="radio" name="rating" id="rating-3" value="2" /><label for="rating-3"></label>
+                                            <input type="radio" name="rating" id="rating-4"  value="1" /><label for="rating-4"></label>
+                                        </div>
                                                 <div class="item-inner">
                                                     <div class="row text-center">
                                                         <input type="submit" class="button button-primary button-small" name="makeReview" value="Thanks your stars" />
