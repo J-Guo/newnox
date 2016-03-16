@@ -110,7 +110,10 @@ class PagesController extends Controller
      */
     public function showAReview($offerid){
 
-        return view('affiliate.review');
+        //get the instance of task which is waiting for review
+        $offer = Sent_Offer::find($offerid);
+
+        return view('affiliate.review')->with('offer',$offer);
     }
 
 
