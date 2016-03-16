@@ -163,7 +163,7 @@ Route::group(['middleware'=>'web'],function(){
         //show reviews list page for affiliate
         Route::get('areviews','PagesController@showAReviewList');
         //show review page for affiliate
-        Route::post('areviews/{taskid}', 'PagesController@showAReview');
+        Route::post('areviews/{offerid}', 'PagesController@showAReview');
 
         });
 

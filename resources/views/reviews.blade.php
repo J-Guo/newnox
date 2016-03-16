@@ -30,12 +30,13 @@
                     </div>
                 @endif
                 <!-- Show Reviews List-->
-                @if(!isset($offers) || empty($offers) || $offers->isEmpty())
+                @if(!isset($tasks) || empty($tasks) || $tasks->isEmpty())
                 <h2>No any review right now </h2>
                 @else
-                @foreach($offers as $offer)
+                @foreach($tasks as $task)
+                {{--*/ $offer = $task->offers()->where('status','released')->first() /*--}}
                 <div class="card">
-                    <form name="releaseForm" action="{{url('reviews/'.$offer->id)}}" method="POST">
+                    <form name="releaseForm" action="{{url('reviews/'.$task->id)}}" method="POST">
                         {{csrf_field()}}
                         <div class="card-content">
                             <div class="list-block media-list">

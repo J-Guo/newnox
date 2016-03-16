@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posted_Task;
 use App\Models\Sent_Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,9 +57,14 @@ class PagesController extends Controller
                 $query->where('task_poster',Auth::user()->id);
             })->get();
 
-        //dd($offers);
+        $tasks = Posted_Task::where('task_poster',Auth::user()->id)
+                            ->where('status','released')
+                            ->get();
 
-        return view('reviews')->with('offers',$offers);
+//        dd($tasks);
+
+
+        return view('reviews')->with('tasks',$tasks);
     }
 
     /**
@@ -66,9 +72,14 @@ class PagesController extends Controller
      * @param offerid
      * @return View
      */
-    public function showUserReview($offerid){
+    public function showUserReview($taskid){
 
-        return view('review');
+        //get the instance of task which is waiting for review
+        $task = Posted_Task::find($taskid);
+        //get the instance of offer which is completed with this task
+        $offer = $task->offers()->where('status','released')->first();
+
+        return view('review')->with('task',$task)->with('offer',$offer);
     }
 
     //show FAQ page for affiliate
@@ -81,7 +92,15 @@ class PagesController extends Controller
      * @return View
      */
     public function showAReviewList(){
-        return view('affiliate.reviews');
+
+        //get all released ,not reviewed offers which are sent by current affiliate
+        $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
+                            ->where('status','released')
+                            ->get();
+
+//        dd($offers);
+
+        return view('affiliate.reviews')->with('offers',$offers);
     }
 
     /**
