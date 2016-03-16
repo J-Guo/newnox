@@ -23,7 +23,9 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
             <div class="page no-toolbar" data-page="blog">
-                <form name="form" action="{{url('releasepayment')}}" method="post">
+                <form name="form" action="{{url('release-payment')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="offerID" value="{{$offer->id}}">
                     <div class="page-content">
 
                         <div class="card">
@@ -35,16 +37,19 @@
                                             <div class="item-media">
                                                 <div class="row">
                                                     <div class="col-100 mt-15">
-                                                        <img src="{{url('avatars/default2.jpg')}}" width="105">
+                                                        <img src="{{url('avatars/'.$offer->sender->profile_photo)}}" width="105">
 
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item-inner">
-                                                <div class="item-subtitle"><h3><strong>Juleka Jeba</strong></h3></div>
-                                                <div class="item-subtitle"><p>Price: <strong>$250</strong></p></div>
-                                                <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
+                                                <div class="item-subtitle"><h3><strong>
+                                                        {{$offer->sender->display_name}}</strong></h3></div>
+                                                <div class="item-subtitle"><p>Price: <strong>$
+                                                        {{$offer->price}}</strong></p></div>
+                                                <div class="item-subtitle"><p>Date:
+                                                        {{$offer->date}}</p></div>
                                                 <div class="item-subtitle"><span class="rating blog-rating">
                                         <span class="icon-star" style="color:#F90; width:18%"></span>
                                         <span class="icon-star" style="color:#F90; width:18%"></span>

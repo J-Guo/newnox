@@ -83,7 +83,7 @@ class TasksController extends Controller
 
         }
 
-              //  dd($offers);
+//                dd($sentOfferArray);
 
         return view('date-near-by')->with('sentOfferArray',$sentOfferArray);
     }
@@ -107,7 +107,9 @@ class TasksController extends Controller
         //get current user
         $user = Auth::user();
         //get posted task by this user
-        $posted_task = Posted_Task::where('task_poster',$user->id)->first();
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+                                  ->where('status','posted')
+                                  ->first();
 
         //get the offer id
         $offer_id = $request->input('offer_id');
@@ -174,12 +176,12 @@ class TasksController extends Controller
      */
     public function showTaskNearby(){
 
-        //get all the tasks near affiliate
+        //get all posted  tasks near affiliate
 
         /*
          * some research queries should be done here..
          */
-        $posted_tasks = Posted_Task::all();
+        $posted_tasks = Posted_Task::where('status','posted')->get();
 
         //set array to store poster and posted task information
         $postedTaskArray =[];
@@ -319,9 +321,11 @@ class TasksController extends Controller
     public function showTaskList(){
 
        /*
-        * find all offers sent by affiliate
+        * find all sent and assigned offers by affiliate
         */
-        $offers = Sent_Offer::where('offer_maker',Auth::user()->id)->get();
+        $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
+                            ->whereIn('status',['sent','assigned'])
+                            ->get();
 
         //set the array for merged offer and poster
         $taskList = [];

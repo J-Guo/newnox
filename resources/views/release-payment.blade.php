@@ -22,10 +22,21 @@
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">
             <div class="page-content">
-                <!-- show dates nearby-->
+                <!-- Show Release Payment Information-->
+                @if(session()->has('message') )
+                    <div class="alert alert-info text-center">
+                        <strong>Successful!:</strong>
+                        <span>{{ session()->get('message') }}</span>
+                    </div>
+                @endif
 
+                <!-- show dates nearby-->
+                @if(!isset($offers) || empty($offers) || $offers->isEmpty())
+                <h2>No Any Assigned Task need to release payment</h2>
+                @else
+                @foreach($offers as $offer)
                 <div class="card">
-                <form name="releaseForm" action="{{url('release-payment/1')}}" method="POST">
+                <form name="releaseForm" action="{{url('release-payment/'.$offer->id)}}" method="POST">
                     {{csrf_field()}}
                     <div class="card-content">
                         <div class="list-block media-list">
@@ -34,7 +45,7 @@
                                     <div class="item-media">
                                         <div class="row">
                                             <div class="col-100">
-                                                <img src="{{url('avatars/default2.jpg')}}"
+                                                <img src="{{url('avatars/'.$offer->sender->profile_photo)}}"
                                                      height="100"  width="100">
 
                         <span class="rating blog-rating">
@@ -49,9 +60,12 @@
                                     </div>
                                     <div class="item-inner">
 
-                                        <div class="item-subtitle"><p>Price: <strong>$220</strong></p></div>
-                                        <div class="item-subtitle"><p>Date: 2016-03-15</p></div>
-                                        <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
+                                        <div class="item-subtitle"><p>Name:
+                                                {{$offer->sender->display_name}}</p></div>
+                                        <div class="item-subtitle"><p>Price: <strong>$
+                                                {{$offer->price}}</strong></p></div>
+                                        <div class="item-subtitle"><p>Date:
+                                                {{$offer->date}}</p></div>
                                         <div class="item-inner">
                                             <div class="row text-center">
                                                 <input type="submit"  class="button button-primary button-small" name="release" value="Release Payment" />
@@ -66,6 +80,8 @@
                 </form> <!-- End Release Payment Box -->
                 </div>
 
+                 @endforeach
+                 @endif
             </div>
         </div>
     </div>

@@ -22,6 +22,13 @@
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">
             <div class="page-content">
+                <!-- Show Request Payment Information-->
+                @if(session()->has('message') )
+                    <div class="alert alert-info text-center">
+                        <strong>Successful!:</strong>
+                        <span>{{ session()->get('message') }}</span>
+                    </div>
+                @endif
                 <!-- show dates nearby-->
                 @if(!isset($offers) || empty($offers))
                 Not Any Assigned Task
@@ -29,7 +36,7 @@
                 @foreach($offers as $offer)
 
                 <div class="card">
-                    <form name="releaseForm" action="{{url('request-payment/'.$offer->id)}}" method="POST">
+                    <form name="requestForm" action="{{url('request-payment/'.$offer->id)}}" method="POST">
                         {{csrf_field()}}
                         <div class="card-content">
                             <div class="list-block media-list">

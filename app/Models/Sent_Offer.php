@@ -25,4 +25,12 @@ class Sent_Offer extends Model
         //second parameter is foreign_key
         return $this->belongsTo('App\Models\Posted_Task','posted_task_id');
     }
+
+    /**
+     * Get the affiliate who sent this offer
+     */
+    public function sender(){
+
+        return $this->belongsTo('App\User','offer_maker');
+    }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sent_Offer;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
@@ -48,15 +49,24 @@ class PagesController extends Controller
      * @return View
      */
     public function showUserReviewList(){
-        return view('reviews');
+
+        //get all released ,not reviewed offers which are sent to current users
+        $offers = Sent_Offer::where('status','released')
+            ->whereHas('task',function($query){
+                $query->where('task_poster',Auth::user()->id);
+            })->get();
+
+        //dd($offers);
+
+        return view('reviews')->with('offers',$offers);
     }
 
     /**
      * show review page for user
-     * @param $reviewid
+     * @param offerid
      * @return View
      */
-    public function showUserReview($taskid){
+    public function showUserReview($offerid){
 
         return view('review');
     }
@@ -76,10 +86,10 @@ class PagesController extends Controller
 
     /**
      * show review page for affiliate
-     * @param $taskid
+     * @param offerid
      * @return View
      */
-    public function showAReview($taskid){
+    public function showAReview($offerid){
 
         return view('affiliate.review');
     }

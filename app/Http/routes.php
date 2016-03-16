@@ -74,8 +74,6 @@ Route::group(['middleware'=>'web'],function(){
 
         //show date nearby page for user
         Route::get('date-near-by', 'TasksController@showDateNearby');
-        //show date nearby page for user
-//        Route::post('date-near-by', 'PagesController@showDateNearby');
 
         //handle user confirm booking request
         Route::post('confirm-date','TasksController@confirmDate');
@@ -91,7 +89,9 @@ Route::group(['middleware'=>'web'],function(){
         //show release payment list page for user
         Route::get('release-payment','PaymentController@showReleasePaymentList');
         //show specific release payment page for user
-        Route::post('release-payment/{taskid}','PaymentController@showReleasePayment');
+        Route::post('release-payment/{offerid}','PaymentController@showReleasePayment');
+        //handle release payment function for user
+        Route::post('release-payment','PaymentController@handleReleasePayment');
 
         //show review list page for user
         Route::get('reviews', 'PagesController@showUserReviewList');

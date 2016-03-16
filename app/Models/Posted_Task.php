@@ -25,6 +25,9 @@ class Posted_Task extends Model
         return $this->hasMany('App\Models\Sent_Offer','posted_task_id');
     }
 
+    /**
+     * Get the user who posted this task
+     */
     public function poster(){
         //second parameter is foreign_key
         return $this->belongsTo('App\User','task_poster');
