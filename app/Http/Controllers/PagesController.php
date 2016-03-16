@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posted_Task;
 use App\Models\Sent_Offer;
+use App\models\User_Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
@@ -44,6 +45,11 @@ class PagesController extends Controller
         return view('payment-details');
     }
 
+    //show FAQ page for affiliate
+    public function showFAQ(){
+        return view('affiliate.faq');
+    }
+
 
     /**
      * show reviews list for user
@@ -82,10 +88,35 @@ class PagesController extends Controller
         return view('review')->with('task',$task)->with('offer',$offer);
     }
 
-    //show FAQ page for affiliate
-    public function showFAQ(){
-        return view('affiliate.faq');
+    /**
+     * handle make review action for user
+     * @return Redirector
+     */
+    public function makeReivew(Request $request){
+
+        //get rating from user
+        $rating = $request->input('rating');
+        //get offerid
+        $offerid = $request->input('offerid');
+        //get offer instance
+        $offer = Sent_Offer::find($offerid);
+
+        //create new user review instance
+        $user_review = new User_Review();
+        $user_review->reviewer = Auth::user()->id;
+        $user_review->reviewee = $offer->sender->id;
+        $user_review->posted_task_id = $offer->task->id;
+        $offer->task->status = "reviewed"; //set task as reviewed
+        $user_review->rate = $rating;
+
+        $user_review->save();
+        $offer->task->save();
+
+       // dd($request->input());
+
+        return redirect('reviews')->with('message','Review has been made');
     }
+
 
     /**
      * show review page for affiliate

@@ -95,6 +95,8 @@ Route::group(['middleware'=>'web'],function(){
 
         //show review list page for user
         Route::get('reviews', 'PagesController@showUserReviewList');
+        //handle make review action for user
+        Route::post('reviews', 'PagesController@makeReivew');
         //show review page for user
         Route::post('reviews/{taskid}', 'PagesController@showUserReview');
 
