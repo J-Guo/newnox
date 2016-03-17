@@ -36,7 +36,7 @@
                 @else
                 @foreach($offers as $offer)
                 <div class="card">
-                <form name="releaseForm" action="{{url('release-payment/'.$offer->id)}}" method="POST">
+                <form name="releaseForm" action="{{url('release-payment/'.Crypt::encrypt($offer->id))}}" method="POST">
                     {{csrf_field()}}
                     <div class="card-content">
                         <div class="list-block media-list">

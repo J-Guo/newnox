@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Crypt;
 
 class PaymentController extends Controller
 {
@@ -38,7 +39,7 @@ class PaymentController extends Controller
     public function showReleasePayment($offerid){
 
         //find the specific offer that is need to release payment
-        $offer = Sent_Offer::find($offerid);
+        $offer = Sent_Offer::find(Crypt::decrypt($offerid));
 
         return view('release')->with('offer',$offer);
 
@@ -51,7 +52,9 @@ class PaymentController extends Controller
     public function handleReleasePayment(Request $request){
 
         $offer_id = $request->input('offerID');
-        $offer = Sent_Offer::find($offer_id);
+
+        $offer = Sent_Offer::findOrFail($offer_id);
+
         $task = $offer->task;
         $offer->status = 'released';
         $task->status = 'released';
