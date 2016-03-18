@@ -122,7 +122,10 @@ class LoginController extends Controller
                 //check user is new user or old user
                 //some functions should be done here....
 
+                if($user->display_name == null)
                 return redirect('profile/create');
+                else
+                return redirect('main');
             }
             if($userType="affiliate"){
 
@@ -139,7 +142,10 @@ class LoginController extends Controller
                 //check user is new user or old user
                 //some functions should be done here....
 
+                if($user->display_name == null)
                 return redirect('faq');
+                else
+                return redirect('task-nearby');
             }
         }
         else{

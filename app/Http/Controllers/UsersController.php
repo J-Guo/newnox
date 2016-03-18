@@ -178,8 +178,11 @@ class UsersController extends Controller
          * if affiliate already has a profie as user
          * the create profile page will not be shown
          */
+        //get current affiliate
+        $affiliate = Auth::user();
 
-        if(true){
+
+        if($affiliate->display_name == null){
         return view('affiliate.create-profile');
         }
         else{
