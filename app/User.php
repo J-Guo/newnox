@@ -26,4 +26,62 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get all user reviews that user participated as a reviewer
+     */
+    public function userReviewer(){
+        //second parameter is foreign_key
+        return $this->hasMany('App\Models\User_Review','reviewer');
+    }
+
+    /**
+     * Get all user reviews that user participated as a reviewee
+     */
+    public function userReviewee(){
+        //second parameter is foreign_key
+        return $this->hasMany('App\Models\User_Review','reviewee');
+    }
+
+    /**
+     * Get all affiliate reviews that user participated as a reviewer
+     */
+    public function affiliateReviewer(){
+        return $this->hasMany('App\Models\Affiliate_Review','reviewer');
+    }
+
+    /**
+     * Get all affiliate reviews that user participated as a reviewee
+     */
+    public function affiliateReviewee(){
+        return $this->hasMany('App\Models\Affiliate_Review','reviewee');
+    }
+
+    /**
+     * Get average rate of user participated as user
+     */
+    public function avgRateAsUser(){
+
+        $rate = 0;//initial rate
+        $num = count($this->affiliateReviewee); //get the number of reviews to this user
+
+        //if no any review
+        if($num == 0){
+
+            return 0;
+        }
+        else{
+
+        //get all reviews
+        foreach($this->affiliateReviewee as $review){
+            $rate += $review->rate; //rate of each revieew
+        }
+
+            $rate = $rate/$num; //calculate average rate
+        }
+
+        return $rate;
+
+    }
+
 }

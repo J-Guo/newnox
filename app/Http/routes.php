@@ -171,12 +171,16 @@ Route::group(['middleware'=>'web'],function(){
 
         });
 
+
+
+
     });
 
 
     //Unit Test Pages
     Route::get('test-image','ImagesController@getProfileImage');
-
+    //Unit test
+    Route::get('test-review','TestController@testUserReview');
 
 });
 
