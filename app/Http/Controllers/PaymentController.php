@@ -61,7 +61,7 @@ class PaymentController extends Controller
         $offer->save();
         $task->save();
 
-        return redirect('release-payment')->with('message','Payment has been released');
+        return redirect('reviews')->with('message','Payment has been released');
 
     }
 

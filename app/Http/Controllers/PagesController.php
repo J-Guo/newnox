@@ -59,13 +59,15 @@ class PagesController extends Controller
     public function showUserReviewList(){
 
         //get all released ,not reviewed offers which are sent to current users
-        $offers = Sent_Offer::where('status','released')
-            ->whereHas('task',function($query){
-                $query->where('task_poster',Auth::user()->id);
-            })->get();
+//        $offers = Sent_Offer::whereIn('status',['released','reviewed'])
+//            ->whereHas('task',function($query){
+//                $query->where('task_poster',Auth::user()->id);
+//            })->get();
 
         $tasks = Posted_Task::where('task_poster',Auth::user()->id)
-                            ->where('status','released')
+                            ->whereIn('status',['released','reviewed'])
+                            ->orderby('status')
+                            ->orderby('date')
                             ->get();
 
 //        dd($tasks);

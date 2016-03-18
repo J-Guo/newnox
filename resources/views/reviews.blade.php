@@ -34,7 +34,7 @@
                 <h2>No any review right now </h2>
                 @else
                 @foreach($tasks as $task)
-                {{--*/ $offer = $task->offers()->where('status','released')->first() /*--}}
+                {{--*/ $offer = $task->offers()->whereIn('status',['released','reviewed'])->first() /*--}}
                 <div class="card">
                     <form name="releaseForm" action="{{url('reviews/'.$task->id)}}" method="POST">
                         {{csrf_field()}}
@@ -61,9 +61,13 @@
                                                 {{$offer->date}}</p></div>
 
                                             <div class="item-inner">
+                                                @if($task->status == 'released')
                                                 <div class="row text-center">
                                                     <input type="submit"  class="button button-primary button-small" name="review" value="Make A Review" />
                                                 </div>
+                                                @else
+                                                 <span class="badge badge-primary badge-square text-uppercase">Reviewed</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </li>
