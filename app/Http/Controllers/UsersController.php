@@ -180,8 +180,7 @@ class UsersController extends Controller
          */
         //get current affiliate
         $affiliate = Auth::user();
-
-
+        
         if($affiliate->display_name == null){
         return view('affiliate.create-profile');
         }
