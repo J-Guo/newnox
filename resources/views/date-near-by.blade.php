@@ -47,9 +47,9 @@
                                             </div>
                                             <div class="item-inner">
 
+                                                <div class="item-subtitle"><p>Name: {{$offer_affiliate_merged['offer']->sender->display_name}}</p></div>
                                                 <div class="item-subtitle"><p>Price: <strong>${{$offer_affiliate_merged['offer']->price}}</strong></p></div>
                                                 <div class="item-subtitle"><p>Date: {{$offer_affiliate_merged['offer']->date}}</p></div>
-                                                <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
                                                 <input type="hidden" name="offer_maker"
                                                        value="{{$offer_affiliate_merged['offer']->offer_maker}}" />
                                                 <input type="hidden" name="offer_id"

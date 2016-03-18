@@ -48,11 +48,12 @@
                                         <!-- Output all values of each task -->
                                         <input type="hidden" name="task_poster" value="{{$poster_task_merged['task']->task_poster}}" />
                                         <input type="hidden" name="task_id" value="{{$poster_task_merged['task']->id}}" />
+                                        <div class="item-subtitle"><p>Name: {{$poster_task_merged['task']->poster->display_name}}</p></div>
                                         <div class="item-subtitle"><p>Price: <strong>${{$poster_task_merged['task']->price}}</strong></p></div>
                                         <input type="hidden" name="price" value="{{$poster_task_merged['task']->price}}" />
                                         <div class="item-subtitle"><p>Date: {{$poster_task_merged['task']->date}}</p></div>
                                         <input type="hidden" name="date" value="{{$poster_task_merged['task']->date}}" />
-                                        <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
+
 
                                         <div class="item-inner">
                                             <div class="row text-center">

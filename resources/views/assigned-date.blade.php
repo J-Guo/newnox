@@ -48,7 +48,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-inner">
-                                                <div class="item-subtitle"><h3>Juleka Jeba</h3></div>
+                                                <div class="item-subtitle"><h3>{{$assignedDateArray['affiliate']->display_name}}</h3></div>
                                                 <div class="item-subtitle"><p>Price:
                                                         <strong>${{isset($assignedDateArray) ? $assignedDateArray['offer']->price:''}}</strong></p></div>
                                                 <div class="item-subtitle"><p>Date:
