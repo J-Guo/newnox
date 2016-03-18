@@ -27,7 +27,7 @@
                  <h2>Oops, May do not have task right now, try it later :)</h2>
                 @else
                 @foreach($postedTaskArray as $key => $poster_task_merged)
-                <form id="taskNearby{{$key}}" name="offerForm" action="make-offer" method="POST">
+                <form id="taskNearby{{$key}}" name="offerForm" action="{{url('make-offer')}}" method="POST">
                     {{csrf_field()}}
                 <div class="card">
                     <div class="card-content">
@@ -39,7 +39,7 @@
                                             <div class="col-100">
                                                 <img src="{{url('avatars/'.$poster_task_merged['poster']->profile_photo)}}"
                                                      width="100" height="100">
-
+                                            <!-- show stars based on user avage rate-->
                                             @include('layouts.review-stars',['rate' => $poster_task_merged['poster']->avgRateAsUser()])
                                             </div>
                                         </div>

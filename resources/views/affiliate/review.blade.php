@@ -53,11 +53,7 @@
                                                 <div class="item-subtitle"><p>Date:
                                                         {{$offer->date}}</p></div>
                                                 <div class="item-subtitle"><span class="rating blog-rating">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
+                                            @include('layouts.review-stars',['rate' =>$offer->task->poster->avgRateAsUser()])
                                     </span></div>
                                             </div>
                                         </li>

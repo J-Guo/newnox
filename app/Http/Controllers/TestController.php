@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,8 +18,8 @@ class TestController extends Controller
     public function testUserReview(){
 
 
-        $user = Auth::user();
+        $user = User::find(4);
 
-        return $user->avgRateAsUser();
+        return $user->avgRateAsAffiliate();
     }
 }

@@ -38,13 +38,7 @@
                                                     <img src="{{url('avatars/'.$offer_poster_merged['poster']->profile_photo)}}"
                                                          width="100" height="100" >
 
-                                                    <span class="rating blog-rating">
-                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                                        <span class="icon-star" style="width:20%"></span>
-                                                    </span>
+                                                @include('layouts.review-stars',['rate' =>$offer_poster_merged['poster']->avgRateAsUser()])
                                                 </div>
                                             </div>
                                         </div>

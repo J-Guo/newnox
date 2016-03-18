@@ -68,7 +68,7 @@ class User extends Authenticatable
         //if no any review
         if($num == 0){
 
-            return 0;
+            return 5;
         }
         else{
 
@@ -76,6 +76,33 @@ class User extends Authenticatable
         foreach($this->affiliateReviewee as $review){
             $rate += $review->rate; //rate of each revieew
         }
+
+            $rate = $rate/$num; //calculate average rate
+        }
+
+        return $rate;
+
+    }
+
+    /**
+     * Get average rate of user participated as affiliate
+     */
+    public function avgRateAsAffiliate(){
+
+        $rate = 0;//initial rate
+        $num = count($this->userReviewee); //get the number of reviews to this user
+
+        //if no any review
+        if($num == 0){
+
+            return 5;
+        }
+        else{
+
+            //get all reviews
+            foreach($this->userReviewee as $review){
+                $rate += $review->rate; //rate of each revieew
+            }
 
             $rate = $rate/$num; //calculate average rate
         }

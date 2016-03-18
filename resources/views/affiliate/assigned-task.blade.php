@@ -10,7 +10,7 @@
                         <span class="kkicon icon-menu"></span>
                     </a>
                 </div>
-                <div class="center sliding">dates near by</div>
+                <div class="center sliding">Assigned Task</div>
                 <div class="right">
                     <a href="#" class="link icon-only open-panel" data-panel="right">
                         <span class="kkicon icon-alarm"></span>
@@ -40,16 +40,8 @@
                                                 <div class="row mt-15">
                                                     <div class="col-100">
                                                         <img src="{{ isset($assignedTaskArray) ? url("avatars/".$assignedTaskArray['user']->profile_photo) :url("avatars/default.jpg")}}"
-                                                             width="95">
-
-
-                                    <span class="rating blog-rating">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
-                                    </span>
+                                                           height="100"  width="100">
+                                                    @include('layouts.review-stars',['rate' =>$assignedTaskArray['user']->avgRateAsUser()])
                                                     </div>
                                                 </div>
                                             </div>

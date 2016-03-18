@@ -47,14 +47,7 @@
                                                 <div class="col-100">
                                                     <img src="{{url('avatars/'.$offer->task->poster->profile_photo)}}"
                                                          height="100"  width="100">
-
-                        <span class="rating blog-rating">
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="width:20%"></span>
-                        </span>
+                                                @include('layouts.review-stars', ['rate' => $offer->task->poster->avgRateAsUser()])
                                                 </div>
                                             </div>
                                         </div>

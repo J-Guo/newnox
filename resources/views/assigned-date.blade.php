@@ -41,15 +41,9 @@
                                                 <div class="row mt-15">
                                                     <div class="col-100">
                                                         <img src="{{ isset($assignedDateArray) ? url("avatars/".$assignedDateArray['affiliate']->profile_photo) :url("avatars/default.jpg")}}"
-                                                             width="100">
+                                                             height="100" width="100">
 
-                                    <span class="rating blog-rating">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
-                                    </span>
+                                                @include('layouts.review-stars',['rate' =>$assignedDateArray['affiliate']->avgRateAsAffiliate()])
                                                     </div>
                                                 </div>
                                             </div>

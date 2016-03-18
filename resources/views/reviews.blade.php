@@ -47,14 +47,7 @@
                                                 <div class="col-100">
                                                     <img src="{{url('avatars/'.$offer->sender->profile_photo)}}"
                                                          height="100"  width="100">
-
-                        <span class="rating blog-rating">
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="color:#F90; width:18%"></span>
-                            <span class="icon-star" style="width:20%"></span>
-                        </span>
+                                                @include('layouts.review-stars',['rate' => $offer->sender->avgRateAsAffiliate()])
                                                 </div>
                                             </div>
                                         </div>

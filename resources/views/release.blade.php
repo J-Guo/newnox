@@ -37,8 +37,8 @@
                                             <div class="item-media">
                                                 <div class="row">
                                                     <div class="col-100 mt-15">
-                                                        <img src="{{url('avatars/'.$offer->sender->profile_photo)}}" width="105">
-
+                                                        <img src="{{url('avatars/'.$offer->sender->profile_photo)}}"
+                                                        height="100" width="100">
 
                                                     </div>
                                                 </div>
@@ -51,12 +51,8 @@
                                                 <div class="item-subtitle"><p>Date:
                                                         {{$offer->date}}</p></div>
                                                 <div class="item-subtitle"><span class="rating blog-rating">
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="color:#F90; width:18%"></span>
-                                        <span class="icon-star" style="width:20%"></span>
-                                    </span></div>
+                                                @include('layouts.review-stars',['rate' => $offer->sender->avgRateAsAffiliate()])
+                                                </span></div>
                                             </div>
                                         </li>
 
