@@ -88,7 +88,7 @@
                         
                         <div class="item-inner">
                             <div class="row text-center ml-10 mr-10 mt-20 mb-20">
-                                <input type="submit" class="button button-primary" name="submit" value="Confirm Payment" />
+                                <input type="submit" class="button button-primary" name="submit" value="Update Payment Method" />
                             </div>
                         </div>
                     </div>
