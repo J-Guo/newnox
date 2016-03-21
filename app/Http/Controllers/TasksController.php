@@ -26,7 +26,7 @@ class TasksController extends Controller
         //get the price of task
         $price = $request->input('price');
         //get the preference
-        $preference = $request->input('preference');
+        $preference = 'female';
 
         /*
          * do some validations here....

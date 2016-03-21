@@ -4,17 +4,18 @@
     <link rel="stylesheet" href="{{asset('assets/css/map-style.css')}}">
 
     <style>
+
         .over-lay
         {
-            position:absolute; z-index:10000; margin:0 1% 0 1%; width:98%;height:auto; background:#666; opacity:0.9;
+            position:fixed; z-index:10000; margin:0; width:100%;height:auto; background:#666; opacity:0.9;
         }
 
         .top{
-            top:50px;
+            top:44px;
         }
 
         .bottom{
-            bottom:5px;
+            bottom:0px;
         }
 
         .right{
@@ -27,7 +28,7 @@
         }
         form {
             /*width:80%;*/
-            margin:10px;
+            margin:5px 10px;
         }
 
         .listview-icon
@@ -141,6 +142,9 @@
 @stop
 
 @section('content')
+
+
+
     <div class="view another-view">
 
         <div class="navbar">
@@ -164,103 +168,135 @@
 
             <div class="over-lay top">
                 <div class="forms">
-                    <form @submit.prevent="locateAddress" id="locationForm">
-                        <p class="buttons-row">
+                    <form @submit.prevent="locateAddress">
+                        <p class="buttons-row" id="locationForm">
+                            <!--    <div class="input-text">-->
+
+
                             <input type="search" id="address" v-model="address" name="name" placeholder="Seach location here" required class="textbox">
+
                             <input type="submit" class="btn" value="Search">
-                            <button form="" onclick="window.location.href='{{url('main-listview')}}'" class="btn2 ml-10"> <i class="fa fa-2x fa-list mt-0"></i> </button>
+
+
+                            <!--<input type="submit" class="btn2 ml-10" value="Search">-->
+                            <button id="" class="btn2 ml-10"> <i class="fa fa-2x fa-list mt-0"></i> </button>
                         </p>
+                        <!--</div>
+                  	</div>-->
                     </form>
                 </div>
-            </div>
+                <!-- <form @submit.prevent="locateAddress" id="locationForm">
+                <input type="search" id="address" v-model="address" class="search" placeholder="Seach location here" required>
+                <input type="submit" class="search-button" value="Search">
+                <a href="post-a-task-list" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
+            </form>-->
 
-            <div  id="User-Map"></div>
+
+            </div>
+            <div  id="User-Map" style="height:100%;"></div>
+
             <div class="over-lay bottom">
+
             </div>
 
             <form id="dateForm" name="dataForm" action="{{url('post-task')}}" method="POST">
                 {{csrf_field()}}
-                <div class="over-lay bottom">
-                    <div class="content-block mt-10 mb-5">
-                        <div class="buttons-row">
-                            <a href="#date" class="tab-link active button button-secondary">Date</a>
-                            <a href="#rate" class="tab-link button button-secondary">Price</a>
-                            <a href="#gender" class="tab-link button button-secondary">Gender</a>
+            <div class="over-lay bottom">
+                <div class="content-block mt-5 mb-0">
+
+                    <div class="buttons-row">
+                        <a href="#date" class="tab-link active button button-secondary">Date</a>
+                        <a href="#rate" class="tab-link button button-secondary">Price</a>
+                        <a href="#gender" class="tab-link button button-secondary">Hours</a>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div id="date" class="tab active">
+                        <div class="content-block mt-5 mb-5">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Wish a Date :</div>
+                                                <div class="item-input">
+                                                    <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="tabs">
-                        <div id="date" class="tab active">
-                            <div class="content-block mt-5 mb-10">
-                                <div class="list-block mt-5 mb-0">
-                                    <ul>
-                                        <!-- Text inputs -->
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-input label">Wish a Date :</div>
-                                                    <div class="item-input">
-                                                        <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
+                    <div id="rate" class="tab">
+                        <div class="content-block mt-5 mb-5">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Rate Range : </div>
+                                                <div class="item-input">
+                                                    <div class="range-slider">
+                                                        <input type="range" name="price" min="200" max="1000" value="250" step="50">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="rate" class="tab">
-                            <div class="content-block mt-5 mb-10">
-                                <div class="list-block mt-5 mb-0">
-                                    <ul>
-                                        <!-- Text inputs -->
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-input label">Rate Range : </div>
-                                                    <div class="item-input">
-                                                        <div class="range-slider">
-                                                            <input type="range" name="price" min="100" max="1000" value="250" step="50">
-                                                        </div>
-                                                    </div>
+                    <div id="gender" class="tab">
+                        <div class="content-block mt-5 mb-5">
+                            <div class="list-block mt-5 mb-0">
+                                <ul>
+                                    <li>
+                                        <div class="item-content mr-20">
+                                            <div class="item-inner">
+                                                <div class="item-title label">Date Duration</div>
+                                                <div class="item-input">
+                                                    <select class="ml-5">
+                                                        <option>1 Hour Outting</option>
+                                                        <option>2 Hours Outting</option>
+                                                        <option>3 Hours Outting</option>
+                                                        <option>4 Hours Outting</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                                        </div>
+                                    </li>
 
-                        <div id="gender" class="tab">
-                            <div class="content-block mt-5 mb-10">
-                                <div class="list-block mt-5 mb-0">
-                                    <ul>
-                                        <!-- Text inputs -->
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-input">
-                                                        <select name="preference">
-                                                            <option value="female">Female</option>
-                                                            <option value="male">Male</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="item-input label">
-                                                        <div class="col-33">
-                                                            <input type="submit" form="dateForm" class="button button-primary button-fill button-small" value="Submit">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                    <li>
+                                        <div class="item-content mr-20">
+                                            <div class="item-inner">
+                                                <span style="text-align:center">$230/hr Only</span>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="row text-center ml-10 mr-10 mt-10">
+                                            <input type="submit" class="button button-primary mb-10" name="submit"
+                                                   value="Submit for Date">
+                                        </div>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+            </div>
             </form>
 
         </div>
@@ -269,8 +305,9 @@
 
     @stop
 
-@section("footer")
-    <!--Build Vue.js -->
+    @section("footer")
+
+            <!--Build Vue.js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.14/vue.min.js"></script>
     <!--Build Loading Overlay -->
     <script type="text/javascript" src="{{asset('assets/js/loadingoverlay.js')}}"></script>
