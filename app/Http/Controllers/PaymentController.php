@@ -6,12 +6,165 @@ use App\Models\Posted_Task;
 use App\Models\Sent_Offer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Braintree;
+use Braintree\ClientToken;
+use Braintree\Configuration;
+use Braintree\Transaction;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class PaymentController extends Controller
 {
+
+    /**
+     * show braintree check for new user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showBraintreeCheckout(Request $request){
+
+        //get the offer id
+        //$offer_id = $request->input('offer_id');
+
+        //get environment values for braintree
+        Configuration::environment('sandbox');
+        Configuration::merchantId(config('services.braintree.merchant'));
+        Configuration::publicKey(config('services.braintree.public'));
+        Configuration::privateKey(config('services.braintree.secret'));
+
+        //generate token to client side
+        $clientToken = ClientToken::generate();
+        return view('payment')
+            ->with('clientToken',$clientToken);
+    }
+
+    /**
+     * handle brantree checkout
+     * create user and save information
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleBraintreeCheckout(Request $request){
+
+        //get environment values for braintree
+        Configuration::environment('sandbox');
+        Configuration::merchantId(config('services.braintree.merchant'));
+        Configuration::publicKey(config('services.braintree.public'));
+        Configuration::privateKey(config('services.braintree.secret'));
+
+        //build validation for user input
+        $v = Validator::make($request->all(), [
+            'firstName' => 'required|alpha|max:255',
+            'lastName' => 'required|alpha|max:255',
+        ]);
+
+        //if input is validate
+        if (!$v->fails()){
+
+            //get user information
+            $firstName = $request->input('firstName');
+            $lastName = $request->input('lastName');
+            $paymentNonce = $request->input('payment_method_nonce');
+
+            //get current user
+            $user = $request->user();
+            //get offer id
+            $offer_id = $request->input('offer_id');
+
+            //create braintree instance for user
+            $result = Braintree\Customer::create([
+                'firstName' =>  $firstName,
+                'lastName' => $lastName,
+                'phone' => $user->mobile,
+                'paymentMethodNonce' =>  $paymentNonce
+            ]);
+
+
+            //if user created successful
+            if($result->success){
+
+                $user->braintree_id = $result->customer->id;
+                $user->save();
+                return redirect('date-near-by');
+
+            }
+            else{
+
+                return redirect()->back()->with('braintree_errors',$result->errors->deepAll());
+            }
+
+        }
+        else
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+
+    }
+
+    /**
+     * handle confirm date action from user
+     * @return View
+     */
+    public function confirmDate(Request $request){
+
+        //get environment values for braintree
+        Configuration::environment('sandbox');
+        Configuration::merchantId(config('services.braintree.merchant'));
+        Configuration::publicKey(config('services.braintree.public'));
+        Configuration::privateKey(config('services.braintree.secret'));
+
+        //get current user
+        $user = $request->user();
+
+        //get the offer id
+        try {
+            $offer_id = Crypt::decrypt($request->input('offer_id'));
+        } catch (DecryptException $e) {
+
+            return redirect()->back();
+        }
+
+        //get posted task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+            ->where('status','posted')
+            ->first();
+
+        //get the offer instance
+        $sent_offer = Sent_Offer::find($offer_id);
+        //get user braintree id
+        $braintree_id = $user->braintree_id;
+        //get braintree user
+        $braintree_user  = Braintree\Customer::find($braintree_id);
+
+        //charge existed braintree user
+        $transaction_result = Transaction::sale([
+            'amount' => $sent_offer->price,     //offer price
+            'customerId' => $braintree_id,  //braintree user
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+//        dd($transaction_result);
+
+        if($transaction_result->success){
+
+            //set current task is assigned and save it
+            $posted_task->status = 'assigned';
+            $sent_offer->status ='assigned';
+            $posted_task->save();
+            $sent_offer->save();
+
+            return redirect('assigned-date');
+
+        }
+        else
+            return redirect()->back()
+                ->with('transaction_message',$transaction_result->message);
+
+    }
+
     /**
      * show release payment list page for user
      * @return View

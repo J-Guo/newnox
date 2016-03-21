@@ -76,7 +76,11 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('date-near-by', 'TasksController@showDateNearby');
 
         //handle user confirm booking request
-        Route::post('confirm-date','TasksController@confirmDate');
+        Route::post('confirm-date','PaymentController@confirmDate')
+             ->middleware('payment');
+        //show braintree checkout form
+        Route::get('payment','PaymentController@showBraintreeCheckout');
+        Route::post('payment','PaymentController@handleBraintreeCheckout');
 
         //show payment detail page for user
         Route::get('payment-details', 'PagesController@showPaymentDetail');

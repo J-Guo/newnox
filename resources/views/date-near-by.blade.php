@@ -53,7 +53,7 @@
                                                 <input type="hidden" name="offer_maker"
                                                        value="{{$offer_affiliate_merged['offer']->offer_maker}}" />
                                                 <input type="hidden" name="offer_id"
-                                                       value="{{$offer_affiliate_merged['offer']->id}}" />
+                                                       value="{{Crypt::encrypt($offer_affiliate_merged['offer']->id)}}" />
                                                 <div class="item-inner">
                                                     <div class="row text-center">
                                                         <input type="submit"  class="button button-primary button-small" name="confirm" value="Confirm Date" />

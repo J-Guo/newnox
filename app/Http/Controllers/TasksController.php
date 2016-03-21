@@ -89,47 +89,7 @@ class TasksController extends Controller
     }
 
 
-    /**
-     * handle confirm date action from user
-     * @return View
-     */
-    public function confirmDate(Request $request){
 
-        /*
-         *some functions should be done here...
-         *check whether user's payment method is stored
-         */
-        $check_result = true;
-
-        //if user has a payment method and pay the fee
-        if($check_result){
-
-        //get current user
-        $user = Auth::user();
-        //get posted task by this user
-        $posted_task = Posted_Task::where('task_poster',$user->id)
-                                  ->where('status','posted')
-                                  ->first();
-
-        //get the offer id
-        $offer_id = $request->input('offer_id');
-        //get the offer instance
-        $sent_offer = Sent_Offer::find($offer_id);
-
-        //set current task is assigned and save it
-        $posted_task->status = 'assigned';
-        $sent_offer->status ='assigned';
-        $posted_task->save();
-        $sent_offer->save();
-
-        return redirect('assigned-date');
-
-        }
-        else{
-            return "Please fill your payment method";
-        }
-
-    }
 
     /**
      * show assigned date (chatroom) for user

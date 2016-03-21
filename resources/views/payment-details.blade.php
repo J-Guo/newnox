@@ -1,4 +1,3 @@
-<link href="assets/themes/red/style.css" rel="stylesheet" type="text/css" />
 @extends('layouts.main-layout')
 
 @section('content') 

@@ -41,4 +41,11 @@ return [
         'from_number' =>env('TWILIO_FROM_NUMBER'),
     ],
 
+    'braintree' => [
+        'model'  => App\User::class,
+        'merchant'    => env('BRAINTREE_MERCHANT'),
+        'public'    => env('BRAINTREE_PUBLIC'),
+        'secret' => env('BRAINTREE_SECRET'),
+    ],
+
 ];
