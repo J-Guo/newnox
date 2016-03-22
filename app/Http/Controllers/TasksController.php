@@ -284,7 +284,7 @@ class TasksController extends Controller
         * find all sent and assigned offers by affiliate
         */
         $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
-                            ->whereIn('status',['sent','assigned'])
+                            ->whereIn('status',['sent'])
                             ->get();
 
         //set the array for merged offer and poster
@@ -315,18 +315,51 @@ class TasksController extends Controller
         return view('affiliate.task-list')->with('taskList',$taskList);
     }
 
+    public function showAssignedTaskList(){
+
+        /*
+         * find all sent and assigned offers by affiliate
+         */
+        $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
+            ->whereIn('status',['assigned'])
+            ->get();
+
+        //set the array for merged offer and poster
+        $taskList = [];
+
+        foreach ($offers as $offer) {
+
+            //get the id of task where the offer is sent to
+            $posted_task_id = $offer->task->id;
+
+            //get the instance of posted task
+            $posted_task = Posted_Task::find($posted_task_id);
+            //get the instance of poster
+            $poster = User::find($posted_task->task_poster);
+
+            $offer_poster_merged = [
+                "offer"  => $offer,
+                "poster" => $poster
+            ];
+
+            //add offer and poster merged into array
+            $taskList[] = $offer_poster_merged;
+
+        }
+
+        return view('affiliate.assigned-task-list')->with('taskList',$taskList);
+
+    }
+
     /**
      * show assigned task page (chatroom) for affiliate
      * @return View
      */
-    public function showAssignedTask(){
+    public function showAssignedTask($offer_id){
 
-        //get current user
-        $user = Auth::user();
+
         //get assigned offer by this affiliate
-        $sent_offer = Sent_Offer::where('offer_maker',$user->id)
-            ->where('status','assigned')
-            ->first();
+        $sent_offer = Sent_Offer::find($offer_id);
 
         //set array to store offer and affiliate information
         $assignedTaskArray = [];

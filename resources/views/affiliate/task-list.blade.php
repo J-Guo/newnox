@@ -49,17 +49,9 @@
                                                     {{$offer_poster_merged['offer']->date}}</p></div>
                                             <div class="item-subtitle"><p>Place: Sydney, Australia</p></div>
                                             <div class="item-inner">
-                                                <!-- Show the status of each task list -->
-                                                @if($offer_poster_merged['offer']->status =="sent")
                                                 <div class="tag">
                                                     <span class="badge badge-primary badge-square text-uppercase">Waiting</span>
                                                 </div>
-                                                @else
-                                                    <div class="row text-center">
-                                                        <input type="button" class="button button-primary button-small" name="submit" value="Begin Chat">
-                                                    </div>
-                                                @endif
-
                                             </div>
                                         </div>
                                     </li>
@@ -74,14 +66,4 @@
             </div>
         </div>
     </div>
-@stop
-
-@section('footer')
-
-    <script>
-        $(':button').click(function(){
-            window.location.href='assigned-task';
-        })
-    </script>
-
 @stop

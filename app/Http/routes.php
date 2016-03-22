@@ -155,9 +155,11 @@ Route::group(['middleware'=>'web'],function(){
 
         //show task list page for affiliate
         Route::get('task-list','TasksController@showTaskList');
+        //show all assigned task list for affiliate
+        Route::get('assigned-task-list','TasksController@showAssignedTaskList');
 
         //show assigned task page for affiliate
-        Route::get('assigned-task','TasksController@showAssignedTask');
+        Route::get('assigned-task/{offerid}','TasksController@showAssignedTask');
 
         //show request payment list page for affiliate
         Route::get('request-payment','PaymentController@showRequestPaymentList');

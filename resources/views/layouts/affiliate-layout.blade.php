@@ -88,7 +88,7 @@
 
 
                     <li>
-                        <a href="{{url('assigned-task')}}" class="item-link close-panel item-content">
+                        <a href="{{url('assigned-task-list')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-weixin"></i>
                             </div>
