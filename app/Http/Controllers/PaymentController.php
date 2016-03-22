@@ -69,8 +69,6 @@ class PaymentController extends Controller
 
             //get current user
             $user = $request->user();
-            //get offer id
-            $offer_id = $request->input('offer_id');
 
             //create braintree instance for user
             $result = Braintree\Customer::create([
@@ -100,6 +98,87 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors($v->errors());
         }
 
+    }
+
+    /**
+     * show payment method modification page for user
+     * @return View
+     */
+    public function showPaymentDetail(){
+
+        //get environment values for braintree
+        Configuration::environment('sandbox');
+        Configuration::merchantId(config('services.braintree.merchant'));
+        Configuration::publicKey(config('services.braintree.public'));
+        Configuration::privateKey(config('services.braintree.secret'));
+
+        //generate token to client side
+        $clientToken = ClientToken::generate();
+        //get current user
+        $user = Auth::user();
+
+        //if current user has braintree id
+        if($user->braintree_id != null){
+        //get braintree user
+        $braintree_user  = Braintree\Customer::find($user->braintree_id);
+        //get last 4 digits of current payment method
+        $last4 = $braintree_user->paymentMethods[0]->last4;
+
+
+        return view('payment-details')
+            ->with('clientToken',$clientToken)
+            ->with('last4',$last4);
+        }
+        else
+            return view('payment-details')
+                ->with('clientToken',$clientToken);
+
+    }
+
+    /**
+     * handle payment method modification for user
+     * @param Request $request
+     * @return View
+     */
+    public function editPaymentDetail(Request $request){
+
+        //get environment values for braintree
+        Configuration::environment('sandbox');
+        Configuration::merchantId(config('services.braintree.merchant'));
+        Configuration::publicKey(config('services.braintree.public'));
+        Configuration::privateKey(config('services.braintree.secret'));
+
+        //build validation for user input
+//        $v = Validator::make($request->all(), [
+//            'firstName' => 'required|alpha|max:255',
+//            'lastName' => 'required|alpha|max:255',
+//        ]);
+
+            //get user information
+            $paymentNonce = $request->input('payment_method_nonce');
+
+            //get current user
+            $user = $request->user();
+
+            //create new payment method for user and set it as default
+            $result = Braintree\PaymentMethod::create([
+                'customerId' =>  $user->braintree_id,
+                'paymentMethodNonce' =>  $paymentNonce,
+                'options' => [
+                    'makeDefault' => true
+                ]
+            ]);
+
+            //if payment method update successful
+            if($result->success){
+
+                return redirect('payment-details')
+                    ->with('message','Payment Method Updated!');
+
+            }
+            else
+                return redirect()->back()->with('braintreeError',$result->message);
+//        dd($result);
     }
 
     /**
@@ -141,9 +220,6 @@ class PaymentController extends Controller
         $transaction_result = Transaction::sale([
             'amount' => $sent_offer->price,     //offer price
             'customerId' => $braintree_id,  //braintree user
-            'options' => [
-                'submitForSettlement' => True
-            ]
         ]);
 
 //        dd($transaction_result);
@@ -161,7 +237,7 @@ class PaymentController extends Controller
         }
         else
             return redirect()->back()
-                ->with('transaction_message',$transaction_result->message);
+                ->with('transactionError',$transaction_result->message);
 
     }
 

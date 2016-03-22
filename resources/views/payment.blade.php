@@ -69,7 +69,6 @@
                                 </li>
                                 {{csrf_field()}}
                                 <input type="hidden" id="clientToken" value="{{$clientToken}}">
-                                <input type="hidden" id="offer_id" value="{{$offer_id}}">
                                 <div id="payment-form"></div>
                             </ul>
                         </div>

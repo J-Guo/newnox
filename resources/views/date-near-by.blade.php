@@ -22,6 +22,13 @@
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">
             <div class="page-content">
+            <!-- Show Braintree Transaction Errors-->
+            @if(session()->has('transactionError'))
+            <div class="alert alert-danger text-center">
+                <strong>Failed!:</strong>
+                <span>{{ session()->get('transactionError') }}</span>
+            </div>
+            @endif
             <!-- show dates nearby-->
             @if(!isset($sentOfferArray) || empty($sentOfferArray))
             <h2>Oops, You dont get any offers from affiliates please wait for a moment</h2>

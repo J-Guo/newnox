@@ -41,11 +41,6 @@ class PagesController extends Controller
         return view('main-listview');
     }
 
-    //show payment detail page for user
-    public function showPaymentDetail(){
-        return view('payment-details');
-    }
-
     //show FAQ page for affiliate
     public function showFAQ(){
         return view('affiliate.faq');

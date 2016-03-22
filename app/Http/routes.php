@@ -82,10 +82,10 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('payment','PaymentController@showBraintreeCheckout');
         Route::post('payment','PaymentController@handleBraintreeCheckout');
 
-        //show payment detail page for user
-        Route::get('payment-details', 'PagesController@showPaymentDetail');
-        //show payment detail page for user
-        Route::post('payment-details', 'PagesController@showPaymentDetail');
+        //show payment method modification page for user
+        Route::get('payment-details', 'PaymentController@showPaymentDetail');
+        //handle payment method modification for user
+        Route::post('payment-details', 'PaymentController@editPaymentDetail');
 
         //show assigned date for user
         Route::get('assigned-date', 'TasksController@showAssignedDate');
