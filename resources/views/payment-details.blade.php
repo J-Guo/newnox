@@ -66,9 +66,8 @@
                                     </li>
                                     {{csrf_field()}}
                                     <input type="hidden" id="clientToken" value="{{$clientToken}}">
-                                    <div class="page-content mr-10 ml-10 mt-10 mb-10">
+
                                         <div id="payment-form"></div>
-                                    </div>
 
                                 </ul>
                             </div>
@@ -76,7 +75,7 @@
                             <div class="login-view-box mt-50">
                                 <div class="list login-form-box col-33">
                                     <div class="item-inner">
-                                        <div class="row text-center ml-10 mr-10 mt-20 mb-20">
+                                        <div class="row text-center">
                                             <input type="submit" class="button button-primary" id="submitButton" value="Update Payment Method">
                                         </div>
                                     </div>

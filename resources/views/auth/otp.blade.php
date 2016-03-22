@@ -36,7 +36,6 @@
             <form name="form" action="verify" method="post" id="token-form">
             <div class="login-view-box mt-50">
 
-
                 {{csrf_field()}}
                 <input name="userid" type="hidden" value="{{(isset($userid) ? $userid : old('userid') )}}" />
                 <input name="mobileNum" type="hidden" value="{{(isset($mobileNum) ? $mobileNum : old('mobileNum') )}}" />

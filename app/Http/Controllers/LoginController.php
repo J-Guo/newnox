@@ -26,7 +26,9 @@ class LoginController extends Controller
         $AuthToken =  config('services.twilio.token');
         $from = config('services.twilio.from_number');
         //get user type from user input
-        $userType = $request->input('userType');
+//        $userType = $request->input('userType');
+        $userType = $request->input('userSubmit');
+
 
         //get user mobile number
         $mobileNum =$request->input("mobileNum");
@@ -35,6 +37,8 @@ class LoginController extends Controller
 
         //create message client
         $client = new Services_Twilio($AccountSid, $AuthToken);
+
+//        dd($request->input());
 
         //check user mobile phone number is correct or not
         //create message and send it

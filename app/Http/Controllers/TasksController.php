@@ -21,6 +21,12 @@ class TasksController extends Controller
      */
     public function postTask(Request $request){
 
+        /*
+         * do some validatins here..
+         * user can post only one task at one period
+         * user can post other task until current task has been finished or cancelled
+         */
+
         //get the prefered date
         $date = $request->input('date');
         //get the price of task

@@ -30,7 +30,7 @@
                         {{csrf_field()}}
 
                          <div class="form-row">
-                            <input type="text" class="inputs" align="middle" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" required>
+                            <input type="tel" class="inputs" align="middle" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" required>
                         </div>
                         <!-- Determine usre type -->
                         <input type="hidden" id="userType" name="userType" value="user">
@@ -45,9 +45,11 @@
 
 						<div class="list mt-20 mb-20"></div>
                         <div class="buttons-row">
-                            <input type="submit" id="userSubmit" class="button button-primary" value="Find a date">
+                            {{--<input type="submit" id="userSubmit" class="button button-primary" value="Find a date">--}}
+                            <button type="submit" name="userSubmit" class="button button-primary" value="user">Find a date</button>
                                     
-                            <input type="submit" id="affiliateSubmit" class="button button-primary" value="Affilate Login">
+                            {{--<input type="submit" id="affiliateSubmit" class="button button-primary" value="Affilate Login">--}}
+                            <button type="submit" name="userSubmit" class="button button-primary" value="affiliate">Become Affiliate</button>
                         </div>
                     </form>
                 </div>
