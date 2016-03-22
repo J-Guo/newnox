@@ -55,6 +55,6 @@ class Kernel extends HttpKernel
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 
         //custom middleware
-        'payment'  => \App\Http\Middleware\PaymentCheckoutMiddleware::class,
+        'paymentcheck'  => \App\Http\Middleware\PaymentCheckoutMiddleware::class,
     ];
 }

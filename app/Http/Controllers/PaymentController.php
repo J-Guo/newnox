@@ -24,9 +24,9 @@ class PaymentController extends Controller
      */
     public function showBraintreeCheckout(Request $request){
 
-        //get the offer id
-        //$offer_id = $request->input('offer_id');
+        $user = Auth::user();
 
+        if($user->braintree_id == null){
         //get environment values for braintree
         Configuration::environment('sandbox');
         Configuration::merchantId(config('services.braintree.merchant'));
@@ -37,6 +37,10 @@ class PaymentController extends Controller
         $clientToken = ClientToken::generate();
         return view('payment')
             ->with('clientToken',$clientToken);
+        }
+        else{
+        return redirect('main'); //user cannot create payment method again
+        }
     }
 
     /**

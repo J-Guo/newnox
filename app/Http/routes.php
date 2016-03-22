@@ -77,7 +77,7 @@ Route::group(['middleware'=>'web'],function(){
 
         //handle user confirm booking request
         Route::post('confirm-date','PaymentController@confirmDate')
-             ->middleware('payment');
+             ->middleware('paymentcheck');
         //show braintree checkout form
         Route::get('payment','PaymentController@showBraintreeCheckout');
         Route::post('payment','PaymentController@handleBraintreeCheckout');
