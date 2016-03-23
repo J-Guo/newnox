@@ -74,20 +74,18 @@
                                             <div class="item-inner">
 
                                         <!-- Review Form-->
-                                        <h4>Please Review This Task</h4>
-
                                         <div class="acidjs-rating-stars">
+                                            <h4>Please Review This Task</h4>
                                             <input type="radio" name="rating" id="rating-0" value="5" /><label for="rating-0"></label>
                                             <input type="radio" name="rating" id="rating-1" value="4" /><label for="rating-1"></label>
                                             <input type="radio" checked="checked" name="rating" id="rating-2" value="3" /><label for="rating-2"></label>
                                             <input type="radio" name="rating" id="rating-3" value="2" /><label for="rating-3"></label>
                                             <input type="radio" name="rating" id="rating-4"  value="1" /><label for="rating-4"></label>
                                         </div>
-                                                <div class="item-inner">
-                                                    <div class="row text-center">
-                                                        <input type="submit" class="button button-primary button-small" name="makeReview" value="Thanks your stars" />
-                                                    </div>
-                                                </div>
+                                        <div class="content-block">
+                                            <input type="submit" class="button button-primary mb-10" name="makeReview" value="Thanks your stars" />
+                                        </div>
+
                                             </div>
                                         </li>
 
