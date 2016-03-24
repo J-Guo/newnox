@@ -25,7 +25,7 @@
             <div class="page no-toolbar" data-page="blog">
 
                     <div class="page-content">
-                        <form name="form" action="payment-details" method="post">
+
                         @if(!isset($assignedTaskArray) || empty($assignedTaskArray))
                             <h2> You do not have any assigned task</h2>
                         @else
@@ -66,47 +66,38 @@
 
                             <div class="card-content">
                                 <!-- Chat Room Content-->
-                                <div class="messages messages-auto-layout">
-                                    <div class="messages-date">Sunday, Feb 9 <span>12:58</span></div>
-                                    <div class="message message-sent message-first">
-                                        <div class="message-text">Hello</div>
-                                    </div>
-                                    <div class="message message-sent message-last message-with-tail">
-                                        <div class="message-text">How are you?</div>
-                                    </div>
-                                    <div class="message message-with-avatar message-last message-received message-with-tail message-first">
-                                        <div class="message-name">Kate</div>
-                                        <div class="message-text">I am fine, thanks</div>
-                                        <div style="background-image:url(http://lorempixel.com/output/people-q-c-100-100-9.jpg)" class="message-avatar"></div>
-                                    </div>
-                                    <div class="messages-date">Sunday, Feb 3 <span>11:58</span></div>
-                                    <div class="message message-sent message-first">
-                                        <div class="message-text">Nice photo?</div>
-                                    </div>
-                                    <div class="message message-with-avatar message-last message-received message-with-tail message-first">
-                                        <div class="message-name">Kate</div>
-                                        <div class="message-text">Wow, awesome!</div>
-                                        <div style="background-image:url(http://lorempixel.com/output/people-q-c-100-100-9.jpg)" class="message-avatar"></div>
-                                    </div>
+                                <div id="chatRoom" class="messages messages-auto-layout">
 
+                                <!-- Chat Message From Users-->
 
                                 </div>
                                 <div class="toolbar messagebar">
+                                <form id="chatForm" action="">
                                     <div class="toolbar-inner">
-                                        <textarea placeholder="Message" class=""></textarea>
+                                        <input type="hidden" id="roomNum"
+                                               value="{{isset($assignedTaskArray) ? $assignedTaskArray['offer']->id:'default'}}">
+                                        {{--<textarea id='m' placeholder="Message" class=""></textarea>--}}
+                                        <input id="m" autocomplete="off" />
                                         <button class="button button-small">Send</button>
                                     </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
 
                         @endif
-                        </form>
+
                     </div>
 
             </div>
         </div>
     </div>
 
+@stop
+
+@section('footer')
+<!-- Socket io-->
+<script src="{{asset('assets/js/socket.io.js')}}"></script>
+<script src="{{asset('assets/js/pages/chat-client.js')}}" type="text/javascript"></script>
 @stop
 
