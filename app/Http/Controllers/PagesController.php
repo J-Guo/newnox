@@ -41,6 +41,21 @@ class PagesController extends Controller
         return view('main-listview');
     }
 
+    //store user current location
+    public function storeLocation(Request $request){
+
+        //get coordinates of user location
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        //store user current location
+        $user = Auth::user();
+        $user->latitude = $latitude;
+        $user->longitude = $longitude;
+        $user->save();
+
+    }
+
     //show FAQ page for affiliate
     public function showFAQ(){
         return view('affiliate.faq');

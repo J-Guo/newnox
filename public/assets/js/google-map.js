@@ -13,11 +13,50 @@ var app = new Vue({
     methods: {
         //create Google Map
         createMap: function () {
-            this.map = new google.maps.Map(document.querySelector('#User-Map'),{
 
-                center:{lat:-33.876173,lng:151.209859},
-                zoom:12
-            });
+            var initialLocation;
+            //default location ()
+            var sydney = new google.maps.LatLng(-33.876173,151.209859);
+            var vm = this;
+
+            // Try W3C Geolocation
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+                    vm.map = new google.maps.Map(document.querySelector('#User-Map'),{
+
+                        center:initialLocation,
+                        zoom:12
+                    });
+
+                    // add maker
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                        map:vm.map
+
+                    });
+
+                    //store user current location
+                    storeLocation(position.coords.latitude,position.coords.longitude);
+
+                });
+            }
+            //broswer does not support Geolocation
+            else{
+                alert('Your Browser does not support Google Map');
+                vm.map = new google.maps.Map(document.querySelector('#User-Map'),{
+                    center:sydney,
+                    zoom:12
+                });
+
+                // add maker
+                marker = new google.maps.Marker({
+                    position: sydney,
+                    map:vm.map
+
+                });
+            }
         },
 
         //transfer address into coordinates
@@ -124,5 +163,29 @@ function getRandomArbitrary(min, max) {
 function getRandomOneTwo(){
 
     return Math.floor(Math.random()*10)%2;
+
+}
+
+/**
+ * store user current location
+ */
+function storeLocation(lati,longit){
+
+    // CSRF protection
+    $.ajaxSetup(
+        {
+            headers:
+            {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            }
+        });
+
+    $.ajax({
+        url: 'store-location',
+        type: 'POST',
+        dataType: 'JSON',
+        data:{latitude:lati,longitude:longit}
+
+    });
 
 }

@@ -31,6 +31,8 @@ Route::group(['middleware'=>'web'],function(){
         //get user avatar
         Route::get('avatars/{imageName}','ImagesController@getAvatar');
 
+        //store user current location
+        Route::post('store-location','PagesController@storeLocation');
 
         /*
         * Entrust role middleware for users

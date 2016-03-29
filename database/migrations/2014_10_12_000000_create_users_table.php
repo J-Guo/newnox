@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->integer('braintree_id')->nullable();
             $table->string('display_name',20)->nullable();
             $table->string('age')->nullable();
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
             $table->string('profile_photo');
             $table->string('gender');
             $table->string('status');

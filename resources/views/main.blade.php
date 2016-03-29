@@ -302,17 +302,16 @@
         </div>
     </div>
 
+@stop
 
-    @stop
+@section("footer")
 
-    @section("footer")
-
-            <!--Build Vue.js -->
+    <!--Build Vue.js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.14/vue.min.js"></script>
     <!--Build Loading Overlay -->
     <script type="text/javascript" src="{{asset('assets/js/loadingoverlay.js')}}"></script>
     <!--Build Local JavaScripts -->
-    <script src="{{asset('assets/js/map6.js')}}"></script>
+    <script src="{{asset('assets/js/google-map.js')}}"></script>
     <!--Build Google Map API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAomTWe6-_JXMoza7hm9olIQLZ8TEq5PdY&callback=app.createMap"
             async defer></script>

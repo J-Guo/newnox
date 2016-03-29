@@ -1,5 +1,9 @@
 @extends('layouts.affiliate-layout')
 
+@section('header')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@stop
+
 @section('content')
 
     <div class="navbar">
@@ -78,11 +82,5 @@
 @stop
 
 @section('footer')
-
-    <script>
-        $(':button').click(function(){
-            window.location.href='make-offer';
-        })
-    </script>
-
+<script src="{{asset('assets/js/pages/affiliate-location.js')}}" type="text/javascript"></script>
 @stop
