@@ -26,6 +26,13 @@
         <div class="page no-toolbar" data-page="blog">
             <div class="page-content">
 
+                <!-- Show System Message-->
+                @if(session()->has('message'))
+                <div class="alert alert-info text-center">
+                    <strong>System Message!:</strong>
+                    <span>{{ session()->get('message') }}</span>
+                </div>
+                @endif
                 <!-- show tasks nearby-->
                 @if(!isset($postedTaskArray) || empty($postedTaskArray))
                  <h2>Oops, May do not have task right now, try it later :)</h2>

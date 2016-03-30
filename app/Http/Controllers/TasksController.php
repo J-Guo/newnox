@@ -10,6 +10,9 @@ use App\Models\Posted_Task;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Services_Twilio;
+use Services_Twilio_RestException;
+
 
 class TasksController extends Controller
 {
@@ -267,6 +270,12 @@ class TasksController extends Controller
         //get the id of user where offer is sent to
         $task_id = $request->input('task_id');
 
+        //avoid re-submit offer
+        $check_result = $this->isOfferSentTo($task_id);
+
+        //if affiliate has not sent offer
+        if(!$check_result){
+
         //create a new offer instance
         $sent_offer = new Sent_Offer();
         $sent_offer->offer_maker = $affiliate_id;
@@ -276,7 +285,48 @@ class TasksController extends Controller
         $sent_offer->status = "sent";
         $sent_offer->save();
 
-        return redirect('task-list');
+        /**
+         * when affiliate has made an offer to user
+         * Send a SMS notification to user as well
+         */
+
+        //set Twilio AccountSid and AuthToken
+        $AccountSid = config('services.twilio.sid');
+        $AuthToken =  config('services.twilio.token');
+        $from = config('services.twilio.from_number');
+
+        //get posted task
+        $task = Posted_Task::find($task_id);
+        //get task poster mobile number
+        $mobileNum = $task->poster->mobile;
+
+        //set message body (OTP)
+        $smsBody = "You got a new offer! Please check it";
+
+        //create message client
+        $client = new Services_Twilio($AccountSid, $AuthToken);
+
+        //check user mobile phone number is correct or not
+        //create message and send it
+        try{
+            //use it when project goes alive
+            $message = $client->account->messages->sendMessage(
+                $from,
+                $mobileNum,
+                $smsBody
+            );
+
+            return redirect('task-list');
+        }
+        catch(Services_Twilio_RestException $e){
+//            return redirect('task-list');
+            echo $e;
+        }
+
+        }
+        //tell affiliate offer has already been sent
+        else
+            return redirect('task-nearby')->with('message','Offer has already sent');
 
     }
 

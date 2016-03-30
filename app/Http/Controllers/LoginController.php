@@ -21,7 +21,7 @@ class LoginController extends Controller
      */
     public function sendOTP(Request $request){
 
-        //set your AccountSid and AuthToken
+        //set Twilio AccountSid and AuthToken
         $AccountSid = config('services.twilio.sid');
         $AuthToken =  config('services.twilio.token');
         $from = config('services.twilio.from_number');
