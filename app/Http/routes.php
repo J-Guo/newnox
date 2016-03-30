@@ -15,7 +15,6 @@ Route::group(['middleware'=>'web'],function(){
     //handle user logout
     Route::get('logout','LoginController@handleLogout');
 
-
     /*
      * Authentication middleware for both users and affiliates
      * Users and affiliates can access application until they login
@@ -31,7 +30,7 @@ Route::group(['middleware'=>'web'],function(){
         //get user avatar
         Route::get('avatars/{imageName}','ImagesController@getAvatar');
 
-        //store user current location
+        //store user current location through Ajax
         Route::post('store-location','PagesController@storeLocation');
 
         /*
@@ -59,6 +58,8 @@ Route::group(['middleware'=>'web'],function(){
         //show main pages for user
         Route::get('main','PagesController@showMainPage');
         Route::get('main-listview','PagesController@showMainListviewPage');
+        //get all affiliate locations based on user research
+        Route::post('affiliate-locations','PagesController@getNearbyAffiliates');
 
         //handle user post a task submit
         Route::post('post-task','TasksController@postTask');

@@ -3,7 +3,8 @@
  * Google Map with multip markers, info window and preloader
  */
 
-
+// Create a marker array to hold  markers
+var markers = [];
 
 var app = new Vue({
     el: 'body',
@@ -15,7 +16,7 @@ var app = new Vue({
         createMap: function () {
 
             var initialLocation;
-            //default location ()
+            //default location
             var sydney = new google.maps.LatLng(-33.876173,151.209859);
             var vm = this;
 
@@ -27,7 +28,8 @@ var app = new Vue({
                     vm.map = new google.maps.Map(document.querySelector('#User-Map'),{
 
                         center:initialLocation,
-                        zoom:12
+                        zoom:12,
+                        disableDefaultUI: true
                     });
 
                     // add maker
@@ -36,6 +38,9 @@ var app = new Vue({
                         map:vm.map
 
                     });
+
+                    //put mark in array
+                    markers.push(marker);
 
                     //store user current location
                     storeLocation(position.coords.latitude,position.coords.longitude);
@@ -47,7 +52,8 @@ var app = new Vue({
                 alert('Your Browser does not support Google Map');
                 vm.map = new google.maps.Map(document.querySelector('#User-Map'),{
                     center:sydney,
-                    zoom:12
+                    zoom:12,
+                    disableDefaultUI: true
                 });
 
                 // add maker
@@ -56,6 +62,9 @@ var app = new Vue({
                     map:vm.map
 
                 });
+
+                //put mark in array
+                markers.push(marker);
             }
         },
 
@@ -72,6 +81,9 @@ var app = new Vue({
 
             var geocoder = new google.maps.Geocoder();
             var vm = this;
+
+            //clear all existed markers
+            setMapOnAll(null);
 
             geocoder.geocode({address:this.address},function(results,status){
                 console.log(status,results);
@@ -101,18 +113,27 @@ var app = new Vue({
                 //if the return results are avaiable, show the first one on the map
                 if(status === google.maps.GeocoderStatus.OK){
 
-                    vm.map.setZoom(13);
-                    vm.map.setCenter(results[0].geometry.location);
+                    //get the first research result
+                    var resultLocation = results[0].geometry.location;
+
+                    vm.map.setZoom(15);
+                    vm.map.setCenter(resultLocation);
+
+                    //get the locations of affiliate nearby
+                    var locations = getNearbyAffiliate(resultLocation.lat(),resultLocation.lng());
 
                     var iconBase = 'images/'; //maker image
-                    for (i = 0; i < 10; i++) {
 
-                        //initialize random markers neary research
-                        // add makers near search results
+                    //if affiliate location is not null
+                    if(locations != null)
+                    for (var i = 0; i < locations.length; i++) {
+
+                        //initialize markers
+                        //add makers near search results
                         marker = new google.maps.Marker({
                             icon: iconBase + 'female.png',
-                            position: new google.maps.LatLng(results[0].geometry.location.lat()*getRandomArbitrary(0.9998,1.0002),
-                                results[0].geometry.location.lng()*getRandomArbitrary(0.9998,1.0002)),
+                            position: new google.maps.LatLng(locations[i]['latitude'],
+                                locations[i]['longitude']),
                             map:vm.map
 
                         });
@@ -128,15 +149,20 @@ var app = new Vue({
                             }
                         })(marker, i));
 
+                        markers.push(marker);
+
                     }
 
-
                     //build a search result maker for the map
-                    return new google.maps.Marker({
+                    var marker = new google.maps.Marker({
                         map: vm.map,
-                        position: results[0].geometry.location
+                        position: resultLocation
 
-                    })
+                    });
+
+                    markers.push(marker);
+
+                    return marker
                 }
                 else{
                     alert('Oops, Had troulbe to track this address, Please try again');}
@@ -188,4 +214,39 @@ function storeLocation(lati,longit){
 
     });
 
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+//get affiliates locations based on user research
+function getNearbyAffiliate(lat,lng){
+
+    var results = null;
+
+    // CSRF protection
+    $.ajaxSetup(
+        {
+            headers:
+            {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            }
+        });
+
+    $.ajax({
+        url: 'affiliate-locations',
+        type: 'POST',
+        async: false,
+        dataType: 'JSON',
+        data:{latitude:lat,longitude:lng},
+        success: function (data) {
+            return  results =  data;
+        }
+    });
+
+    return results;
 }

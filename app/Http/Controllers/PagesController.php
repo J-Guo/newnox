@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -41,7 +44,10 @@ class PagesController extends Controller
         return view('main-listview');
     }
 
-    //store user current location
+    /**
+     * store user current location
+     * @param Request $request
+     */
     public function storeLocation(Request $request){
 
         //get coordinates of user location
@@ -53,6 +59,40 @@ class PagesController extends Controller
         $user->latitude = $latitude;
         $user->longitude = $longitude;
         $user->save();
+
+    }
+
+    /**
+     * Find the affiliate locations based on user current location
+     * and radians distance (km)
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getNearbyAffiliates(Request $request){
+
+        $lat = $request->input('latitude');
+        $lng = $request->input('longitude');
+
+        $locations =
+            DB::table('users')
+                //select distance radius
+                ->select(DB::raw("*, (6371 * acos( cos( radians($lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians($lng) ) + sin( radians($lat ) ) * sin( radians( latitude ) ) ) ) AS distance"))
+                //select all users who have affiliate role
+                ->whereIn('id',function($query){
+                    $query->select('user_id')
+                          ->from('role_user')
+                          ->whereIn('role_id',function($q){
+                            $q->select('id')
+                                ->from('roles')
+                                ->where('name','affiliate');
+                          });
+                })
+                ->having('distance', '<', config('services.google_map.radius')) //radius distance (km)
+                ->orderBy('distance')
+                ->limit(config('services.google_map.limit')) //the the number of research results
+                ->get();
+
+        return response()->json($locations);
 
     }
 

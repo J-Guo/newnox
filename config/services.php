@@ -48,4 +48,9 @@ return [
         'secret' => env('BRAINTREE_SECRET'),
     ],
 
+    'google_map' => [
+        'radius'    => env('GOOGLE_MAP_RESEARCH_RADIUS'),
+        'limit'    => env('GOOGLE_MAP_RESEARCH_LIMIT'),
+    ],
+
 ];
