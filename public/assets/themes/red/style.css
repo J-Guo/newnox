@@ -5114,7 +5114,7 @@ blockquote .author {
 }
 .button.button-secondary {
   border-color: #CC392E;
-  color: #CC392E;
+  color: #f0f0f0;
 }
 .button.button-secondary:hover, .button.button-secondary.active, .button.button-secondary.active-state {
   background: #CC392E;

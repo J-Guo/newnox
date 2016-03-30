@@ -33,7 +33,10 @@ class TasksController extends Controller
         //get the prefered date
         $date = $request->input('date');
         //get the price of task
-        $price = $request->input('price');
+        $rate = $request->input('rate');
+        $duration = $request->input('duration');
+
+        $price = $rate * $duration;
         //get the preference
         $preference = 'female';
 
@@ -54,7 +57,7 @@ class TasksController extends Controller
 
         return redirect('date-near-by');
 
-       // dd($request->input());
+//        dd($request->input());
     }
 
     /**

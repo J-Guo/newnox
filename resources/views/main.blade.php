@@ -5,6 +5,16 @@
 
     <style>
 
+        input[date]{
+            width:100%;
+        }
+
+        .green{
+            background-color:#3D7A3E;
+            border:#3D7A3E;
+            border-left:#3d7a3e;
+        }
+
         .over-lay
         {
             position:fixed; z-index:10000; margin:0; width:100%;height:auto; background:#666; opacity:0.9;
@@ -16,10 +26,19 @@
 
         .bottom{
             bottom:0px;
+            left: 0px;
+        }
+
+        .bottom50{
+            bottom:50px;
         }
 
         .right{
             right:20px;
+        }
+
+        .left{
+            left:20px;
         }
 
         .white
@@ -201,102 +220,84 @@
 
             <form id="dateForm" name="dataForm" action="{{url('post-task')}}" method="POST">
                 {{csrf_field()}}
-            <div class="over-lay bottom">
-                <div class="content-block mt-5 mb-0">
+                <div class="over-lay bottom">
+                    <div class="content-block mt-0 mb-0">
 
-                    <div class="buttons-row">
-                        <a href="#date" class="tab-link active button button-secondary">Date</a>
-                        <a href="#rate" class="tab-link button button-secondary">Price</a>
-                        <a href="#gender" class="tab-link button button-secondary">Hours</a>
+                        <p class="buttons-row mt-5 mb-0">
+                            <a href="#" data-picker=".picker-1" class="open-picker tab-link button button-secondary">Date</a>
+                            <a href="#" data-picker=".picker-2" class="open-picker tab-link button button-secondary">Price</a>
+                            <a href="#" data-picker=".picker-3" class="open-picker tab-link button button-secondary">Hours</a>
+                        </p>
+
+
+                        <div class="buttons-row  mt-5 mb-5">
+                            <button class="button button-secondary button-fill">Request a pay date</button>
+                        </div>
+
                     </div>
-                </div>
 
-                <div class="tabs">
-                    <div id="date" class="tab active">
-                        <div class="content-block mt-5 mb-5">
-                            <div class="list-block mt-5 mb-0">
-                                <ul>
-                                    <!-- Text inputs -->
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-input label">Wish a Date :</div>
-                                                <div class="item-input">
-                                                    <input type="date" name="date" placeholder="Birth day" value="2016-02-17">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                    <div class="picker-modal picker-1" style="height:auto; background-color:#6d6d72;bottom:5px;opacity:1">
+                        <div class="picker-modal-inner mt-10  mr-30 ml-30">
+                            <div class="content-block mt-0"><div class="right mr-20"><a href="#" class="button button-secondary button-fill button-small close-picker">X</a></div>
+                                <h4 style="font-size:18px">Choose your date here</h4>
+                                <p><input type="date" name="date" placeholder="Birth day" value="2016-03-31"  style="width:100%;text-align:center;height:35px;font-size:20px; "></p>
                             </div>
                         </div>
                     </div>
 
-                    <div id="rate" class="tab">
-                        <div class="content-block mt-5 mb-5">
-                            <div class="list-block mt-5 mb-0">
+
+                    <div class="picker-modal picker-2" style="height:auto; background-color:#6d6d72;bottom:5px;opacity:1">
+                        <div class="picker-modal-inner mt-10  mr-30 ml-30">
+                            <div class="list-block">
                                 <ul>
-                                    <!-- Text inputs -->
                                     <li>
                                         <div class="item-content">
                                             <div class="item-inner">
-                                                <div class="item-input label">Rate Range : </div>
+                                                <div class="item-input label">Select a Rate</div>
                                                 <div class="item-input">
-                                                    <div class="range-slider">
-                                                        <input type="range" name="price" min="200" max="1000" value="250" step="50">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="gender" class="tab">
-                        <div class="content-block mt-5 mb-5">
-                            <div class="list-block mt-5 mb-0">
-                                <ul>
-                                    <li>
-                                        <div class="item-content mr-20">
-                                            <div class="item-inner">
-                                                <div class="item-title label">Date Duration</div>
-                                                <div class="item-input">
-                                                    <select class="ml-5">
-                                                        <option>1 Hour Outting</option>
-                                                        <option>2 Hours Outting</option>
-                                                        <option>3 Hours Outting</option>
-                                                        <option>4 Hours Outting</option>
+                                                    <select name="rate" class="ml-5">
+                                                        <option value="200">A$ 200</option>
+                                                        <option value="300">A$ 300</option>
+                                                        <option value="400">A$ 400</option>
+                                                        <option value="500">A$ 500</option>
+                                                        <option value="600">A$ 600</option>
+                                                        <option value="700">A$ 700</option>
                                                     </select>
-                                                </div>
+                                                </div><a href="#" class="button button-secondary button-fill button-small close-picker">X</a>
                                             </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="item-content mr-20">
-                                            <div class="item-inner">
-                                                <span style="text-align:center">$230/hr Only</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="row text-center ml-10 mr-10 mt-10">
-                                            <input type="submit" class="button button-primary mb-10" name="submit"
-                                                   value="Submit for Date">
                                         </div>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
                     </div>
+
+                    <div class="picker-modal picker-3" style="height:140px; background-color:#6d6d72;bottom:5px;opacity:1">
+                        <div class="picker-modal-inner mt-10  mr-30 ml-30">
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input label">Select Hours</div>
+                                                <div class="item-input">
+                                                    <select name="duration" class="ml-5">
+                                                        <option value="1">1 Hour Outting</option>
+                                                        <option value="2">2 Hours Outting</option>
+                                                        <option value="3">3 Hours Outting</option>
+                                                        <option value="4">4 Hours Outting</option>
+                                                    </select>
+                                                </div><a href="#" class="button button-secondary button-fill button-small close-picker">X</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <h4 align="center">Total hour rate: A$ 500</h4>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-
-            </div>
             </form>
 
         </div>
