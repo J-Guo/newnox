@@ -225,7 +225,10 @@ class UsersController extends Controller
             $user->save();
 
             //redirect to task nearby
-            return redirect('task-nearby');
+//            return redirect('task-nearby');
+            //rediret to bank detail
+            return redirect('bank-detail/create');
+
         }
         else{
 

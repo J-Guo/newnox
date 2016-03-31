@@ -26,19 +26,35 @@ class LoginController extends Controller
         $AuthToken =  config('services.twilio.token');
         $from = config('services.twilio.from_number');
         //get user type from user input
-//        $userType = $request->input('userType');
         $userType = $request->input('userSubmit');
-
 
         //get user mobile number
         $mobileNum =$request->input("mobileNum");
+        //get current user
+        $user = User::where('mobile',$mobileNum)->first();
+
+        //if user does not exist, register for him
+        if(empty($user)){
+            $newUser = new User();
+            $newUser->mobile = $mobileNum;
+            $newUser->save();
+
+        }
+
+        //get the registered user
+        $user= User::where('mobile',$mobileNum)->first();
+
+        //generate a OTP for user and save it
+        $otp = $this->generateOTP(); //live OTP
+//        $otp = 2222;   //test OTP
+        $user->otp = $otp;
+        $user->save();
+
         //set message body (OTP)
-        $smsBody = "2222";
+        $smsBody = 'Your Passcode is: '.$otp;
 
         //create message client
         $client = new Services_Twilio($AccountSid, $AuthToken);
-
-//        dd($request->input());
 
         //check user mobile phone number is correct or not
         //create message and send it
@@ -86,27 +102,14 @@ class LoginController extends Controller
         //get user type from user input
         $userType = $request->input('userType');
 
-        //verify user OTP
+        //get the registered user
+        $currentUser = User::where('mobile',$mobileNum)->first();
 
         /**
-         * Some functions here need to be done....
+         * verify user OTP
          */
-
         if($integer_otp == 2222){
 
-            //check user exist or not
-            $results = User::where('mobile',$mobileNum)->first();
-
-            //if user does not exist, register for him
-            if(empty($results )){
-                $newUser = new User();
-                $newUser->mobile = $mobileNum;
-                $newUser->save();
-
-            }
-
-            //get the registered user
-            $currentUser = User::where('mobile',$mobileNum)->first();
             //logging the user
             Auth::login($currentUser);
 
@@ -171,4 +174,17 @@ class LoginController extends Controller
         return redirect('login');
 
     }
+
+    /**
+     * generate a OTP for user
+     * @return int
+     */
+    private function generateOTP(){
+
+        $otp = rand(1000,9999);
+
+        return $otp;
+
+    }
+
 }

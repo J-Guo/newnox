@@ -23,7 +23,7 @@
                     <span class="kkicon icon-menu"></span>
                 </a>
             </div>
-            <div class="center sliding" style="left: 0px; transform: translate3d(0px, 0px, 0px);">Personal Detail</div>
+            <div class="center sliding" style="left: 0px; transform: translate3d(0px, 0px, 0px);">Bank Detail</div>
             <div class="right">
                 <a href="#" class="link icon-only open-panel" data-panel="right">
                     <span class="kkicon icon-alarm"></span>

@@ -200,19 +200,11 @@
                             <!--<input type="submit" class="btn2 ml-10" value="Search">-->
                             <button id="" class="btn2 ml-10"> <i class="fa fa-2x fa-list mt-0"></i> </button>
                         </p>
-                        <!--</div>
-                  	</div>-->
                     </form>
                 </div>
-                <!-- <form @submit.prevent="locateAddress" id="locationForm">
-                <input type="search" id="address" v-model="address" class="search" placeholder="Seach location here" required>
-                <input type="submit" class="search-button" value="Search">
-                <a href="post-a-task-list" class="listview-icon white"><i class="fa fa-list fa-5 white"></i></a>
-            </form>-->
-
 
             </div>
-            <div  id="User-Map" style="height:100%;"></div>
+            <div  id="User-Map"></div>
 
             <div class="over-lay bottom">
 
