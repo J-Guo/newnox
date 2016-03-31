@@ -14,7 +14,7 @@ class CreateBankdetailsTable extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('affiliate');
+            $table->integer('affiliate')->unsigned();
             $table->string('name');
             $table->string('bank_name');
             $table->string('bsb');
