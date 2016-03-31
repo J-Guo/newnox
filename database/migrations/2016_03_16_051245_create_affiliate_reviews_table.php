@@ -14,9 +14,9 @@ class CreateAffiliateReviewsTable extends Migration
     {
         Schema::create('affiliate_reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('reviewer');
-            $table->integer('reviewee');
-            $table->integer('sent_offer_id');
+            $table->integer('reviewer')->unsigned();
+            $table->integer('reviewee')->unsigned();
+            $table->integer('sent_offer_id')->unsigned();
             $table->integer('rate');
             $table->string('comment',150)->nullable();
             $table->timestamps();

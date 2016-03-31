@@ -14,7 +14,7 @@ class CreatePostedTasksTable extends Migration
     {
         Schema::create('posted_tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_poster');
+            $table->integer('task_poster')->unsigned();
             $table->integer('price');
             $table->date('date');
             $table->string('place');

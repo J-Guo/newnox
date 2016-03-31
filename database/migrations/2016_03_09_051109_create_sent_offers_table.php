@@ -14,8 +14,8 @@ class CreateSentOffersTable extends Migration
     {
         Schema::create('sent_offers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('offer_maker');
-            $table->integer('posted_task_id');
+            $table->integer('offer_maker')->unsigned();
+            $table->integer('posted_task_id')->unsigned();
             $table->integer('price');
             $table->date('date');
             $table->string('place');
