@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bank_Detail;
+use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -33,11 +34,19 @@ class UsersController extends Controller
         //generate a unique image name based on user mobile and time
         $name = $user->mobile.time().".".$extension;
 
-        //store image into storage folder
+        $img = Image::make($file);
+        $img->resize(100,100);
+
+        //store image into storage folder through Laravel Filesystem
         $result = Storage::put(
             'avatars/'. $name,
-            file_get_contents($file->getRealPath())
+            $img->encode()
         );
+
+        //store image through Intervention method
+//        $result = $img->save(storage_path('app/avatars/').$name);
+
+//        dd($result);
 
         //if storage is successful
         if($result){
@@ -209,10 +218,14 @@ class UsersController extends Controller
         //generate a unique image name based on user mobile and time
         $name = $user->mobile.time().".".$extension;
 
+        //crop the uploaded image
+        $img = Image::make($file);
+        $img->resize(100,100);
+
         //store image into storage folder
         $result = Storage::put(
             'avatars/'. $name,
-            file_get_contents($file->getRealPath())
+            $img->encode()
         );
 
         //if storage is successful
