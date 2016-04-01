@@ -4,7 +4,7 @@
  */
 
 //var socket = io('http://localhost:3000'); //local environment
-var socket = io('http://172.31.43.185:3000'); //product environment
+var socket = io('http://52.63.86.211:3000'); //product environment
 
 var roomNum = $('#roomNum').val();
 
