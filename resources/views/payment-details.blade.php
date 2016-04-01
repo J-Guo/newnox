@@ -22,7 +22,7 @@
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed ">
             <div class="page" data-page="settings">
-                <div class="page-content">
+                <div class="page-content mr-10 ml-10">
                         <!-- Payment Method Updated Information-->
                         @if(session()->has('message') )
                         <div class="alert alert-info text-center">

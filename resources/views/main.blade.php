@@ -228,7 +228,7 @@
 
     @section("footer")
 
-            <!--Build Vue.js -->
+     <!--Build Vue.js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.14/vue.min.js"></script>
     <!--Build Loading Overlay -->
     <script type="text/javascript" src="{{asset('assets/js/loadingoverlay.js')}}"></script>

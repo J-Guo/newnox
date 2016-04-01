@@ -300,6 +300,10 @@ class TasksController extends Controller
 
         //get posted task
         $task = Posted_Task::find($task_id);
+
+        /*
+         * Use them when project goes alive
+         */
         //get task poster mobile number
         $mobileNum = $task->poster->mobile;
 
@@ -313,11 +317,11 @@ class TasksController extends Controller
         //create message and send it
         try{
             //use it when project goes alive
-            $message = $client->account->messages->sendMessage(
-                $from,
-                $mobileNum,
-                $smsBody
-            );
+//            $message = $client->account->messages->sendMessage(
+//                $from,
+//                $mobileNum,
+//                $smsBody
+//            );
 
             return redirect('task-list');
         }

@@ -33,6 +33,6 @@ class CreatePostedTasksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('=posted_tasks');
+        Schema::drop('posted_tasks');
     }
 }
