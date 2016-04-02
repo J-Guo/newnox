@@ -14,7 +14,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">E-Mail Address</label>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="username">
                                 </div>
                             </div>
 

@@ -53,4 +53,9 @@ return [
         'limit'    => env('GOOGLE_MAP_RESEARCH_LIMIT'),
     ],
 
+    'internal' => [
+        'username'    => env('INTERNAL_USERNAM'),
+        'password'    => env('INTERNAL_PASSWORD'),
+    ],
+
 ];

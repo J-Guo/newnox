@@ -56,5 +56,8 @@ class Kernel extends HttpKernel
 
         //custom middleware
         'paymentcheck'  => \App\Http\Middleware\PaymentCheckoutMiddleware::class,
+
+        //internal user middleware
+        'internal' => \App\Http\Middleware\InternalTestMiddleware::class,
     ];
 }

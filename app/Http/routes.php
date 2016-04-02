@@ -2,6 +2,19 @@
 
 Route::group(['middleware'=>'web'],function(){
 
+    //temporary signin page for internal user
+    Route::get('signin','TestController@showSignin');
+    //handle signin action for user
+    Route::post('signin','TestController@handleSignin');
+
+    /*
+     * temporary internal middleware, only internal user can access project
+     * Should be deleted when project goes alive
+     */
+    Route::group(['middleware'=>'internal'],function(){
+
+
+
     //show login pages for both user and affiliate
     Route::get('login','PagesController@showLoginPage');
 
@@ -188,6 +201,9 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('test-image','ImagesController@getProfileImage');
     //Unit test
     Route::get('test-review','TestController@testUserReview');
+
+
+    });// end internal middleware
 
 });
 
