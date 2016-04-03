@@ -119,6 +119,8 @@ class UsersController extends Controller
         $gender = $request->input('gender'); //gender
         $file = $request->file('avatar');
 
+        //if user wants to change profile image
+        if($file){
         //get file extension
         $extension = $file->getClientOriginalExtension();
         //generate a unique image name based on user mobile and time
@@ -130,24 +132,38 @@ class UsersController extends Controller
             file_get_contents($file->getRealPath())
         );
 
-        //if storage is successful
-        if($result){
+            //if storage is successful
+            if($result){
+                //save user information in db
+                $user->display_name = $displayName;
+                $user->age = $age;
+                $user->gender =$gender;
+                $user->profile_photo = $name;
+                $user->save();
+
+                //redirect to main page
+                return redirect('profile/edit')
+                    ->with('message','Profile Updated Successful');
+            }
+            else{
+                return redirect()->back()->withInput()
+                    ->with('message','Upload Avatar failed, please try again');
+            }
+
+        }
+        else{
+
             //save user information in db
             $user->display_name = $displayName;
             $user->age = $age;
             $user->gender =$gender;
-            $user->profile_photo = $name;
             $user->save();
 
             //redirect to main page
             return redirect('profile/edit')
                 ->with('message','Profile Updated Successful');
-        }
-        else{
-            return redirect()->back()->withInput()
-                ->with('message','Upload Avatar failed, please try again');
-        }
 
+        }
 
     }
 
