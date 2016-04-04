@@ -127,10 +127,14 @@ class PaymentController extends Controller
         $braintree_user  = Braintree\Customer::find($user->braintree_id);
         //get last 4 digits of current payment method
         $last4 = $braintree_user->paymentMethods[0]->last4;
-
+        //get user name
+        $firstName = $braintree_user->firstName;
+        $lastName =  $braintree_user->lastName;
 
         return view('payment-details')
             ->with('clientToken',$clientToken)
+            ->with('firstName',$firstName)
+            ->with('lastName',$lastName)
             ->with('last4',$last4);
         }
         else
@@ -153,25 +157,49 @@ class PaymentController extends Controller
         Configuration::privateKey(config('services.braintree.secret'));
 
         //build validation for user input
-//        $v = Validator::make($request->all(), [
-//            'firstName' => 'required|alpha|max:255',
-//            'lastName' => 'required|alpha|max:255',
-//        ]);
+        $v = Validator::make($request->all(), [
+            'firstName' => 'required|alpha|max:255',
+            'lastName' => 'required|alpha|max:255',
+        ]);
+
+
+        //if input is valid
+        if (!$v->fails()) {
 
             //get user information
             $paymentNonce = $request->input('payment_method_nonce');
+            $firstName = $request->input('firstName');
+            $lastName = $request->input('lastName');
 
             //get current user
             $user = $request->user();
 
-            //create new payment method for user and set it as default
-            $result = Braintree\PaymentMethod::create([
-                'customerId' =>  $user->braintree_id,
-                'paymentMethodNonce' =>  $paymentNonce,
-                'options' => [
-                    'makeDefault' => true
+            //if user has a braintree account
+            if($user->braintree_id != null){
+
+//            //create new payment method for user and set it as default
+//            $result = Braintree\PaymentMethod::create([
+//                'customerId' =>  $user->braintree_id,
+//                'paymentMethodNonce' =>  $paymentNonce,
+//                'options' => [
+//                    'makeDefault' => true
+//                ]
+//            ]);
+
+            //update user payment method and name
+            $result = Braintree\Customer::update(
+                $user->braintree_id,
+                [
+                    'firstName' => $firstName,
+                    'lastName' => $lastName,
+                    'creditCard' => [
+                        'paymentMethodNonce' =>  $paymentNonce,
+                        'options' => [
+                            'makeDefault' => true
+                        ]
+                    ]
                 ]
-            ]);
+            );
 
             //if payment method update successful
             if($result->success){
@@ -182,7 +210,39 @@ class PaymentController extends Controller
             }
             else
                 return redirect()->back()->with('braintreeError',$result->message);
-//        dd($result);
+            }
+            //if user has no braintree account, create one
+            else{
+
+                //create braintree instance for user
+                $result = Braintree\Customer::create([
+                    'firstName' =>  $firstName,
+                    'lastName' => $lastName,
+                    'phone' => $user->mobile,
+                    'paymentMethodNonce' =>  $paymentNonce
+                ]);
+
+
+                //if user created successful
+                if($result->success){
+
+                    $user->braintree_id = $result->customer->id;
+                    $user->save();
+                    return redirect('date-near-by');
+
+                }
+                else{
+
+                    return redirect()->back()->with('braintree_errors',$result->errors->deepAll());
+                }
+
+            }
+
+        }
+        //if user input is not valid
+        else
+            return redirect()->back()->withErrors($v->errors());
+
     }
 
     /**

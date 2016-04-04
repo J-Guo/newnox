@@ -41,10 +41,27 @@
                                 <ul>
                                     <!-- Text inputs -->
                                     <li>
-                                    <li>
                                         <div class="item-content">
+                                            <div class="item-media"><span class="icon-profile"></span></div>
                                             <div class="item-inner">
-                                                <div class="item-title label">Current Card</div>
+                                                <div class="item-input">
+                                                    <input type="text" name="firstName"
+                                                           placeholder="{{isset($firstName)? $firstName : "Your First Name" }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                            <div class="item-media"><span class="icon-credit-card"></span></div>
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="text" name="lastName"
+                                                           placeholder="{{isset($lastName)? $lastName : "Your Last Name" }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                            <div class="item-media"><span class="icon-credit-card"></span></div>
+                                            <div class="item-inner">
                                                 <div class="item-input">
                                                     <input type="text"  value="{{isset($last4)? "*************".$last4 : "No Payment Method" }}" readonly>
                                                 </div>
