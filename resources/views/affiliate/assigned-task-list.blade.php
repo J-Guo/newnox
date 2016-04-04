@@ -2,21 +2,8 @@
 
 @section('content')
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="left">
-                <a href="#" class="link icon-only open-panel">
-                    <span class="kkicon icon-menu"></span>
-                </a>
-            </div>
-            <div class="center sliding" style="left: 0px;">Assigned Task List</div>
-            <div class="right">
-                <a href="#" class="link icon-only open-panel" data-panel="right">
-                    <span class="kkicon icon-alarm"></span>
-                </a>
-            </div>
-        </div>
-    </div>
+    <!--Top Navigation Bar -->
+    @include('layouts.top-nav',['title'=>'Assigned Task List'])
 
     <div class="pages navbar-fixed toolbar-fixed">
         <div class="page no-toolbar" data-page="blog">

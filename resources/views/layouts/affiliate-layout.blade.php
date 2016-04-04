@@ -75,25 +75,23 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('aprofile')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-female"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Gallery</div>
-                            </div>
-                        </a>
-                    </li>
-
-
+                    {{--<li>--}}
+                        {{--<a href="{{url('aprofile')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa fa-female"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Gallery</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="{{url('assigned-task-list')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-weixin"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Assignedd Task</div>
+                                <div class="item-title">Assigned Task</div>
                                 <div class="item-after">
                                     <span class="badge badge-secondary">5</span>
                                 </div>

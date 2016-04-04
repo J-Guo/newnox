@@ -7,21 +7,8 @@
 
 @section('content')
     <div class="view another-view">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="left">
-                    <a href="#" class="link icon-only open-panel">
-                        <span class="kkicon icon-menu"></span>
-                    </a>
-                </div>
-                <div class="center sliding">Review</div>
-                <div class="right">
-                    <a href="#" class="link icon-only open-panel" data-panel="right">
-                        <span class="kkicon icon-alarm"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!--Top Navigation Bar -->
+        @include('layouts.top-nav',['title'=>'Review'])
 
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">

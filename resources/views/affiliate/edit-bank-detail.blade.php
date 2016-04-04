@@ -2,36 +2,8 @@
 
 @section('content')
 
-        <!-- Navigation Bar-->
-<div class="navbar anim-navbar">
-
-    <div class="navbar-inner navbar-on-left">
-        <div class="left">
-            <a href="#" class="link icon-only open-panel">
-                <span class="kkicon icon-menu"></span>
-            </a>
-        </div>
-        <div class="center sliding" style="left: 0px; transform: translate3d(-614px, 0px, 0px);">Notifications</div>
-        <div class="right">
-            <a href="#" class="link icon-only open-panel" data-panel="right">
-                <span class="kkicon icon-alarm"></span>
-            </a>
-        </div>
-    </div><div class="navbar-inner navbar-on-center">
-        <div class="left">
-            <a href="#" class="link icon-only open-panel">
-                <span class="kkicon icon-menu"></span>
-            </a>
-        </div>
-        <div class="center sliding" style="left: 0px; transform: translate3d(0px, 0px, 0px);">Bank Detail Edit</div>
-        <div class="right">
-            <a href="#" class="link icon-only open-panel" data-panel="right">
-                <span class="kkicon icon-alarm"></span>
-            </a>
-        </div>
-    </div>
-</div>
-
+<!--Top Navigation Bar -->
+@include('layouts.top-nav',['title'=>'Bank Detail'])
 
 <!-- Notification -->
 <div class="pages navbar-fixed toolbar-fixed ">
