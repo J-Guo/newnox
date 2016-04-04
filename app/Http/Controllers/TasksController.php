@@ -44,6 +44,15 @@ class TasksController extends Controller
          * do some validations here....
          */
 
+        /*
+         * check whether use has a current task or not
+         */
+        $tasks = Posted_Task::where('task_poster',Auth::user()->id)
+                            ->whereNotIn('status',['reviewed','requesting'])
+                            ->get();
+
+        //if user does not have a current task
+        if(empty($tasks)){
         //create the task
         $posted_task = new Posted_Task();
         $posted_task->task_poster = Auth::user()->id;
@@ -56,8 +65,11 @@ class TasksController extends Controller
         $posted_task->save();
 
         return redirect('date-near-by');
-
-//        dd($request->input());
+        }
+        else
+        return redirect('date-near-by')
+            ->with('taskError','Please Finish Current Task Otherwise You Cannot Post A New Task');
+//        dd($tasks);
     }
 
     /**

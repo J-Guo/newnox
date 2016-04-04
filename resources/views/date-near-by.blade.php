@@ -16,6 +16,13 @@
                 <span>{{ session()->get('transactionError') }}</span>
             </div>
             @endif
+            <!-- Show Duplicated Task Errors-->
+            @if(session()->has('taskError'))
+            <div class="alert alert-danger text-center">
+                <strong>Failed!:</strong>
+                <span>{{ session()->get('taskError') }}</span>
+            </div>
+            @endif
             <!-- show dates nearby-->
             @if(!isset($sentOfferArray) || empty($sentOfferArray))
             <h2>Oops, You dont get any offers from affiliates please wait for a moment</h2>
