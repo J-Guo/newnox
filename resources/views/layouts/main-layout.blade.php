@@ -78,26 +78,26 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('user-profile')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-photo"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Gallery</div>
-                            </div>
-                        </a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="{{url('user-profile')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-photo"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Gallery</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="{{url('assigned-date')}}" class="item-link close-panel item-content">
                             <div class="item-media">
                                 <i class="fa fa-weixin"></i>
                             </div>
                             <div class="item-inner">
-                                <div class="item-title">Assignedd Task</div>
-                                <div class="item-after">
-                                    <span class="badge badge-secondary">5</span>
-                                </div>
+                                <div class="item-title">Assignedd Date</div>
+                                {{--<div class="item-after">--}}
+                                    {{--<span class="badge badge-secondary">5</span>--}}
+                                {{--</div>--}}
                             </div>
                         </a>
                     </li>
@@ -168,12 +168,6 @@
 <!-- Right panel -->
 <div class="panel panel-right panel-reveal">
     <div class="line"></div>
-
-    <div class="user-banner">
-        <span class="ava-box">
-            <img src="assets/img/tmp/ava4.jpg" alt="">
-        </span>
-    </div>
 
     <div class="welcome-msg">
         <h3>Hello <strong>Lu</strong>!</h3>

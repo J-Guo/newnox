@@ -136,8 +136,6 @@
 
 @section('content')
 
-
-
     <div class="view another-view">
 
         <div class="navbar">
@@ -147,11 +145,9 @@
                         <span class="kkicon icon-menu"></span>
                     </a>
                 </div>
-                <div class="center sliding">post a task</div>
+                <div class="center sliding">Main Page</div>
                 <div class="right">
-                    <a href="#" class="link icon-only open-panel" data-panel="right">
-                        <span class="kkicon icon-alarm"></span>
-                    </a>
+
                 </div>
             </div>
         </div>
