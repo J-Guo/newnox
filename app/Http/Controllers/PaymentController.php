@@ -36,7 +36,7 @@ class PaymentController extends Controller
         //generate token to client side
         $clientToken = ClientToken::generate();
         return view('payment')
-            ->with('clientToken',$clientToken);
+               ->with('clientToken',$clientToken);
         }
         else{
         return redirect('main'); //user cannot create payment method again
