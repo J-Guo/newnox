@@ -25,7 +25,7 @@
                  <h2>Oops, May do not have task right now, try it later :)</h2>
                 @else
                 @foreach($postedTaskArray as $key => $poster_task_merged)
-                <form id="taskNearby{{$key}}" name="offerForm" action="{{url('make-offer')}}" method="POST">
+                <form id="taskNearby{{$key}}" name="offerForm" action="{{url('make-offer')}}" method="GET">
                     {{csrf_field()}}
                 <div class="card">
                     <div class="card-content">

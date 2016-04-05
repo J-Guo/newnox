@@ -165,7 +165,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('task-nearby','TasksController@showTaskNearby');
 
         //show make offer page for affiliate
-        Route::post('make-offer', 'TasksController@showMakeOffer');
+        Route::get('make-offer', 'TasksController@showMakeOffer');
         //handle send offer action from affiliate
         Route::post('send-offer','TasksController@sendOffer');
 

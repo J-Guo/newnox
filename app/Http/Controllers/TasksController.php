@@ -275,6 +275,12 @@ class TasksController extends Controller
      */
     public function sendOffer(Request $request){
 
+        //validate the input
+        $this->validate($request, [
+            'price' => 'required|integer|max:255',
+            'date' => 'required',
+        ]);
+
         //get the id of affiiate who makes the offer
         $affiliate_id = Auth::user()->id;
 
