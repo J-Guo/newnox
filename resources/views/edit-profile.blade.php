@@ -56,7 +56,24 @@
                                         </div>
                                     </div>
                                 </li>
-
+                                <!-- Preference-->
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><span class="icon-link"></span></div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">Preference</div>
+                                            <div class="item-input">
+                                                <!--Generate Preference Based on User -->
+                                                {{ Form::select('preference', [
+                                                       'male' => 'Male',
+                                                       'female' => 'Female',
+                                                       'both' => 'Both'],
+                                                      isset($user) ? $user->preference :'female'
+                                                ) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <!-- Age -->
                                 <li>
                                     <div class="item-content">
@@ -73,7 +90,22 @@
                                         </div>
                                     </div>
                                 </li>
-
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media"><span class="icon-papers"></span></div>
+                                        <div class="item-inner">
+                                            <div class="item-title label">Public Profile</div>
+                                            <div class="item-input">
+                                                <!--Generate Public Profile Based on User -->
+                                                {{ Form::select('public_profile', [
+                                                       1 => 'Yes',
+                                                       0 => 'No'],
+                                                      isset($user) ? $user->public_profile :1
+                                                ) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <!-- Profie Photo -->
                                 <li class="mt-10">
                                     <div class="item-content">

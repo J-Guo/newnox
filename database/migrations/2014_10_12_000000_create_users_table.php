@@ -23,7 +23,9 @@ class CreateUsersTable extends Migration
             $table->integer('otp')->nullable();
             $table->string('profile_photo');
             $table->string('gender');
+            $table->string('preference');
             $table->string('status');
+            $table->boolean('public_profile');
             $table->rememberToken();
             $table->timestamps();
         });

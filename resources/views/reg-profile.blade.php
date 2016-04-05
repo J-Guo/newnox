@@ -29,7 +29,6 @@
                                     </div>
                                 </div>
                             </li>
-                                                        
                             <li>
                                 <div class="item-content">
                                     <div class="item-media"><span class="icon-man-woman"></span></div>
@@ -44,7 +43,22 @@
                                     </div>
                                 </div>
                             </li>
-                            
+                            <!-- Preference-->
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><span class="icon-link"></span></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Preference</div>
+                                        <div class="item-input">
+                                            <select name="preference">
+                                                <option value="male">Male</option>
+                                                <option value="female" selected>Female</option>
+                                                <option value="both">Both</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <!-- Age -->
                             <li>
                                 <div class="item-content">
@@ -61,7 +75,21 @@
                                     </div>
                                 </div>
                             </li>
-                            
+                            <!-- Public Profile-->
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><span class="icon-papers"></span></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Public Profile</div>
+                                        <div class="item-input">
+                                            <select name="public_profile">
+                                                <option value="1">Yes</option>
+                                                <option value="2">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <!-- Profie Photo -->
                             <li class="mt-10">
                                 <div class="item-content">
