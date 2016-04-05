@@ -117,7 +117,7 @@
                                                 <div class="item-input">
                                                     <div class="uploadFile timelineUploadBG">
                                                         <input type="file" id="avatar" name="avatar"
-                                                               accept='image/x-png, image/jpeg' class="custom-file-input" required>
+                                                               accept='image/x-png, image/jpeg' class="custom-file-input">
                                                     </div>
                                                 </div>
                                                 <img src="{{ isset($user) ? url("avatars/".$user->profile_photo) :url("avatars/default.jpg")}}"

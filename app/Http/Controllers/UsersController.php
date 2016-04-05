@@ -307,6 +307,9 @@ class UsersController extends Controller
         $public_profile = (boolean) $request->input('public_profile');//set profile public or not
         $file = $request->file('avatar');
 
+        //if affiliate wants to change profile photo
+        if($file){
+
         //get file extension
         $extension = $file->getClientOriginalExtension();
         //generate a unique image name based on user mobile and time
@@ -336,6 +339,21 @@ class UsersController extends Controller
         else{
             return redirect()->back()->withInput()
                 ->with('message','Upload Avatar failed, please try again');
+        }
+
+        }
+        else{
+
+            //save user information in db
+            $user->display_name = $displayName;
+            $user->age = $age;
+            $user->gender =$gender;
+            $user->preference = $preference;
+            $user->public_profile = $public_profile;
+            $user->save();
+
+            return redirect('aprofile/edit')
+                ->with('message','Profile Updated Successful');
         }
 
     }
