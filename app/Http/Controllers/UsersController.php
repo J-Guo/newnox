@@ -235,6 +235,8 @@ class UsersController extends Controller
         $displayName = $request->input('displayName'); //display name, need santinize it before save
         $age = $request->input('age'); //age
         $gender = $request->input('gender'); //gender
+        $preference = $request->input('preference'); //preference
+        $public_profile = (boolean) $request->input('public_profile');//set profile public or not
         $file = $request->file('avatar');
 
         //get file extension
@@ -259,6 +261,8 @@ class UsersController extends Controller
             $user->age = $age;
             $user->gender =$gender;
             $user->profile_photo = $name;
+            $user->preference = $preference;
+            $user->public_profile = $public_profile;
             $user->save();
 
             //redirect to task nearby
@@ -299,6 +303,8 @@ class UsersController extends Controller
         $displayName = $request->input('displayName'); //display name, need santinize it before save
         $age = $request->input('age'); //age
         $gender = $request->input('gender'); //gender
+        $preference = $request->input('preference'); //preference
+        $public_profile = (boolean) $request->input('public_profile');//set profile public or not
         $file = $request->file('avatar');
 
         //get file extension
@@ -319,6 +325,8 @@ class UsersController extends Controller
             $user->age = $age;
             $user->gender =$gender;
             $user->profile_photo = $name;
+            $user->preference = $preference;
+            $user->public_profile = $public_profile;
             $user->save();
 
             //redirect to main page
