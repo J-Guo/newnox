@@ -21,7 +21,7 @@
                 <h2>No any review right now </h2>
                 @else
                 @foreach($tasks as $task)
-                {{--*/ $offer = $task->offers()->whereIn('status',['released','reviewed'])->first() /*--}}
+                {{--*/ $offer = $task->offers()->whereIn('status',['requested','reviewed'])->first() /*--}}
                 <div class="card">
                     <form name="releaseForm" action="{{url('reviews/'.$task->id)}}" method="POST">
                         {{csrf_field()}}
@@ -30,36 +30,37 @@
                                 <ul>
                                     <li class="item-content">
                                         <div class="item-media">
-                                            <div class="row">
-                                                <div class="col-100">
-                                                    <img src="{{url('avatars/'.$offer->sender->profile_photo)}}"
-                                                         height="100"  width="100">
-                                                @include('layouts.review-stars',['rate' => $offer->sender->avgRateAsAffiliate()])
-                                                </div>
-                                            </div>
+                                            <img src="{{url('avatars/'.$offer->sender->profile_photo)}}"
+                                                 height="100"  width="100">
                                         </div>
                                         <div class="item-inner">
 
                                             <div class="item-subtitle"><p>Name:
-                                                {{$offer->sender->display_name}}</p></div>
-                                            <div class="item-subtitle"><p>Price: <strong>$
-                                                {{$offer->price}}</strong></p></div>
-                                            <div class="item-subtitle"><p>Date
-                                                {{$offer->date}}</p></div>
-
-                                            <div class="item-inner">
-                                                @if($task->status == 'released')
-                                                <div class="row text-center">
-                                                    <input type="submit"  class="button button-primary button-small" name="review" value="Make A Review" />
-                                                </div>
-                                                @else
-                                                 <span class="badge badge-primary badge-square text-uppercase">Reviewed</span>
-                                                @endif
+                                                    {{$offer->sender->display_name}}</p></div>
+                                            <div class="item-subtitle">
+                                                @include('layouts.review-stars',['rate' => $offer->sender->avgRateAsAffiliate()])
                                             </div>
+
+                                            <div class="item-subtitle"><p>Price: <strong>$
+                                                        {{$offer->price}}</strong></p></div>
+                                            <div class="item-subtitle"><p>Date
+                                                    {{$offer->date}}</p></div>
                                         </div>
+
                                     </li>
 
                                 </ul>
+                                <div class="card-footer">
+                                    <a class="link js-add-to-fav" href="#"><i class="fa fa-heart-o mr-5"></i> Like</a>
+                                    <a class="link js-add-to-fav" href="#"><i class="fa fa-plus-square-o mr-5"></i> My Profile</a>
+                                    @if($task->status == 'requested')
+                                        <div class="row text-center">
+                                            <input type="submit"  class="button button-primary button-small" name="review" value="Make A Review" />
+                                        </div>
+                                    @else
+                                        <span class="badge badge-primary badge-square text-uppercase">Reviewed</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </form> <!-- End Release Payment Box -->

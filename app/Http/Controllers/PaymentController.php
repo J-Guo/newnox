@@ -395,10 +395,17 @@ class PaymentController extends Controller
         $offer_id = $request->input('offerID');
         $offer = Sent_Offer::find($offer_id);
         $task = $offer->task;
-        $offer->status = 'requesting';
-        $task->status = 'requesting';
+//        $offer->status = 'requesting';
+//        $task->status = 'requesting';
+        $offer->status = 'requested';
+        $task->status = 'requested';
         $offer->save();
         $task->save();
+
+        /**
+         * Todo: after payment request, a notification message should send to user
+         * Some functiions should be done here
+         */
 
         //dd($request->input());
         return redirect('request-payment')

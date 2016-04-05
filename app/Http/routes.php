@@ -107,11 +107,11 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('assigned-date', 'TasksController@showAssignedDate');
 
         //show release payment list page for user
-        Route::get('release-payment','PaymentController@showReleasePaymentList');
+//        Route::get('release-payment','PaymentController@showReleasePaymentList');
         //show specific release payment page for user
-        Route::post('release-payment/{offerid}','PaymentController@showReleasePayment');
+//        Route::post('release-payment/{offerid}','PaymentController@showReleasePayment');
         //handle release payment function for user
-        Route::post('release-payment','PaymentController@handleReleasePayment');
+//        Route::post('release-payment','PaymentController@handleReleasePayment');
 
         //show review list page for user
         Route::get('reviews', 'PagesController@showUserReviewList');

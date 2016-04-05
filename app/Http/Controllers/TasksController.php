@@ -52,7 +52,7 @@ class TasksController extends Controller
                             ->get();
 
         //if user does not have a current task
-        if(empty($tasks)){
+        if($tasks->isEmpty()){
         //create the task
         $posted_task = new Posted_Task();
         $posted_task->task_poster = Auth::user()->id;
@@ -69,7 +69,8 @@ class TasksController extends Controller
         else
         return redirect('date-near-by')
             ->with('taskError','Please Finish Current Task Otherwise You Cannot Post A New Task');
-//        dd($tasks);
+
+//        dd(empty(0));
     }
 
     /**

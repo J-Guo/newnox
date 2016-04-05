@@ -115,7 +115,7 @@ class PagesController extends Controller
 //            })->get();
 
         $tasks = Posted_Task::where('task_poster',Auth::user()->id)
-                            ->whereIn('status',['released','reviewed'])
+                            ->whereIn('status',['requested','reviewed'])
                             ->orderby('status')
                             ->orderby('date')
                             ->get();
@@ -136,7 +136,7 @@ class PagesController extends Controller
         //get the instance of task which is waiting for review
         $task = Posted_Task::find($taskid);
         //get the instance of offer which is completed with this task
-        $offer = $task->offers()->where('status','released')->first();
+        $offer = $task->offers()->whereIn('status',['requested','reviewed'])->first();
 
         return view('review')->with('task',$task)->with('offer',$offer);
     }
@@ -177,9 +177,9 @@ class PagesController extends Controller
      */
     public function showAReviewList(){
 
-        //get all released ,not reviewed offers which are sent by current affiliate
+        //get all requested ,not reviewed offers which are sent by current affiliate
         $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
-                            ->where('status','released')
+                            ->where('status','requested')
                             ->get();
 
 //        dd($offers);
