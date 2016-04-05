@@ -40,10 +40,9 @@
                                             <div class="item-subtitle">
                                                 @include('layouts.review-stars',['rate' => $offer->sender->avgRateAsAffiliate()])
                                             </div>
-
                                             <div class="item-subtitle"><p>Price: <strong>$
-                                                        {{$offer->price}}</strong></p></div>
-                                            <div class="item-subtitle"><p>Date
+                                                    {{$offer->price}}</strong></p></div>
+                                            <div class="item-subtitle"><p>Date:
                                                     {{$offer->date}}</p></div>
                                         </div>
 

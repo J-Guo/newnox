@@ -48,7 +48,7 @@ class TasksController extends Controller
          * check whether use has a current task or not
          */
         $tasks = Posted_Task::where('task_poster',Auth::user()->id)
-                            ->whereNotIn('status',['reviewed','requesting'])
+                            ->whereNotIn('status',['reviewed','requested'])
                             ->get();
 
         //if user does not have a current task
@@ -361,6 +361,7 @@ class TasksController extends Controller
         */
         $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
                             ->whereIn('status',['sent'])
+                            ->orderBy('created_at','desc')
                             ->get();
 
         //set the array for merged offer and poster

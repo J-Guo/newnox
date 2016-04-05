@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-
+use App\Models\Sent_Offer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +18,18 @@ class TestController extends Controller
     public function testUserReview(){
 
 
-        $user = User::find(4);
+        $offers = Sent_Offer::where('posted_task_id',1)
+            ->whereNotIn('status',['assigned']) //not assigned offer
+            ->whereNotIn('id',[2])
+            ->get();
 
-        return $user->avgRateAsAffiliate();
+//        dd($offers);
+
+        for($i= 0;$i<$offers->count();$i++){
+
+            echo $offers[$i];
+        }
+
     }
 
     /*

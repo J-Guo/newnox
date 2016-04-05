@@ -296,6 +296,27 @@ class PaymentController extends Controller
             $posted_task->save();
             $sent_offer->save();
 
+            /**
+             * When a task has been assigend, the other offers sent to this task
+             * should become expired
+             */
+            //get all other offers sent to this task
+            $offers = Sent_Offer::where('posted_task_id',$posted_task->id)
+                ->whereNotIn('status',['assigned']) //not assigned offer
+                ->whereNotIn('id',[$sent_offer->id]) //not current offer assigned to this task
+                ->get();
+
+//            dd($offers);
+
+            //expire these offers
+            for($i= 0;$i<$offers->count();$i++){
+
+                $offer = $offers[$i];
+                $offer->status ="expired";
+                $offer->save();
+
+            }
+
             return redirect('assigned-date');
 
         }
