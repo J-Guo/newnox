@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{asset('assets/css/map-style.css')}}">
 
     <style>
+        .firstHead{
+            color:black;
+        }
+
         input[date]{
             width:100%;
         }

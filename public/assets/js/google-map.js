@@ -45,6 +45,49 @@ var app = new Vue({
                     //store user current location
                     storeLocation(position.coords.latitude,position.coords.longitude);
 
+                    /**
+                     * Show nearby affiliate information
+                     */
+                    //google map infoWindow
+                    var infowindow = new google.maps.InfoWindow({
+                        maxWidth: 200
+                    });
+
+                    //get the locations of affiliate nearby
+                    var locations = getNearbyAffiliate(position.coords.latitude,
+                        position.coords.longitude);
+
+                    var iconBase = 'images/'; //maker image
+
+                    //if affiliate location is not null
+                    if(locations != null)
+                        for (var i = 0; i < locations.length; i++) {
+
+                            //initialize markers
+                            //add makers near search results
+                            marker = new google.maps.Marker({
+                                icon: iconBase + 'female.png',
+                                position: new google.maps.LatLng(locations[i]['latitude'],
+                                    locations[i]['longitude']),
+                                map:vm.map
+
+                            });
+
+                            //build popup information for each marker
+                            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                return function() {
+                                    if(getRandomOneTwo() == 1)
+                                        infowindow.setContent(getPublicContent(locations[i]));
+                                    else
+                                        infowindow.setContent(getPrivateContent());
+                                    infowindow.open(vm.map, marker);
+                                }
+                            })(marker, i));
+
+                            markers.push(marker);
+
+                        }
+
                 });
             }
             //broswer does not support Geolocation
@@ -89,21 +132,21 @@ var app = new Vue({
                 console.log(status,results);
 
                 //image address for info window
-                var imgURL = 'images/1.jpg';
-                var imgURL2 = 'images/2.jpg';
-                var imgURL3 = 'images/3.jpg';
-                var imgURL4 = 'images/4.jpg';
-
-                //google map infoWindow content
-                var contentPublic ='Luce Allen'+
-                    '<br><img src="'+imgURL+'" style="height:50px;width:50px;">' +
-                    '<img src="'+imgURL2+'" style="height:50px;width:50px;">'+
-                    '<img src="'+imgURL3+'" style="height:50px;width:50px;">'+
-                    '<img src="'+imgURL4+'" style="height:50px;width:50px;">'+'<br>'+
-                    '<a href="aprofile">'+
-                    'Go To Her Profile!</a>';
-
-                var contentPrivate ="Oops.Her profile is private";
+                //var imgURL = 'images/1.jpg';
+                //var imgURL2 = 'images/2.jpg';
+                //var imgURL3 = 'images/3.jpg';
+                //var imgURL4 = 'images/4.jpg';
+                //
+                ////google map infoWindow content
+                //var contentPublic ='Luce Allen'+
+                //    '<br><img src="'+imgURL+'" style="height:50px;width:50px;">' +
+                //    '<img src="'+imgURL2+'" style="height:50px;width:50px;">'+
+                //    '<img src="'+imgURL3+'" style="height:50px;width:50px;">'+
+                //    '<img src="'+imgURL4+'" style="height:50px;width:50px;">'+'<br>'+
+                //    '<a href="aprofile">'+
+                //    'Go To Her Profile!</a>';
+                //
+                //var contentPrivate ="Oops.Her profile is private";
 
                 //google map infoWindow
                 var infowindow = new google.maps.InfoWindow({
@@ -142,9 +185,9 @@ var app = new Vue({
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                             return function() {
                                 if(getRandomOneTwo() == 1)
-                                    infowindow.setContent(contentPublic);
+                                    infowindow.setContent(getPublicContent(locations[i]));
                                 else
-                                    infowindow.setContent(contentPrivate);
+                                    infowindow.setContent(getPrivateContent());
                                 infowindow.open(vm.map, marker);
                             }
                         })(marker, i));
@@ -181,6 +224,30 @@ function getRandomArbitrary(min, max) {
 
     return Math.random() * (max - min) + min;
 
+}
+
+/**
+ * Get info window content for public user
+ */
+function getPublicContent(affiliate){
+
+    var imgURL = "avatars/"+affiliate['profile_photo'];
+    var displayName = affiliate['display_name'];
+
+    //google map infoWindow content
+    var contentPublic ='<p class="firstHead">'+displayName+'</p>'+
+        '<br><img src="'+imgURL+'" style="height:100px;width:100px;">'+'<br>';
+
+    return contentPublic;
+
+}
+
+/**
+ * Generate info window content for private user
+ */
+function getPrivateContent(){
+    var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
+    return contentPrivate;
 }
 
 /**
