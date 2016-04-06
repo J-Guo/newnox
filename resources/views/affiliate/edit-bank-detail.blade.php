@@ -32,8 +32,15 @@
     <!--Affiliate Personal  -->
     <div class="page no-toolbar page-on-center">
         <div class="page-content">
+            <!-- Show Input Validation Errors Message-->
+            @if (count($errors) > 0)
+                @foreach($errors->all() AS $error)
+                    <div class="alert alert-info text-center">
+                        {{$error}}
+                    </div>
+                @endforeach
+            @endif
             <div class="login-view-box mt-50">
-
                 <div class="list login-form-box">
                     <form class="form nice-label" id="affiliateDetail" action="{{url('bank-detail/edit')}}" method="POST">
                         {{csrf_field()}}

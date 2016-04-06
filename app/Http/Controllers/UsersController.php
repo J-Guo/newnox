@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bank_Detail;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\editBankRequest;
 
 class UsersController extends Controller
 {
@@ -113,6 +114,13 @@ class UsersController extends Controller
      * @return View
      */
     public function editProfile(Request $request){
+
+        /**
+         * validate user input
+         */
+        $this->validate($request,[
+            'displayName' => 'required',
+        ]);
 
         //get current user
         $user = Auth::user();
@@ -417,7 +425,7 @@ class UsersController extends Controller
      * edit bank detail for affiliate
      * @return View
      */
-    public function editBankDetail(Request $request){
+    public function editBankDetail(editBankRequest $request){
 
         //get affiliate name
         $userName = $request->input('userName');
