@@ -28,10 +28,18 @@
             </div>
         </div>
 
-
-        <!--Affiliate Personal  -->
+        <!-- Affiliate Bank Detail -->
         <div class="page no-toolbar page-on-center">
             <div class="page-content">
+            <!-- Show Input Validation Errors Message-->
+            @if (count($errors) > 0)
+                @foreach($errors->all() AS $error)
+                    <div class="alert alert-info text-center">
+                        {{$error}}
+                    </div>
+                @endforeach
+            @endif
+
             <div class="login-view-box mt-50">
 
             <div class="list login-form-box">

@@ -232,11 +232,16 @@ class UsersController extends Controller
         $affiliate = Auth::user();
         
         if($affiliate->display_name == null){
-        return view('affiliate.create-profile');
+        return redirect('aprofile/create');
         }
         else{
         return redirect('task-nearby');
         }
+    }
+
+    public function showACreateProfile(){
+
+        return view('affiliate.create-profile');
     }
 
     /**
@@ -244,6 +249,11 @@ class UsersController extends Controller
      * @return View
      */
     public function createAProfile(Request $request){
+
+        $this->validate($request,[
+            'displayName' => 'required',
+            'avatar' => 'required|image'
+        ]);
 
         //get current user
         $user = Auth::user();
@@ -312,6 +322,14 @@ class UsersController extends Controller
      * @return View
      */
     public function editAProfile(Request $request){
+
+        /**
+         * Validate user input
+         */
+        $this->validate($request,[
+            'displayName' => 'required',
+            'avatar' => 'image'
+        ]);
 
         //get current user
         $user = Auth::user();
@@ -388,6 +406,18 @@ class UsersController extends Controller
     * @return View
    */
    public function createBankDetail(Request $request){
+
+       /**
+        * valid affiliate input
+        */
+       $this->validate($request,[
+
+           'userName' => 'required',
+           'bankName' => 'required',
+           'bsbNo' => 'required',
+           'accountNo' => 'required',
+
+       ]);
 
        //get affiliate name
        $userName = $request->input('userName');

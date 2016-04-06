@@ -141,6 +141,7 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('begin-task','UsersController@beginTask');
 
         //create profile for new affiliate
+        Route::get('aprofile/create','UsersController@showACreateProfile');
         Route::post('aprofile/create','UsersController@createAProfile');
 
         //show create bank detail page for affiliate
