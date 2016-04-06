@@ -10,6 +10,7 @@ use Services_Twilio;
 use Services_Twilio_RestException;
 use App\Role;
 use App\User;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -47,7 +48,7 @@ class LoginController extends Controller
         //generate a OTP for user and save it
         $otp = $this->generateOTP(); //live OTP
 //        $otp = 2222;   //test OTP
-        $user->otp = $otp;
+        $user->otp = Crypt::encrypt($otp) ;
         $user->save();
 
         //set message body (OTP)

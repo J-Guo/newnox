@@ -66,8 +66,6 @@ Route::group(['middleware'=>'web'],function(){
             return view('welcome');
         });
 
-
-
         //show main pages for user
         Route::get('main','PagesController@showMainPage');
         Route::get('main-listview','PagesController@showMainListviewPage');
@@ -201,6 +199,8 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('test-image','ImagesController@getProfileImage');
     //Unit test
     Route::get('test-review','TestController@testUserReview');
+    //Test OTP
+    Route::get('test-otp','TestController@testOTP');
 
 
     });// end internal middleware

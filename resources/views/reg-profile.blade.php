@@ -10,6 +10,15 @@
     <div class="pages navbar-fixed toolbar-fixed ">
         <div class="page" data-page="settings">
             <div class="page-content">
+                <!-- Show Input Validation Errors Message-->
+                @if (count($errors) > 0)
+                    @foreach($errors->all() AS $error)
+                        <div class="alert alert-info text-center">
+                            {{$error}}
+                        </div>
+                    @endforeach
+                @endif
+
                 <!-- Form to submit user profile information including image upload-->
             	<form id="reg-form" action="{{url('profile/create')}}" enctype="multipart/form-data" method="post">
                 {{csrf_field()}}

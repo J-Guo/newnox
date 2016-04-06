@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Sent_Offer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class TestController extends Controller
 {
@@ -60,6 +61,16 @@ class TestController extends Controller
         }
         else
             return redirect('signin');
+
+    }
+
+    public function testOTP(){
+
+        $user = User::find(1);
+
+        $otp = Crypt::decrypt($user->otp);
+
+        dd($otp);
 
     }
 }

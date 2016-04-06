@@ -21,6 +21,14 @@ class UsersController extends Controller
      */
     public function createProfile(Request $request){
 
+        /**
+         * Validate user input
+         */
+        $this->validate($request,[
+            'displayName' => 'required',
+            'avatar' => 'required|mimes:jpeg,bmp,png'
+        ]);
+
         //get current user
         $user = Auth::user();
 
@@ -120,6 +128,7 @@ class UsersController extends Controller
          */
         $this->validate($request,[
             'displayName' => 'required',
+            'avatar' => 'image'
         ]);
 
         //get current user

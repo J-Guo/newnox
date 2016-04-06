@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('age')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
-            $table->integer('otp')->nullable();
+            $table->string('otp')->nullable();
             $table->string('profile_photo');
             $table->string('gender');
             $table->string('preference');
