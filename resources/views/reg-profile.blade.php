@@ -19,6 +19,12 @@
                     @endforeach
                 @endif
 
+                <!-- Show Message-->
+                @if (session()->has('message'))
+                    <div class="alert alert-info text-center">
+                        {{session()->get('message')}}
+                    </div>
+                @endif
                 <!-- Form to submit user profile information including image upload-->
             	<form id="reg-form" action="{{url('profile/create')}}" enctype="multipart/form-data" method="post">
                 {{csrf_field()}}

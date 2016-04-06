@@ -54,8 +54,13 @@ class Kernel extends HttpKernel
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 
-        //custom middleware
+        //payment method check middleware
         'paymentcheck'  => \App\Http\Middleware\PaymentCheckoutMiddleware::class,
+
+        //user profile check middleware
+        'newuser' => \App\Http\Middleware\NewUserMiddleware::class,
+        //affiliate profile check middleware
+        'newaffiliate' => \App\Http\Middleware\NewAffiliateMiddleware::class,
 
         //internal user middleware
         'internal' => \App\Http\Middleware\InternalTestMiddleware::class,

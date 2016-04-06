@@ -66,6 +66,17 @@ Route::group(['middleware'=>'web'],function(){
             return view('welcome');
         });
 
+        //show create profile page for user
+        Route::get('profile/create', 'PagesController@showUserRegProfile');
+        //create profile for new user
+        Route::post('profile/create', 'UsersController@createProfile');
+
+        /**
+         * new user middleware, user can go view all pages
+         * if he has created his profile
+         */
+        Route::group(['middleware'=>'newuser'],function(){
+
         //show main pages for user
         Route::get('main','PagesController@showMainPage');
         Route::get('main-listview','PagesController@showMainListviewPage');
@@ -75,10 +86,6 @@ Route::group(['middleware'=>'web'],function(){
         //handle user post a task submit
         Route::post('post-task','TasksController@postTask');
 
-        //show create profile page for user
-        Route::get('profile/create', 'PagesController@showUserRegProfile');
-        //create profile for new user
-        Route::post('profile/create', 'UsersController@createProfile');
         //show profile page for user
         Route::get('user-profile', 'UsersController@showUserProfile');
         //show edit profile page for usere
@@ -118,7 +125,10 @@ Route::group(['middleware'=>'web'],function(){
         //show review page for user
         Route::post('reviews/{taskid}', 'PagesController@showUserReview');
 
-        });
+
+        }); //end newuser middleware
+
+        });//end entrust role:user middleware
 
 
        /*
@@ -143,6 +153,14 @@ Route::group(['middleware'=>'web'],function(){
         //create profile for new affiliate
         Route::get('aprofile/create','UsersController@showACreateProfile');
         Route::post('aprofile/create','UsersController@createAProfile');
+
+        /**
+         * new affiliate check middleware, affiliate can gou to all pages,
+         * if she has created her profile
+         */
+        Route::group(['middleware'=>'newaffiliate'],function(){
+
+
 
         //show create bank detail page for affiliate
         Route::get('bank-detail/create', 'UsersController@showBankDetail');
@@ -190,7 +208,9 @@ Route::group(['middleware'=>'web'],function(){
         //show review page for affiliate
         Route::post('areviews/{offerid}', 'PagesController@showAReview');
 
-        });
+        });//end middleware newaffiliate
+
+        });//end middleware role:affiliate
 
 
     });
