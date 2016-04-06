@@ -44,28 +44,42 @@
                 </div>
             </div>
 
+
+
             <!-- Make Offer Form-->
                 <div class="login-view-box mt-50">
                     <div class="list login-form-box">
-
                         <form  class="form nice-label" id="offerForm" action="{{url('send-offer')}}" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="task_id" value="{{$posted_task->id}}">
 
                             <div class="form-row">
                                 <label for="login"><span class="icon-cash-dollar"></span></label>
-                                <input type="text" id="price" name="price" placeholder="Price">
+                                <input type="text" id="price" name="price" placeholder="{{$posted_task->price}}">
                             </div>
                             <div class="form-row">
                                 <label for="date"><span class="icon-calendar-check"></span></label>
-                                <input type="date" id="date" name="date" placeholder="Birth day"
+                                <input type="date" id="date" name="date" placeholder="Input Date"
                                        value="{{date('Y-m-d')}}">
                             </div>
 
                             <!-- Submit Button-->
                             <input type="submit" form="offerForm" class="button button-primary" value="Send An Offer" />
                         </form>
+
+                        <!-- Show Input Errors Message-->
+                        <div class="content-block">
+                        @if (count($errors) > 0)
+                            @foreach($errors->all() AS $error)
+                                <div class="alert alert-info text-center">
+                                    {{$error}}
+                                </div>
+                            @endforeach
+                        @endif
+                        </div>
+
                     </div>
+
                 </div>
 
 

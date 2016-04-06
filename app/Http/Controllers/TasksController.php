@@ -12,7 +12,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Services_Twilio;
 use Services_Twilio_RestException;
-
+use App\Http\Requests\makeOfferRequest;
 
 class TasksController extends Controller
 {
@@ -273,13 +273,15 @@ class TasksController extends Controller
      * send offer from affiliate to user
      * @return View
      */
-    public function sendOffer(Request $request){
+    public function sendOffer(makeOfferRequest $request){
 
-        //validate the input
-        $this->validate($request, [
-            'price' => 'required|integer|max:255',
-            'date' => 'required',
-        ]);
+        /**
+         * validate the input
+         */
+//        $this->validate($request, [
+//            'price' => 'required|integer|max:255',
+//            'date' => 'required|date',
+//        ]);
 
         //get the id of affiiate who makes the offer
         $affiliate_id = Auth::user()->id;
