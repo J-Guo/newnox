@@ -107,7 +107,7 @@
                                         <div class="item-title label">Profile pic</div>
                                         <div class="item-input">
                                               <div class="uploadFile timelineUploadBG">
-                                                <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" required />
+                                                <input type="file" id="avatar" name="avatar" accept='image/*' class="custom-file-input" />
                                               </div>
                                         </div>
                                         <img src="{{url("avatars/default.jpg")}}" id="avatar-preview" height="75px" width="75px" alt="image"/>
