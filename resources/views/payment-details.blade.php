@@ -26,13 +26,11 @@
                         @endif
                         <!-- Show Input Validation Errors-->
                         @if(count($errors) > 0 )
-                            <div class="alert alert-info text-center">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            @foreach($errors->all() AS $error)
+                                <div class="alert alert-info text-center">
+                                    {{$error}}
+                                </div>
+                            @endforeach
                         @endif
 
                         <form id="reg-form" action="{{url('payment-details')}}"  method="post">
@@ -46,15 +44,17 @@
                                             <div class="item-inner">
                                                 <div class="item-input">
                                                     <input type="text" name="firstName"
+                                                           value="{{isset($firstName)? $firstName : "" }}"
                                                            placeholder="{{isset($firstName)? $firstName : "Your First Name" }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item-content">
-                                            <div class="item-media"><span class="icon-credit-card"></span></div>
+                                            <div class="item-media"><span class="icon-profile"></span></div>
                                             <div class="item-inner">
                                                 <div class="item-input">
                                                     <input type="text" name="lastName"
+                                                           value="{{isset($lastName)? $lastName : "" }}"
                                                            placeholder="{{isset($lastName)? $lastName : "Your Last Name" }}">
                                                 </div>
                                             </div>

@@ -47,9 +47,13 @@
                                                                 {{$offer->date}}</p></div>
 
                                                         <div class="item-inner">
-                                                            <div class="row text-center">
-                                                                <input type="submit"  class="button button-primary button-small" name="review" value="Make A Review" />
-                                                            </div>
+                                                            @if($offer->status == 'requested')
+                                                                <div class="row text-center">
+                                                                    <input type="submit"  class="button button-primary button-small" name="review" value="Make A Review" />
+                                                                </div>
+                                                            @else
+                                                                <span class="badge badge-primary badge-square text-uppercase">Reviewed</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </li>

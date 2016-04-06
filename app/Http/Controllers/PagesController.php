@@ -116,12 +116,11 @@ class PagesController extends Controller
 
         $tasks = Posted_Task::where('task_poster',Auth::user()->id)
                             ->whereIn('status',['requested','reviewed'])
-                            ->orderby('status')
-                            ->orderby('date')
+                            ->orderBy('status')  //sort by status, not reviewed task comes fisrt
+                            ->orderBy('updated_at','desc') //order by updated date
                             ->get();
 
 //        dd($tasks);
-
 
         return view('reviews')->with('tasks',$tasks);
     }
@@ -179,7 +178,9 @@ class PagesController extends Controller
 
         //get all requested ,not reviewed offers which are sent by current affiliate
         $offers = Sent_Offer::where('offer_maker',Auth::user()->id)
-                            ->where('status','requested')
+                            ->whereIn('status',['requested','reviewed'])
+                            ->orderBy('status')
+                            ->orderBy('updated_at','desc')
                             ->get();
 
 //        dd($offers);
