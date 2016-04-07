@@ -4476,17 +4476,17 @@ Template:	    NOX - Mobile Web/APP Template
 
 .la-ball-triangle-path > div:nth-child(1) {
   -webkit-animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path > div:nth-child(2) {
   -webkit-animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path > div:nth-child(3) {
   -webkit-animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path.la-sm {
@@ -4525,7 +4525,7 @@ Template:	    NOX - Mobile Web/APP Template
 @-webkit-keyframes ball-triangle-path-ball-one {
   0% {
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   17% {
     opacity: .25;
@@ -4533,7 +4533,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   50% {
     opacity: .25;
@@ -4541,7 +4541,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   83% {
     opacity: .25;
@@ -4549,13 +4549,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
 }
 @keyframes ball-triangle-path-ball-one {
   0% {
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   17% {
     opacity: .25;
@@ -4563,7 +4563,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   50% {
     opacity: .25;
@@ -4571,7 +4571,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   83% {
     opacity: .25;
@@ -4579,13 +4579,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
 }
 @-webkit-keyframes ball-triangle-path-ball-two {
   0% {
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   17% {
     opacity: .25;
@@ -4593,7 +4593,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   50% {
     opacity: .25;
@@ -4601,7 +4601,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   83% {
     opacity: .25;
@@ -4609,13 +4609,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
 }
 @keyframes ball-triangle-path-ball-two {
   0% {
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   17% {
     opacity: .25;
@@ -4623,7 +4623,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   50% {
     opacity: .25;
@@ -4631,7 +4631,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   83% {
     opacity: .25;
@@ -4639,13 +4639,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
 }
 @-webkit-keyframes ball-triangle-path-ball-tree {
   0% {
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   17% {
     opacity: .25;
@@ -4653,7 +4653,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   50% {
     opacity: .25;
@@ -4661,7 +4661,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   83% {
     opacity: .25;
@@ -4669,13 +4669,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
 }
 @keyframes ball-triangle-path-ball-tree {
   0% {
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   17% {
     opacity: .25;
@@ -4683,7 +4683,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   50% {
     opacity: .25;
@@ -4691,7 +4691,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   83% {
     opacity: .25;
@@ -4699,7 +4699,7 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
 }
 /* =========================================== */
@@ -5044,8 +5044,8 @@ i.icon.icon-next, i.icon.icon-prev {
   -moz-osx-font-smoothing: grayscale;
   font-family: "kkicons";
   -webkit-font-feature-settings: "liga";
-     -moz-font-feature-settings: "liga";
-          font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga";
+  font-feature-settings: "liga";
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
@@ -5070,8 +5070,8 @@ i.icon.icon-next::before {
   right: auto;
   top: auto;
   -webkit-transform-origin: 50% 100% 0;
-      -ms-transform-origin: 50% 100% 0;
-          transform-origin: 50% 100% 0;
+  -ms-transform-origin: 50% 100% 0;
+  transform-origin: 50% 100% 0;
   width: 100%;
   z-index: 15;
 }
@@ -5120,21 +5120,21 @@ blockquote .author {
   color: #FC5241;
 }
 .button.button-secondary {
-  border-color: #4e93af;
-  color: #4e93af;
+  border-color: #0f6900;
+  color: #0f6900;
 }
 .button.button-secondary:hover, .button.button-secondary.active, .button.button-secondary.active-state {
-  background: #4e93af;
+  background: #0f6900;
   color: #ffffff;
 }
 .button.button-secondary.button-fill {
-  background: #4e93af;
+  background: #0f6900;
   color: #ffffff;
 }
 .button.button-secondary.button-fill:hover, .button.button-secondary.button-fill.active, .button.button-secondary.button-fill.active-state {
-  border-color: #4e93af;
+  border-color: #0f6900;
   background: #2E2C37;
-  color: #4e93af;
+  color: #0f6900;
 }
 .button.button-light {
   border-color: #f0f0f0;
@@ -5274,7 +5274,7 @@ blockquote .author {
   min-width: 2em;
   position: relative;
   -webkit-transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
-          transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
+  transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
   width: 0;
   height: 25px;
 }
@@ -5300,12 +5300,12 @@ blockquote .author {
   text-shadow: none;
   top: 100%;
   -webkit-transition: color 0.4s ease 0s;
-          transition: color 0.4s ease 0s;
+  transition: color 0.4s ease 0s;
   width: 100%;
 }
 .progress-box.indicating .bar:before {
   -webkit-animation: 2s ease 0s normal none infinite running progress-active;
-          animation: 2s ease 0s normal none infinite running progress-active;
+  animation: 2s ease 0s normal none infinite running progress-active;
   background: #fff none repeat scroll 0 0;
   border-radius: 0.285714rem;
   bottom: 0;
@@ -5370,7 +5370,7 @@ img {
 }
 
 .badge-secondary {
-  background: #4e93af;
+  background: #0f6900;
   color: #ffffff;
 }
 
@@ -5733,7 +5733,7 @@ html:not(.watch-active-state) .list-block .item-link:active {
 .navbar-anim-on-scroll,
 .navbar.navbar-clear {
   -webkit-transition: all 400ms;
-          transition: all 400ms;
+  transition: all 400ms;
   background: transparent;
   color: #ffffff;
 }
@@ -5818,8 +5818,8 @@ html:not(.watch-active-state) .list-block .item-link:active {
   right: auto;
   top: auto;
   -webkit-transform-origin: 50% 100% 0;
-      -ms-transform-origin: 50% 100% 0;
-          transform-origin: 50% 100% 0;
+  -ms-transform-origin: 50% 100% 0;
+  transform-origin: 50% 100% 0;
   width: 100%;
   z-index: 15;
 }
@@ -5962,7 +5962,7 @@ html:not(.watch-active-state) .list-block .item-link:active {
   padding: 0;
   margin: 0 5px;
   text-align: center;
-  background: #4e93af;
+  background: #0f6900;
   color: #ffffff;
   font-family: 'robotolight', Arial, Tahoma, sans-serif;
   border-radius: 2px;
@@ -6062,7 +6062,7 @@ html:not(.watch-active-state) .list-block .item-link:active {
   z-index: 15;
   -webkit-transform-origin: 50% 0;
   -ms-transform-origin: 50% 0;
-      transform-origin: 50% 0;
+  transform-origin: 50% 0;
 }
 .picker-modal .toolbar:after,
 .popup .toolbar:after {
@@ -6469,8 +6469,8 @@ article .text span {
 .card-footer {
   -webkit-box-pack: start !important;
   -webkit-justify-content: flex-start !important;
-      -ms-flex-pack: start !important;
-          justify-content: flex-start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
 }
 .card-footer > a {
   margin-right: 15px;
@@ -6504,7 +6504,7 @@ article .text span {
 }
 .card.card-header-map .card-info, .card.card-header-pic .card-info {
   padding: 10px 15px;
-  color: #4e93af;
+  color: #0f6900;
   background: white;
 }
 .card.card-header-map .card-content, .card.card-header-pic .card-content {
@@ -6523,8 +6523,8 @@ article .text span {
   left: 0;
   top: 0;
   -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .card.card-header-icon .card-content-inner {
   padding: 5px 5px 12px;
@@ -6908,42 +6908,42 @@ article .text span {
 
 
 .inputs {
-    /*background: #D3D3D3;
-    background: -moz-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D3D3D3), color-stop(38%, #D9D9D9), color-stop(82%, #E5E5E5), color-stop(100%, #E7E7E7));
-    background: -webkit-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
-    background: -o-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
-    background: -ms-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
-    background: linear-gradient(to bottom, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);*/
-    /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d3d3d3', endColorstr='#e7e7e7', GradientType=0 );*/
-    /*display: block;*/
-    padding: 3% 1%;
-    color: #000;
-	margin:3%;
-    font-size: 1.8em;
-    font-weight: bold;
-    /*text-shadow: 1px 1px 1px #FFF;*/
-    border: 0px solid rgba(16, 103, 133, 0.6);
-    /*box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), inset 0 1px 4px rgba(0, 0, 0, 0.2);*/
-    border-radius: 3px;
-    outline: 0;
-    width: 90%;
-	text-align:center;
-	letter-spacing:5px;
+  /*background: #D3D3D3;
+  background: -moz-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D3D3D3), color-stop(38%, #D9D9D9), color-stop(82%, #E5E5E5), color-stop(100%, #E7E7E7));
+  background: -webkit-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
+  background: -o-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
+  background: -ms-linear-gradient(top, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);
+  background: linear-gradient(to bottom, #D3D3D3 0%, #D9D9D9 38%, #E5E5E5 82%, #E7E7E7 100%);*/
+  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d3d3d3', endColorstr='#e7e7e7', GradientType=0 );*/
+  /*display: block;*/
+  padding: 3% 1%;
+  color: #000;
+  margin:3%;
+  font-size: 1.8em;
+  font-weight: bold;
+  /*text-shadow: 1px 1px 1px #FFF;*/
+  border: 0px solid rgba(16, 103, 133, 0.6);
+  /*box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), inset 0 1px 4px rgba(0, 0, 0, 0.2);*/
+  border-radius: 3px;
+  outline: 0;
+  width: 90%;
+  text-align:center;
+  letter-spacing:5px;
 }
 
 .inputs-single {
-    padding: 15% 1%;
-    color: #000;
-	margin:3%;
-    font-size: 1.8em;
-    font-weight: bold;
-    /*text-shadow: 1px 1px 1px #FFF;*/
-    border: 0px solid rgba(16, 103, 133, 0.6);
-    /*box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), inset 0 1px 4px rgba(0, 0, 0, 0.2);*/
-    border-radius: 3px;
-    outline: 0;
-    width: 90%;
-	text-align:center;
-	letter-spacing:0px;
+  padding: 15% 1%;
+  color: #000;
+  margin:3%;
+  font-size: 1.8em;
+  font-weight: bold;
+  /*text-shadow: 1px 1px 1px #FFF;*/
+  border: 0px solid rgba(16, 103, 133, 0.6);
+  /*box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), inset 0 1px 4px rgba(0, 0, 0, 0.2);*/
+  border-radius: 3px;
+  outline: 0;
+  width: 90%;
+  text-align:center;
+  letter-spacing:0px;
 }

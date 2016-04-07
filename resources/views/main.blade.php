@@ -7,35 +7,35 @@
         .firstHead{
             color:black;
         }
-
         input[date]{
             width:100%;
         }
-        .green{
-            background-color:#3D7A3E;
-            border:#3D7A3E;
-            border-left:#3d7a3e;
-        }
+
         .over-lay
         {
-            position:fixed; z-index:10000; margin:0; width:100%;height:auto; background:#666; opacity:0.9;
+            position:fixed; z-index:10000; margin:0; width:100%;height:auto; background:#191919; opacity:0.9;
         }
+
         .top{
             top:44px;
         }
+
         .bottom{
             bottom:0px;
-            left: 0px;
         }
+
         .bottom50{
             bottom:50px;
         }
+
         .right{
             right:20px;
         }
+
         .left{
             left:20px;
         }
+
         .white
         {
             color:#dbdbdb;
@@ -44,6 +44,7 @@
             /*width:80%;*/
             margin:5px 10px;
         }
+
         .listview-icon
         {
             position:fixed;
@@ -53,22 +54,29 @@
             width:auto;
             font-weight:100;
         }
+
         :optional {
+
             opacity: 0.6;
         }
+
         :optional:hover {
             opacity: 1;
         }
+
         .round-button {
             width:14%;
             right:20px; position:fixed;
             bottom:130px;
+
         }
         .round-button-circle {
             width:100%;
             border-radius:50%;
             background-repeat:no-repeat;
+
         }
+
         .textbox {
             -moz-border-radius-topleft: 30px;
             -webkit-border-top-left-radius: 30px;
@@ -84,6 +92,7 @@
             border:none;
             -webkit-appearance: none;
         }
+
         .btn {
             -moz-border-radius-topright: 30px;
             -webkit-border-top-right-radius: 30px;
@@ -102,10 +111,14 @@
             -webkit-appearance: none;
             z-index:10000;
         }
+
+
         .btn:hover {
             background: #e60000;
             text-decoration: none;
         }
+
+
         .btn2 {
             -moz-border-radius-top: 30px;
             -webkit-border-top-radius: 30px;
@@ -122,7 +135,9 @@
             width:60px;
             height:36px;
             -webkit-appearance: none;
+
         }
+
         ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
             color:#2c2c2c;
         }
@@ -135,6 +150,8 @@
         :-moz-placeholder { /* Firefox 18- */
             color: #2c2c2c;
         }
+
+
     </style>
 @stop
 
@@ -183,7 +200,7 @@
 
             <form id="dateForm" name="dataForm" action="{{url('post-task')}}" method="POST">
                 {{csrf_field()}}
-                <div class="over-lay bottom">
+                <div class="over-lay bottom" style="left:0;">
                     <div class="content-block mt-0 mb-0">
 
                         <p class="buttons-row mt-5 mb-0">
@@ -212,7 +229,7 @@
                         </p>
 
                         <div class="buttons-row  mt-5 mb-5">
-                            <button class="button button-secondary button-fill">Request a pay date</button>
+                            <button class="button button-fill color-green">Request a pay date</button>
                         </div>
 
                     </div>

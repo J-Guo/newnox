@@ -88,6 +88,41 @@ var app = new Vue({
 
                         }
 
+                    /**
+                     * Random Affiliate
+                     */
+                    //google map infoWindow content
+                    var contentPublic ='<p class="firstHead">'+'Lucy Allen'+'</p>';
+
+                    var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
+
+                    for (var i = 0; i < 10; i++) {
+
+                        //initialize random markers neary research
+                        // add makers near search results
+                        marker = new google.maps.Marker({
+                            icon: iconBase + 'female.png',
+                            position: new google.maps.LatLng(position.coords.latitude*getRandomArbitrary(0.9998,1.0002),
+                                position.coords.longitude*getRandomArbitrary(0.9998,1.0002)),
+                            map:vm.map
+
+                        });
+
+                        //build popup information for each marker
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                if(getRandomOneTwo() == 1)
+                                    infowindow.setContent(contentPublic);
+                                else
+                                    infowindow.setContent(contentPrivate);
+                                infowindow.open(vm.map, marker);
+                            }
+                        })(marker, i));
+
+                        markers.push(marker);
+
+                    }
+
                 });
             }
             //broswer does not support Geolocation
@@ -195,6 +230,44 @@ var app = new Vue({
                         markers.push(marker);
 
                     }
+
+
+                    /**
+                     * Random Affiliate
+                     */
+                    //google map infoWindow content
+                    var contentPublic ='<p class="firstHead">'+'Lucy Allen'+'</p>';
+
+                    var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
+
+                    for (var i = 0; i < 10; i++) {
+
+                        //initialize random markers neary research
+                        // add makers near search results
+                        marker = new google.maps.Marker({
+                            icon: iconBase + 'female.png',
+                            position: new google.maps.LatLng(resultLocation.lat()*getRandomArbitrary(0.9998,1.0002),
+                                resultLocation.lng()*getRandomArbitrary(0.9998,1.0002)),
+                            map:vm.map
+
+                        });
+
+                        //build popup information for each marker
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                if(getRandomOneTwo() == 1)
+                                    infowindow.setContent(contentPublic);
+                                else
+                                    infowindow.setContent(contentPrivate);
+                                infowindow.open(vm.map, marker);
+                            }
+                        })(marker, i));
+
+                        markers.push(marker);
+
+                    }
+
+
 
                     //build a search result maker for the map
                     var marker = new google.maps.Marker({

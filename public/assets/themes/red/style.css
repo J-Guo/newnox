@@ -4477,17 +4477,17 @@ Template:	    NOX - Mobile Web/APP Template
 
 .la-ball-triangle-path > div:nth-child(1) {
   -webkit-animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-one 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path > div:nth-child(2) {
   -webkit-animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-two 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path > div:nth-child(3) {
   -webkit-animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
-          animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
+  animation: ball-triangle-path-ball-tree 2s 0s ease-in-out infinite;
 }
 
 .la-ball-triangle-path.la-sm {
@@ -4526,7 +4526,7 @@ Template:	    NOX - Mobile Web/APP Template
 @-webkit-keyframes ball-triangle-path-ball-one {
   0% {
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   17% {
     opacity: .25;
@@ -4534,7 +4534,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   50% {
     opacity: .25;
@@ -4542,7 +4542,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   83% {
     opacity: .25;
@@ -4550,13 +4550,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
 }
 @keyframes ball-triangle-path-ball-one {
   0% {
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   17% {
     opacity: .25;
@@ -4564,7 +4564,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   50% {
     opacity: .25;
@@ -4572,7 +4572,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   83% {
     opacity: .25;
@@ -4580,13 +4580,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
 }
 @-webkit-keyframes ball-triangle-path-ball-two {
   0% {
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   17% {
     opacity: .25;
@@ -4594,7 +4594,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   50% {
     opacity: .25;
@@ -4602,7 +4602,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   83% {
     opacity: .25;
@@ -4610,13 +4610,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
 }
 @keyframes ball-triangle-path-ball-two {
   0% {
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   17% {
     opacity: .25;
@@ -4624,7 +4624,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   50% {
     opacity: .25;
@@ -4632,7 +4632,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   83% {
     opacity: .25;
@@ -4640,13 +4640,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
 }
 @-webkit-keyframes ball-triangle-path-ball-tree {
   0% {
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   17% {
     opacity: .25;
@@ -4654,7 +4654,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   50% {
     opacity: .25;
@@ -4662,7 +4662,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   83% {
     opacity: .25;
@@ -4670,13 +4670,13 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
 }
 @keyframes ball-triangle-path-ball-tree {
   0% {
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
   17% {
     opacity: .25;
@@ -4684,7 +4684,7 @@ Template:	    NOX - Mobile Web/APP Template
   33% {
     opacity: 1;
     -webkit-transform: translate(0, 220%);
-            transform: translate(0, 220%);
+    transform: translate(0, 220%);
   }
   50% {
     opacity: .25;
@@ -4692,7 +4692,7 @@ Template:	    NOX - Mobile Web/APP Template
   66% {
     opacity: 1;
     -webkit-transform: translate(110%, 0);
-            transform: translate(110%, 0);
+    transform: translate(110%, 0);
   }
   83% {
     opacity: .25;
@@ -4700,7 +4700,7 @@ Template:	    NOX - Mobile Web/APP Template
   100% {
     opacity: 1;
     -webkit-transform: translate(220%, 220%);
-            transform: translate(220%, 220%);
+    transform: translate(220%, 220%);
   }
 }
 /* =========================================== */
@@ -4872,16 +4872,16 @@ hr.align-center::after {
 }
 
 .navbar {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 .navbar-default {
-    background-color: #f8f8f8;
-    border-color: #e7e7e7;
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
 }
 .navbar-fixed-bottom {
-    bottom: 0;
-    margin-bottom: 0;
-    border-width: 1px 0 0;
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0;
 }
 
 .navbar-color-primary {
@@ -5063,8 +5063,8 @@ hr.align-center::after {
   right: auto;
   top: auto;
   -webkit-transform-origin: 50% 100% 0;
-      -ms-transform-origin: 50% 100% 0;
-          transform-origin: 50% 100% 0;
+  -ms-transform-origin: 50% 100% 0;
+  transform-origin: 50% 100% 0;
   width: 100%;
   z-index: 15;
 }
@@ -5093,7 +5093,7 @@ blockquote .author {
   border-radius: 3px;
 }
 .button.button-fill {
-  border: 1px solid;
+  border: 1px solid #191919;
 }
 .button.button-primary {
   border-color: #ff3030;
@@ -5267,7 +5267,7 @@ blockquote .author {
   min-width: 2em;
   position: relative;
   -webkit-transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
-          transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
+  transition: width 0.1s ease 0s, background-color 0.1s ease 0s;
   width: 0;
   height: 25px;
 }
@@ -5293,12 +5293,12 @@ blockquote .author {
   text-shadow: none;
   top: 100%;
   -webkit-transition: color 0.4s ease 0s;
-          transition: color 0.4s ease 0s;
+  transition: color 0.4s ease 0s;
   width: 100%;
 }
 .progress-box.indicating .bar:before {
   -webkit-animation: 2s ease 0s normal none infinite running progress-active;
-          animation: 2s ease 0s normal none infinite running progress-active;
+  animation: 2s ease 0s normal none infinite running progress-active;
   background: #fff none repeat scroll 0 0;
   border-radius: 0.285714rem;
   bottom: 0;
@@ -5414,12 +5414,12 @@ header.small .row > div span {
 }
 
 .item-inner p{
-	color:#333;
-	line-height:0.1;	
+  color:#333;
+  line-height:0.1;
 }
 
 .list-block .item-inner .item-inputa inputa, .list-block .item-inner .item-inputa select, .list-block .item-inner .item-inputa textarea {
-	
+
   color: #333333;
 }
 
@@ -5733,7 +5733,7 @@ html:not(.watch-active-state) .list-block .item-link:active {
 .navbar-anim-on-scroll,
 .navbar.navbar-clear {
   -webkit-transition: all 400ms;
-          transition: all 400ms;
+  transition: all 400ms;
   background: transparent;
   color: #FFFFFF;
 }
@@ -5818,8 +5818,8 @@ html:not(.watch-active-state) .list-block .item-link:active {
   right: auto;
   top: auto;
   -webkit-transform-origin: 50% 100% 0;
-      -ms-transform-origin: 50% 100% 0;
-          transform-origin: 50% 100% 0;
+  -ms-transform-origin: 50% 100% 0;
+  transform-origin: 50% 100% 0;
   width: 100%;
   z-index: 15;
 }
@@ -6062,8 +6062,8 @@ html:not(.watch-active-state) .list-block .item-link:active {
   z-index: 15;
   -webkit-transform-origin: 50% 0;
   -ms-transform-origin: 50% 0;
-      transform-origin: 50% 0;
-	  border:none;
+  transform-origin: 50% 0;
+  border:none;
 }
 .picker-modal .toolbar:after,
 .popup .toolbar:after {
@@ -6453,8 +6453,8 @@ article .text span {
 .card-footer {
   -webkit-box-pack: start !important;
   -webkit-justify-content: flex-start !important;
-      -ms-flex-pack: start !important;
-          justify-content: flex-start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
 }
 .card-footer > a {
   margin-right: 15px;
@@ -6506,8 +6506,8 @@ article .text span {
   left: 0;
   top: 0;
   -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .card.card-header-icon .card-content-inner {
   padding: 5px 5px 12px;
@@ -6985,29 +6985,29 @@ article .text span {
 
 
 .timelineUploadBG {
-	position: absolute;
-	margin-top: -15px;
-	margin-left: 0px;
-	height: 32px;
-	width: 32px;
-/*	left: -599px;
-	top: 238px;*/
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 0px;
+  height: 32px;
+  width: 32px;
+  /*	left: -599px;
+      top: 238px;*/
 }
 
 .uploadFile {
-background: url(img/whitecam.png) no-repeat;
-height: 32px;
-width: 32px;
-overflow: hidden;
-cursor: pointer;
+  background: url(img/whitecam.png) no-repeat;
+  height: 32px;
+  width: 32px;
+  overflow: hidden;
+  cursor: pointer;
 }
 .uploadFile input {
-filter: alpha(opacity=0);
-opacity: 0;
-margin-left: -110px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  margin-left: -110px;
 }
 
 .custom-file-input {
-height: 25px;
-cursor: pointer;
+  height: 25px;
+  cursor: pointer;
 }
