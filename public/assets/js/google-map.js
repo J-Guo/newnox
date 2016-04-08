@@ -91,12 +91,11 @@ var app = new Vue({
                     /**
                      * Random Affiliate
                      */
-                    //google map infoWindow content
-                    var contentPublic ='<p class="firstHead">'+'Lucy Allen'+'</p>';
-
-                    var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
-
                     for (var i = 0; i < 10; i++) {
+
+                        //google map infoWindow content
+                        var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
+
 
                         //initialize random markers neary research
                         // add makers near search results
@@ -112,7 +111,7 @@ var app = new Vue({
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                             return function() {
                                 if(getRandomOneTwo() == 1)
-                                    infowindow.setContent(contentPublic);
+                                    infowindow.setContent('<p class="firstHead">'+randomName()+'</p>');
                                 else
                                     infowindow.setContent(contentPrivate);
                                 infowindow.open(vm.map, marker);
@@ -235,12 +234,10 @@ var app = new Vue({
                     /**
                      * Random Affiliate
                      */
-                    //google map infoWindow content
-                    var contentPublic ='<p class="firstHead">'+'Lucy Allen'+'</p>';
+                    for (var k = 0; k < 10; k++) {
 
-                    var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
-
-                    for (var i = 0; i < 10; i++) {
+                        //google map infoWindow content
+                        var myContentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
 
                         //initialize random markers neary research
                         // add makers near search results
@@ -256,9 +253,9 @@ var app = new Vue({
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                             return function() {
                                 if(getRandomOneTwo() == 1)
-                                    infowindow.setContent(contentPublic);
+                                    infowindow.setContent('<p class="firstHead">'+randomName()+'</p>');
                                 else
-                                    infowindow.setContent(contentPrivate);
+                                    infowindow.setContent(myContentPrivate);
                                 infowindow.open(vm.map, marker);
                             }
                         })(marker, i));
@@ -321,6 +318,19 @@ function getPublicContent(affiliate){
 function getPrivateContent(){
     var contentPrivate = '<p class="firstHead">Oops.Her profile is private</p>';
     return contentPrivate;
+}
+
+/**
+ * Generate a random Name
+ */
+function randomName(){
+
+    var names = ['Aida','Kaya','Elsa','Jula','Lila','Paulina','Rayne','Shelly',
+    'Sorrel','Tilly','Marybeth','Lulu','Hetty','Eva','Ginny','Dinah','Claire',
+    'Betsy','Lucy','Lina'];
+
+    return names[Math.floor(Math.random()*20)];
+
 }
 
 /**

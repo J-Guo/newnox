@@ -222,6 +222,8 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('test-review','TestController@testUserReview');
     //Test OTP
     Route::get('test-otp','TestController@testOTP');
+    //
+    Route::get('test-distance','TestController@testDistance');
 
 
     });// end internal middleware

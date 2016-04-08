@@ -317,6 +317,15 @@ class PaymentController extends Controller
 
             }
 
+
+            /**
+             * Todo
+             * When a task has been assigend,
+             * Send a SMS to affiliate to notification
+             */
+
+
+
             return redirect('assigned-date');
 
         }

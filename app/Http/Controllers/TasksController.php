@@ -64,6 +64,13 @@ class TasksController extends Controller
         //save posted task
         $posted_task->save();
 
+        /**
+         * Todo:Send SMS to nearby affiliate
+         */
+
+
+
+
         return redirect('date-near-by');
         }
         else
@@ -329,7 +336,9 @@ class TasksController extends Controller
         $mobileNum = $task->poster->mobile;
 
         //set message body (OTP)
-        $smsBody = "You got a new offer! Please check it";
+        $smsBody = "You got a new offer! Please check it at ".
+                    config('services.environment.baseurl').
+                    "/date-near-by";
 
         //create message client
         $client = new Services_Twilio($AccountSid, $AuthToken);

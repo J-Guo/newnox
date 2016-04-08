@@ -58,4 +58,9 @@ return [
         'password'    => env('INTERNAL_PASSWORD'),
     ],
 
+    'environment' => [
+        'baseurl'    => env('BASE_URL'),
+    ],
+
+
 ];

@@ -8,6 +8,7 @@ use App\Models\Sent_Offer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -71,6 +72,35 @@ class TestController extends Controller
         $otp = Crypt::decrypt($user->otp);
 
         dd($otp);
+
+    }
+
+    public function testDistance(){
+
+        $lat = Auth::user()->latitude;
+        $lng = Auth::user()->longitude;
+
+        $affiliates =
+            DB::table('users')
+                //select distance radius
+                ->select(DB::raw("*, (6371 * acos( cos( radians($lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians($lng) ) + sin( radians($lat ) ) * sin( radians( latitude ) ) ) ) AS distance"))
+                //select all users who have affiliate role
+                ->whereIn('id',function($query){
+                    $query->select('user_id')
+                        ->from('role_user')
+                        ->whereIn('role_id',function($q){
+                            $q->select('id')
+                                ->from('roles')
+                                ->where('name','affiliate');
+                        });
+                })
+                ->having('distance', '<', config('services.google_map.radius')) //radius distance (km)
+                ->orderBy('distance')
+                ->limit(config('services.google_map.limit')) //the the number of research results
+                ->get();
+
+
+        dd($affiliates);
 
     }
 }
