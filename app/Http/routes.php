@@ -11,7 +11,7 @@ Route::group(['middleware'=>'web'],function(){
      * temporary internal middleware, only internal user can access project
      * Should be deleted when project goes alive
      */
-    Route::group(['middleware'=>'internal'],function(){
+//    Route::group(['middleware'=>'internal'],function(){
 
 
 
@@ -227,7 +227,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('test-distance','TestController@testDistance');
 
 
-    });// end internal middleware
+//    });// end internal middleware
 
 });
 
