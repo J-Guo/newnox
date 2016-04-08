@@ -14,6 +14,8 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Services_Twilio;
+use Services_Twilio_RestException;
 
 class PaymentController extends Controller
 {
@@ -323,10 +325,39 @@ class PaymentController extends Controller
              * When a task has been assigend,
              * Send a SMS to affiliate to notification
              */
+            //set Twilio AccountSid and AuthToken
+            $AccountSid = config('services.twilio.sid');
+            $AuthToken =  config('services.twilio.token');
+            $from = config('services.twilio.from_number');
 
+            //get task poster mobile number
+            $mobileNum = $sent_offer->sender->mobile;
 
+            //set message body (OTP)
+            $smsBody = "Your offer has been assigned! Please check it at ".
+                config('services.environment.baseurl').
+                "/assigned-task-list";
 
-            return redirect('assigned-date');
+            //create message client
+            $client = new Services_Twilio($AccountSid, $AuthToken);
+
+            //check user mobile phone number is correct or not
+            //create message and send it
+            try{
+                //use it when project goes alive
+                $message = $client->account->messages->sendMessage(
+                    $from,
+                    $mobileNum,
+                    $smsBody
+                );
+
+                return redirect('assigned-date');
+
+            }
+            catch(Services_Twilio_RestException $e){
+//            return redirect('task-list');
+                echo $e;
+            }
 
         }
         else
@@ -422,6 +453,10 @@ class PaymentController extends Controller
      */
     public function handleRequestPayment(Request $request){
 
+        /**
+         * Todo: validation should be here to avoid repeat payment request
+         */
+
         $offer_id = $request->input('offerID');
         $offer = Sent_Offer::find($offer_id);
         $task = $offer->task;
@@ -433,13 +468,45 @@ class PaymentController extends Controller
         $task->save();
 
         /**
-         * Todo: after payment request, a notification message should send to user
+         * after payment request, a notification message should send to user
          * Some functiions should be done here
          */
+        $AccountSid = config('services.twilio.sid');
+        $AuthToken =  config('services.twilio.token');
+        $from = config('services.twilio.from_number');
 
-        //dd($request->input());
-        return redirect('request-payment')
-            ->with('message','Have asked for payment release');
+        //get task poster mobile number
+        $mobileNum = $offer->task->poster->mobile;
+
+        //set message body (OTP)
+        $smsBody = "Your payment for task has been released! Please make a review it at ".
+            config('services.environment.baseurl').
+            "/reviews. ".
+             "If you have any problem with release payment, please fell free to contact us.";
+
+        //create message client
+        $client = new Services_Twilio($AccountSid, $AuthToken);
+
+        //check user mobile phone number is correct or not
+        //create message and send it
+        try{
+            //use it when project goes alive
+            $message = $client->account->messages->sendMessage(
+                $from,
+                $mobileNum,
+                $smsBody
+            );
+
+            //dd($request->input());
+            return redirect('request-payment')
+                ->with('message','Have asked for payment release');
+
+        }
+        catch(Services_Twilio_RestException $e){
+//            return redirect('task-list');
+            echo $e;
+        }
+
 
     }
 }

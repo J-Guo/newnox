@@ -30,7 +30,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-inner">
-                                                <div class="item-subtitle"><h3><strong>Juleka Jeba</strong></h3></div>
+                                                <div class="item-subtitle"><h3><strong>{{$offer->task->poster->display_name}}</strong></h3></div>
                                                 <div class="item-subtitle"><p>Price: <strong>$
                                                         {{$offer->price}}</strong></p></div>
                                                 <div class="item-subtitle"><p>Date:
