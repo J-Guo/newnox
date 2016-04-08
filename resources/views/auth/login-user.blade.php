@@ -30,7 +30,9 @@
                         {{csrf_field()}}
 
                         <div class="form-row">
-                            <input type="tel" class="inputs" align="middle" id="mobileNum" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" autocomplete="off">
+                            <input type="tel" class="inputs" align="middle" id="mobileNum" name="mobileNum"
+                                   placeholder="MOBILE NUMBER" maxlength="10"
+                                   autocomplete="off">
                         </div>
                         <!-- Determine usre type -->
                         <input type="hidden" id="userType" name="userType" value="user">
