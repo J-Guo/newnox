@@ -9,9 +9,9 @@
 
             <div class="nice-header header-fix-top small">
                 <div class="logo">
-                    <h1>EMLIDO</h1> 
+                    <h1>EMLIDO</h1>
                 </div>
-              <svg class="anim-svg" viewBox="0 0 629 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+              <svg class="anim-svg" viewBox="0 0 629 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs></defs>
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                         <g id="Splash" sketch:type="MSArtboardGroup" transform="translate(-60.000000, -749.000000)" fill="#FFFFFF">
@@ -29,17 +29,16 @@
                     <form class="form nice-label" id="phone-form" action="otp" method="POST">
                         {{csrf_field()}}
 
-                         <div class="form-row">
-                            <input type="tel" class="inputs" align="middle" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" required>
+                        <div class="form-row">
+                            <input type="tel" class="inputs" align="middle" id="mobileNum" name="mobileNum" placeholder="MOBILE NUMBER" data-parsley-type="digits" autocomplete="off">
                         </div>
                         <!-- Determine usre type -->
                         <input type="hidden" id="userType" name="userType" value="user">
 
                         <!-- Show Authentication Failed Information-->
                         @if(session()->has('message') )
-                            <div class="alert alert-info text-center">
-                                <strong>Login Failed!:</strong>
-                                <span>{{ session()->get('message') }}</span>
+                            <div class="content-block-title text-center">
+                                <span class="color-blue">{{ session()->get('message') }}</span>
                             </div>
                         @endif
 
@@ -47,13 +46,13 @@
                         <div class="buttons-row">
                             {{--<input type="submit" id="userSubmit" class="button button-primary" value="Find a date">--}}
                             <button type="submit" name="userSubmit" class="button button-primary" value="user">Find a date</button>
-                                    
+
                             {{--<input type="submit" id="affiliateSubmit" class="button button-primary" value="Affilate Login">--}}
                             <button type="submit" name="userSubmit" class="button button-primary" value="affiliate">Become Affiliate</button>
                         </div>
                     </form>
                 </div>
-                
+
 
             </div>
 
@@ -65,20 +64,25 @@
 @stop
 
 @section('footer')
-<!-- Parsley Form Validator-->
-<script src="{{ asset('assets/js/pages/parsley.min.js')}}"></script>
-<!-- Initialize Page Scripts -->
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        //set validation to check mobile number input
-        $('#phone-form').parsley();
+            //set user type based on submit button
+            $('#affiliateSubmit').on("click",function(){
+                $('#userType').val('affiliate');
+            });
 
-        //set user type based on submit button
-        $('#affiliateSubmit').on("click",function(){
-            $('#userType').val('affiliate');
         });
+        validationLength = 10;
+        $('#mobileNum').on('keyup change', function () {
+            if ($(this).val().length == validationLength) {
+                if($.isNumeric($(this).val())){
+                    document.activeElement.blur();
+                }
+            }
+        });
+    </script>
 
-    });
-</script>
+<script src="{{ asset('assets/js/pages/custom.js')}}"></script>
+<script src="{{ asset('assets/js/pages/validation.js')}}"></script>
 @stop

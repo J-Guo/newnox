@@ -41,25 +41,21 @@
                 <input name="mobileNum" type="hidden" value="{{(isset($mobileNum) ? $mobileNum : old('mobileNum') )}}" />
                 <input name="userType" type="hidden" value="{{(isset($userType) ? $userType : old('userType') )}}" />
 
-                <div class="list login-form-box">
-                	<div class="content-block-title text-center"><label>Please input your 4 digit password</label></div>
-                	
-                    <div class="row text-center mt-20 mb-20">
-                        <div class="col-one-four">
-                            <input type="tel" name="digit1" class="inputs-single" maxlength="1"/>
-                        </div>
-                        <div class="col-one-four">
-                            <input type="tel" name="digit2" class="inputs-single" maxlength="1"/>
-                            
-                        </div>
-                        <div class="col-one-four">
-                            
-                            <input type="tel" name="digit3" class="inputs-single" maxlength="1"/>
-                        </div>
-                        <div class="col-one-four">
-                            
-                            <input type="tel" name="digit4" class="inputs-single" maxlength="1"/>
-                        </div>
+                <div class="row text-center mt-20 mb-20">
+                    <div class="col-one-four">
+                        <input type="tel" id="digit1" name="digit[1]" class="form-control inputs-single" maxlength="1" onKeyUp="moveCursorBack(this.value, 2);" oninput="checkLength(1)"/>
+                    </div>
+                    <div class="col-one-four">
+                        <input type="tel" id="digit2" name="digit[2]" class="form-control inputs-single" maxlength="1" onKeyUp="moveCursorBack(this.value, 3);" oninput="checkLength(2)"/>
+
+                    </div>
+                    <div class="col-one-four">
+
+                        <input type="tel" id="digit3" name="digit[3]" class="form-control inputs-single" maxlength="1" onKeyUp="moveCursorBack(this.value, 4);" oninput="checkLength(3)"/>
+                    </div>
+                    <div class="col-one-four">
+
+                        <input type="tel" id="digit4" name="digit[4]" class="form-control inputs-single" maxlength="1" onKeyUp="moveCursorBack(this.value);" oninput="checkLength(4)"/>
                     </div>
                 </div>
             </div>
@@ -88,4 +84,101 @@
 </div>
 
 
+@stop
+
+@section('footer')
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#digit1").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    return false;
+                }
+            });
+            $("#digit2").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    return false;
+                }
+            });
+            $("#digit3").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    return false;
+                }
+            });
+            $("#digit4").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+
+
+        });
+
+        function checkLength(key)
+        {
+            var fieldLength = document.getElementById('digit' + key + '').value.length;
+            if (fieldLength <= 1) {
+                return true;
+            }
+            else
+            {
+                var str = document.getElementById('digit' + key + '').value;
+                str = str.substring(0, str.length - 1);
+                document.getElementById('digit' + key + '').value = str;
+            }
+        }
+
+        function moveCursorBack(input, key) {
+
+            if (input.length > 0) {
+                if (input != '') {
+
+                    $("#digit" + key).focus();
+                    $("#digit" + key).focus();
+                }
+            }
+        }
+        $(document).ready(function () {
+            $(':input').keyup(function (e) {
+                if ((e.which == 8 || e.which == 46) && $(this).val() == '') {
+                    $(this).prev('input').focus();
+                }
+            });
+        });
+
+        validationLength = 1;
+        $('#digit4').on('keyup change', function () {
+            var otp_1 = $('#digit1').val().length;
+            var otp_2 = $('#digit2').val().length;
+            var otp_3 = $('#digit3').val().length;
+            var otp_4 = $('#digit4').val().length;
+
+            if (otp_1 == validationLength && otp_2 == validationLength && otp_3 == validationLength && otp_4 == validationLength) {
+                if ($.isNumeric(otp_1) && $.isNumeric(otp_2) && $.isNumeric(otp_3) && $.isNumeric(otp_4)) {
+                    document.activeElement.blur();
+                }
+            }
+
+        });
+
+
+        /*validationLength = 1;
+         $('#digit' + key).on('keyup change', function () {
+         alert("I am an alert box!");
+         if ($(this).val().length == validationLength) {
+         if($.isNumeric($(this).val())){
+         document.activeElement.blur();
+         }
+         }
+         });*/
+
+    </script>
 @stop

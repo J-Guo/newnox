@@ -11,6 +11,7 @@ use Services_Twilio_RestException;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -48,7 +49,7 @@ class LoginController extends Controller
         //generate a OTP for user and save it
         $otp = $this->generateOTP(); //live OTP
 //        $otp = 2222;   //test OTP
-        $user->otp = Crypt::encrypt($otp) ;
+        $user->otp = bcrypt($otp) ;
         $user->save();
 
         //set message body (OTP)
@@ -61,11 +62,11 @@ class LoginController extends Controller
         //create message and send it
         try{
             //use it when project goes alive
-//            $message = $client->account->messages->sendMessage(
-//                $from,
-//                $mobileNum,
-//                $smsBody
-//            );
+            $message = $client->account->messages->sendMessage(
+                $from,
+                $mobileNum,
+                $smsBody
+            );
 
             return view("auth.otp")
                 ->with('mobileNum',$mobileNum)
@@ -73,7 +74,7 @@ class LoginController extends Controller
         }
         catch(Services_Twilio_RestException $e){
             return redirect()->back()->withInput()
-                ->with('message',$e->getMessage()) ;
+                ->with('message','Your Mobile Number is not correct') ;
         }
 
     }
@@ -85,11 +86,13 @@ class LoginController extends Controller
      */
     public function verifyOTP(Request $request){
 
+        $digits = $request->input('digit');
+
         //get 4 digits OTP
-        $digit1 = $request->input('digit1');
-        $digit2 = $request->input('digit2');
-        $digit3 = $request->input('digit3');
-        $digit4 = $request->input('digit4');
+        $digit1 = $digits[1];
+        $digit2 = $digits[2];
+        $digit3 = $digits[3];
+        $digit4 = $digits[4];
 
         //combine 4 digits OTP
         $otp = $digit1.$digit2.$digit3.$digit4;
@@ -109,7 +112,11 @@ class LoginController extends Controller
         /**
          * verify user OTP
          */
-        if($integer_otp == 2222){
+//        $verifyResult = ($integer_otp == 2222);
+        $verifyResult = Hash::check($integer_otp, $currentUser->otp);
+
+
+        if($verifyResult){
 
             //logging the user
             Auth::login($currentUser);

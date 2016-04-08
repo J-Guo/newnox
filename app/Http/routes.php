@@ -34,6 +34,11 @@ Route::group(['middleware'=>'web'],function(){
      */
     Route::group(['middleware'=>['auth']],function(){
 
+        //index page
+        Route::get('/', function () {
+            return view('welcome');
+        });
+
 
         /*
          * Intervention Images Request Handler
@@ -62,10 +67,6 @@ Route::group(['middleware'=>'web'],function(){
         | and give it the controller to call when that URI is requested.
         |
         */
-        Route::get('/', function () {
-            return view('welcome');
-        });
-
         //show create profile page for user
         Route::get('profile/create', 'PagesController@showUserRegProfile');
         //create profile for new user

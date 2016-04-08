@@ -347,11 +347,11 @@ class TasksController extends Controller
         //create message and send it
         try{
             //use it when project goes alive
-//            $message = $client->account->messages->sendMessage(
-//                $from,
-//                $mobileNum,
-//                $smsBody
-//            );
+            $message = $client->account->messages->sendMessage(
+                $from,
+                $mobileNum,
+                $smsBody
+            );
 
             return redirect('task-list');
         }
