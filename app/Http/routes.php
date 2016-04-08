@@ -13,7 +13,10 @@ Route::group(['middleware'=>'web'],function(){
      */
 //    Route::group(['middleware'=>'internal'],function(){
 
-
+    //index page
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
     //show login pages for both user and affiliate
     Route::get('login','PagesController@showLoginPage');
@@ -33,12 +36,6 @@ Route::group(['middleware'=>'web'],function(){
      * Users and affiliates can access application until they login
      */
     Route::group(['middleware'=>['auth']],function(){
-
-        //index page
-        Route::get('/', function () {
-            return view('welcome');
-        });
-
 
         /*
          * Intervention Images Request Handler
