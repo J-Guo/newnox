@@ -26,7 +26,7 @@ class UsersController extends Controller
          */
         $this->validate($request,[
             'displayName' => 'required',
-            'avatar' => 'required|mimes:jpeg,bmp,png'
+            'avatar' => 'mimes:jpeg,bmp,png'
         ]);
 
         //get current user
@@ -40,45 +40,67 @@ class UsersController extends Controller
         $public_profile = (boolean) $request->input('public_profile');//set profile public or not
         $file = $request->file('avatar');
 
-        //get file extension
-        $extension = $file->getClientOriginalExtension();
-        //generate a unique image name based on user mobile and time
-        $name = $user->mobile.time().".".$extension;
+        //if user wants to upload profile photo
+        if($file){
 
-        $img = Image::make($file);
-        $img->resize(100,100);
+            //get file extension
+            $extension = $file->getClientOriginalExtension();
+            //generate a unique image name based on user mobile and time
+            $name = $user->mobile.time().".".$extension;
 
-        //store image into storage folder through Laravel Filesystem
-        $result = Storage::put(
-            'avatars/'. $name,
-            $img->encode()
-        );
+            $img = Image::make($file);
+            $img->resize(100,100);
 
-        //store image through Intervention method
+            //store image into storage folder through Laravel Filesystem
+            $result = Storage::put(
+                'avatars/'. $name,
+                $img->encode()
+            );
+
+            //store image through Intervention method
 //        $result = $img->save(storage_path('app/avatars/').$name);
 
 //        dd($result);
 
-        //if storage is successful
-        if($result){
+            //if storage is successful
+            if($result){
+                //save user information in db
+                $user->display_name = $displayName;
+                $user->age = $age;
+                $user->gender =$gender;
+                $user->profile_photo = $name;
+                $user->preference = $preference;
+                $user->public_profile = $public_profile;
+                $user->save();
+
+                //redirect to main page
+                return redirect('main');
+            }
+            else{
+
+                return redirect()->back()->withInput()
+                    ->with('message','Upload Avatar failed, please try again');
+
+            }
+
+        }
+        //if user does not want to upload photo, give him a default one
+        else{
+
             //save user information in db
             $user->display_name = $displayName;
             $user->age = $age;
             $user->gender =$gender;
-            $user->profile_photo = $name;
+            $user->profile_photo = "default.jpg";
             $user->preference = $preference;
             $user->public_profile = $public_profile;
             $user->save();
 
             //redirect to main page
             return redirect('main');
-        }
-        else{
-
-            return redirect()->back()->withInput()
-                ->with('message','Upload Avatar failed, please try again');
 
         }
+
 
         //get the url from storage
         //$url = "../storage/app/avatars".DIRECTORY_SEPARATOR."/php2A76.tmp.png";
@@ -252,7 +274,7 @@ class UsersController extends Controller
 
         $this->validate($request,[
             'displayName' => 'required',
-            'avatar' => 'required|image'
+            'avatar' => 'image'
         ]);
 
         //get current user
@@ -266,44 +288,65 @@ class UsersController extends Controller
         $public_profile = (boolean) $request->input('public_profile');//set profile public or not
         $file = $request->file('avatar');
 
-        //get file extension
-        $extension = $file->getClientOriginalExtension();
-        //generate a unique image name based on user mobile and time
-        $name = $user->mobile.time().".".$extension;
+        //if affiliate wants to upload image
+        if($file){
 
-        //crop the uploaded image
-        $img = Image::make($file);
-        $img->resize(100,100);
+            //get file extension
+            $extension = $file->getClientOriginalExtension();
+            //generate a unique image name based on user mobile and time
+            $name = $user->mobile.time().".".$extension;
 
-        //store image into storage folder
-        $result = Storage::put(
-            'avatars/'. $name,
-            $img->encode()
-        );
+            //crop the uploaded image
+            $img = Image::make($file);
+            $img->resize(100,100);
 
-        //if storage is successful
-        if($result){
-            //save user information in db
+            //store image into storage folder
+            $result = Storage::put(
+                'avatars/'. $name,
+                $img->encode()
+            );
+
+            //if storage is successful
+            if($result){
+                //save user information in db
+                $user->display_name = $displayName;
+                $user->age = $age;
+                $user->gender =$gender;
+                $user->profile_photo = $name;
+                $user->preference = $preference;
+                $user->public_profile = $public_profile;
+                $user->save();
+
+                //redirect to task nearby
+//            return redirect('task-nearby');
+                //rediret to bank detail
+                return redirect('bank-detail/create');
+
+            }
+            else{
+
+                return redirect()->back()->withInput()
+                    ->with('message','Upload Avatar failed, please try again');
+
+            }
+        }
+        //if affiliate does not want to upload image
+        else{
+
             $user->display_name = $displayName;
             $user->age = $age;
             $user->gender =$gender;
-            $user->profile_photo = $name;
+            $user->profile_photo = 'default2.jpg';
             $user->preference = $preference;
             $user->public_profile = $public_profile;
             $user->save();
 
-            //redirect to task nearby
-//            return redirect('task-nearby');
             //rediret to bank detail
             return redirect('bank-detail/create');
 
         }
-        else{
 
-            return redirect()->back()->withInput()
-                ->with('message','Upload Avatar failed, please try again');
 
-        }
     }
 
     /**
