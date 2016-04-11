@@ -14,11 +14,12 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Services_Twilio;
+use Illuminate\Support\Facades\Log;
 use Services_Twilio_RestException;
 
 class PaymentController extends Controller
 {
+    use SmsTrait;
 
     /**
      * show braintree check for new user
@@ -321,15 +322,9 @@ class PaymentController extends Controller
 
 
             /**
-             * Todo
              * When a task has been assigend,
              * Send a SMS to affiliate to notification
              */
-            //set Twilio AccountSid and AuthToken
-            $AccountSid = config('services.twilio.sid');
-            $AuthToken =  config('services.twilio.token');
-            $from = config('services.twilio.from_number');
-
             //get task poster mobile number
             $mobileNum = $sent_offer->sender->mobile;
 
@@ -338,18 +333,11 @@ class PaymentController extends Controller
                 config('services.environment.baseurl').
                 "/assigned-task-list";
 
-            //create message client
-            $client = new Services_Twilio($AccountSid, $AuthToken);
-
             //check user mobile phone number is correct or not
             //create message and send it
             try{
-                //use it when project goes alive
-                $message = $client->account->messages->sendMessage(
-                    $from,
-                    $mobileNum,
-                    $smsBody
-                );
+
+                $this->sendSMS($mobileNum,$smsBody);
 
                 return redirect('assigned-date');
 
@@ -471,10 +459,6 @@ class PaymentController extends Controller
          * after payment request, a notification message should send to user
          * Some functiions should be done here
          */
-        $AccountSid = config('services.twilio.sid');
-        $AuthToken =  config('services.twilio.token');
-        $from = config('services.twilio.from_number');
-
         //get task poster mobile number
         $mobileNum = $offer->task->poster->mobile;
 
@@ -484,18 +468,11 @@ class PaymentController extends Controller
             "/reviews. ".
              "If you have any problem with release payment, please fell free to contact us.";
 
-        //create message client
-        $client = new Services_Twilio($AccountSid, $AuthToken);
-
         //check user mobile phone number is correct or not
         //create message and send it
         try{
-            //use it when project goes alive
-            $message = $client->account->messages->sendMessage(
-                $from,
-                $mobileNum,
-                $smsBody
-            );
+
+            $this->sendSMS($mobileNum,$smsBody);
 
             //dd($request->input());
             return redirect('request-payment')
@@ -504,6 +481,7 @@ class PaymentController extends Controller
         }
         catch(Services_Twilio_RestException $e){
 //            return redirect('task-list');
+            Log::error($e);
             echo $e;
         }
 

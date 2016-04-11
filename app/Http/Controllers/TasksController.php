@@ -10,12 +10,13 @@ use App\Models\Posted_Task;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use Services_Twilio;
 use Services_Twilio_RestException;
 use App\Http\Requests\makeOfferRequest;
 
 class TasksController extends Controller
 {
+
+   use SmsTrait;
 
     /**
      * handle post a task action for user
@@ -67,9 +68,45 @@ class TasksController extends Controller
         /**
          * Todo:Send SMS to nearby affiliate
          */
+        $lat = Auth::user()->latitude;
+        $lng = Auth::user()->longitude;
 
+        $affiliates =
+            DB::table('users')
+                //select distance radius
+                ->select(DB::raw("*, (6371 * acos( cos( radians($lat) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians($lng) ) + sin( radians($lat ) ) * sin( radians( latitude ) ) ) ) AS distance"))
+                //select all users who have affiliate role
+                ->whereIn('id',function($query){
+                    $query->select('user_id')
+                        ->from('role_user')
+                        ->whereIn('role_id',function($q){
+                            $q->select('id')
+                                ->from('roles')
+                                ->where('name','affiliate');
+                        });
+                })
+                ->having('distance', '<', config('services.google_map.radius')) //radius distance (km)
+                ->orderBy('distance')
+                ->limit(config('services.google_map.limit')) //the the number of research results
+                ->get();
 
+        //send SMS to evey affiliate
+        foreach($affiliates as $affiliate){
 
+            try{
+            $mobile = $affiliate->mobile;
+            //set message body
+            $smsBody = "There is a new task! Please check it at ".
+                config('services.environment.baseurl').
+                "/task-nearby";
+
+            $this->sendSMS($mobile,$smsBody);
+            }
+            catch(Services_Twilio_RestException $e){
+                echo $e;
+            }
+
+        }
 
         return redirect('date-near-by');
         }
@@ -320,12 +357,6 @@ class TasksController extends Controller
          * when affiliate has made an offer to user
          * Send a SMS notification to user as well
          */
-
-        //set Twilio AccountSid and AuthToken
-        $AccountSid = config('services.twilio.sid');
-        $AuthToken =  config('services.twilio.token');
-        $from = config('services.twilio.from_number');
-
         //get posted task
         $task = Posted_Task::find($task_id);
 
@@ -340,18 +371,11 @@ class TasksController extends Controller
                     config('services.environment.baseurl').
                     "/date-near-by";
 
-        //create message client
-        $client = new Services_Twilio($AccountSid, $AuthToken);
-
         //check user mobile phone number is correct or not
         //create message and send it
         try{
-            //use it when project goes alive
-            $message = $client->account->messages->sendMessage(
-                $from,
-                $mobileNum,
-                $smsBody
-            );
+
+            $this->sendSMS($mobileNum,$smsBody);
 
             return redirect('task-list');
         }
@@ -476,4 +500,6 @@ class TasksController extends Controller
         return view('affiliate.assigned-task')
             ->with('assignedTaskArray', $assignedTaskArray);
     }
+
+
 }

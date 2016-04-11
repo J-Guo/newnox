@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
 
+    use SmsTrait;
+
     /**
      * handle users mobile number form
      * when users submit mobile number form, send a OTP to them
@@ -23,10 +25,6 @@ class LoginController extends Controller
      */
     public function sendOTP(Request $request){
 
-        //set Twilio AccountSid and AuthToken
-        $AccountSid = config('services.twilio.sid');
-        $AuthToken =  config('services.twilio.token');
-        $from = config('services.twilio.from_number');
         //get user type from user input
         $userType = $request->input('userSubmit');
 
@@ -55,18 +53,11 @@ class LoginController extends Controller
         //set message body (OTP)
         $smsBody = 'Your Passcode is: '.$otp;
 
-        //create message client
-        $client = new Services_Twilio($AccountSid, $AuthToken);
-
         //check user mobile phone number is correct or not
         //create message and send it
         try{
-            //use it when project goes alive
-            $message = $client->account->messages->sendMessage(
-                $from,
-                $mobileNum,
-                $smsBody
-            );
+
+            $this->sendSMS($mobileNum,$smsBody);
 
             return view("auth.otp")
                 ->with('mobileNum',$mobileNum)
