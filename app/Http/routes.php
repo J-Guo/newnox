@@ -14,9 +14,7 @@ Route::group(['middleware'=>'web'],function(){
 //    Route::group(['middleware'=>'internal'],function(){
 
     //index page
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'PagesController@showLoginPage');
 
     //show login pages for both user and affiliate
     Route::get('login','PagesController@showLoginPage');
