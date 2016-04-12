@@ -29,10 +29,10 @@
                     <form class="form nice-label" id="phone-form" action="otp" method="POST">
                         {{csrf_field()}}
 
-                        <div class="form-row">
+                        <div class="form-row" style="background-color:#fcfcfc;margin:50px 0 50px 0;">
                             <input type="tel" class="inputs" align="middle" id="mobileNum" name="mobileNum"
                                    placeholder="MOBILE NUMBER" maxlength="10"
-                                   autocomplete="off">
+                                   autocomplete="off" style="color:#000;font-size:28px;">
                         </div>
                         <!-- Determine usre type -->
                         <input type="hidden" id="userType" name="userType" value="user">
