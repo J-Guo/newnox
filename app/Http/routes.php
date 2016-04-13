@@ -3,9 +3,9 @@
 Route::group(['middleware'=>'web'],function(){
 
     //temporary signin page for internal user
-    Route::get('signin','TestController@showSignin');
-    //handle signin action for user
-    Route::post('signin','TestController@handleSignin');
+//    Route::get('signin','TestController@showSignin');
+//    //handle signin action for user
+//    Route::post('signin','TestController@handleSignin');
 
     /*
      * temporary internal middleware, only internal user can access project
@@ -13,8 +13,6 @@ Route::group(['middleware'=>'web'],function(){
      */
 //    Route::group(['middleware'=>'internal'],function(){
 
-    //index page
-    Route::get('/', 'PagesController@showLoginPage');
 
     //show login pages for both user and affiliate
     Route::get('login','PagesController@showLoginPage');
@@ -34,6 +32,9 @@ Route::group(['middleware'=>'web'],function(){
      * Users and affiliates can access application until they login
      */
     Route::group(['middleware'=>['auth']],function(){
+
+        //index page
+        Route::get('/', 'PagesController@showIndexPage');
 
         /*
          * Intervention Images Request Handler

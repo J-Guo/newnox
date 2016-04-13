@@ -34,6 +34,18 @@ class PagesController extends Controller
 
     }
 
+    //show index page based on user type
+    public function showIndexPage(){
+
+        $user = Auth::user();
+
+        if($user->hasRole('user'))
+            return redirect('main');
+        elseif($user->hasRole('affiliate'))
+            return redirect('task-nearby');
+
+    }
+
     //show main pages for user
     public function showMainPage(){
         return view('main');
