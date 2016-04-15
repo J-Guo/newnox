@@ -152,9 +152,10 @@ class TasksController extends Controller
 
         }
 
-//                dd($sentOfferArray);
+//                dd(count($posted_task));
 
-        return view('date-near-by')->with('sentOfferArray',$sentOfferArray);
+        return view('date-near-by')->with('sentOfferArray',$sentOfferArray)
+                                    ->with('posted_task',$posted_task);
     }
 
 
