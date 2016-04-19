@@ -47,6 +47,9 @@ Route::group(['middleware'=>'web'],function(){
         //store user current location through Ajax
         Route::post('store-location','PagesController@storeLocation');
 
+        //pusher message poster
+        Route::post('post-message','MessageController@postMessage');
+
         /*
         * Entrust role middleware for users
         * only users can access the following pages
@@ -106,7 +109,8 @@ Route::group(['middleware'=>'web'],function(){
         Route::post('payment-details', 'PaymentController@editPaymentDetail');
 
         //show assigned date for user
-        Route::get('assigned-date', 'TasksController@showAssignedDate');
+//        Route::get('assigned-date', 'TasksController@showAssignedDate'); //socket io version
+        Route::get('assigned-date', 'TasksController@showAssignedDatePusher'); //pusher version
 
         //show release payment list page for user
 //        Route::get('release-payment','PaymentController@showReleasePaymentList');
@@ -189,7 +193,8 @@ Route::group(['middleware'=>'web'],function(){
         Route::get('assigned-task-list','TasksController@showAssignedTaskList');
 
         //show assigned task page for affiliate
-        Route::get('assigned-task/{offerid}','TasksController@showAssignedTask');
+//        Route::get('assigned-task/{offerid}','TasksController@showAssignedTask'); //socket io version
+        Route::get('assigned-task/{offerid}','TasksController@showAssignedTaskPusher');
 
         //show request payment list page for affiliate
         Route::get('request-payment','PaymentController@showRequestPaymentList');

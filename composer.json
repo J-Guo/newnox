@@ -12,7 +12,8 @@
         "laravelcollective/html": "5.2.*",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",
-        "braintree/braintree_php" : "3.9.0"
+        "braintree/braintree_php" : "3.9.0",
+        "pusher/pusher-php-server": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

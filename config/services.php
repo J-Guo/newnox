@@ -62,5 +62,11 @@ return [
         'baseurl'    => env('BASE_URL'),
     ],
 
+    'pusher' => [
+        'key'       => env('PUSHER_KEY'),
+        'secret'   => env('PUSHER_SECRET'),
+        'app'       =>env('PUSHER_APP_ID'),
+    ],
+
 
 ];

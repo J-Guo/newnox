@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatMessage;
 use App\Models\Sent_Offer;
 use Illuminate\Http\Request;
 
@@ -163,6 +164,7 @@ class TasksController extends Controller
 
     /**
      * show assigned date (chatroom) for user
+     * socket io version
      * @return View
      */
     public function showAssignedDate(){
@@ -196,6 +198,50 @@ class TasksController extends Controller
 
         //begin chat with the affiliate
         return view('assigned-date')->with('assignedDateArray',$assignedDateArray);
+    }
+
+    /**
+     * show assigned date (chatroom) for user
+     * pusher version
+     * View
+     */
+    public function showAssignedDatePusher(){
+
+        //get current user
+        $user = Auth::user();
+        //get assigned task by this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+            ->where('status','assigned')
+            ->first();
+
+        //set array to store offer and affiliate information
+        $assignedDateArray = [];
+
+        if(!empty($posted_task)){
+
+            //get the offer which is assigned to this task
+            $sent_offer = $posted_task->offers->where('status','assigned')->first();
+
+            //get the affiliate who made the offer
+            $affiliate  = User::find($sent_offer->offer_maker);
+
+            $assignedDateArray = [
+                'affiliate'=>$affiliate,
+                'offer'=>$sent_offer
+            ];
+
+        //get chat hisroty
+        $chat_history = ChatMessage::where('chat_thread',$sent_offer->id)->get();
+
+        return view('assigned-date-pusher')->with('assignedDateArray',$assignedDateArray)
+                                            ->with('chat_history',$chat_history);
+
+        }
+
+        //get chat history
+
+
+        return view('assigned-date-pusher')->with('assignedDateArray',$assignedDateArray);
     }
 
 
@@ -499,6 +545,37 @@ class TasksController extends Controller
 
 //        dd($assignedTaskArray);
         return view('affiliate.assigned-task')
+            ->with('assignedTaskArray', $assignedTaskArray);
+    }
+
+    public function showAssignedTaskPusher($offer_id){
+
+        //get assigned offer by this affiliate
+        $sent_offer = Sent_Offer::find($offer_id);
+
+        //set array to store offer and affiliate information
+        $assignedTaskArray = [];
+
+        if(!empty($sent_offer)){
+
+            //get the task instance where this offer is sent to
+            $posted_task = $sent_offer->task;
+            //get the affiliate who made the offer
+            $user  = User::find($posted_task->task_poster);
+
+            $assignedTaskArray = [
+                'user'=> $user,
+                'offer'=>$sent_offer
+            ];
+
+            //get chat hisroty
+            $chat_history = ChatMessage::where('chat_thread',$sent_offer->id)->get();
+            return view('affiliate.assigned-task-pusher')
+                ->with('assignedTaskArray', $assignedTaskArray)
+                ->with('chat_history',$chat_history);
+        }
+
+        return view('affiliate.assigned-task-pusher')
             ->with('assignedTaskArray', $assignedTaskArray);
     }
 
