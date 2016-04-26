@@ -46,8 +46,8 @@
 <div class="panel-overlay"></div>
 
 <!-- Left panel -->
-<div class="panel panel-left panel-reveal">
-    <div class="line"></div>
+{{--<div class="panel panel-left panel-reveal">--}}
+    {{--<div class="line"></div>--}}
 
     <!-- Left Side Bar -->
     {{--@include('layouts.emlida-header')--}}
@@ -163,7 +163,7 @@
         {{--</div>--}}
     {{--</div>--}}
 	
-</div>
+{{--</div>--}}
 
 <!-- Right panel -->
 <div class="panel panel-right panel-reveal">
