@@ -49,35 +49,35 @@
 <div class="panel panel-left panel-reveal">
     <div class="line"></div>
 
-    @include('layouts.emlida-header')
-	
-    <div class="list-block mt-15">
-        <div class="list-group">
-            <nav>
-                <ul>
-                    <li class="divider">
-                        Main
-                    </li>
-                    <li>
-                        <a href="{{url('main')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Main View</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('date-near-by')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-heart-o"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Querying List</div>
-                            </div>
-                        </a>
-                    </li>
+    <!-- Left Side Bar -->
+    {{--@include('layouts.emlida-header')--}}
+    {{--<div class="list-block mt-15">--}}
+        {{--<div class="list-group">--}}
+            {{--<nav>--}}
+                {{--<ul>--}}
+                    {{--<li class="divider">--}}
+                        {{--Main--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('main')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa fa-map-marker"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Main View</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('date-near-by')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-heart-o"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Querying List</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     {{--<li>--}}
                         {{--<a href="{{url('user-profile')}}" class="item-link close-panel item-content">--}}
                             {{--<div class="item-media">--}}
@@ -88,19 +88,19 @@
                             {{--</div>--}}
                         {{--</a>--}}
                     {{--</li>--}}
-                    <li>
-                        <a href="{{url('assigned-date')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa fa-weixin"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Assignedd Date</div>
+                    {{--<li>--}}
+                        {{--<a href="{{url('assigned-date')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa fa-weixin"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Assignedd Date</div>--}}
                                 {{--<div class="item-after">--}}
                                     {{--<span class="badge badge-secondary">5</span>--}}
                                 {{--</div>--}}
-                            </div>
-                        </a>
-                    </li>
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     {{--<li>--}}
                         {{--<a href="{{url('release-payment')}}" class="item-link close-panel item-content">--}}
                             {{--<div class="item-media">--}}
@@ -111,57 +111,57 @@
                             {{--</div>--}}
                         {{--</a>--}}
                     {{--</li>--}}
-                    <li>
-                        <a href="{{url('reviews')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-star-o"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Review</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider">
-                       Setting
-                    </li>
-                    <li>
-                        <a href="{{url('profile/edit')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-edit"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Edit Profie</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('payment-details')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-credit-card"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Payment Detail</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider">
-                        Other
-                    </li>
-                    <li>
-                        <a href="{{url('logout')}}" class="item-link close-panel item-content">
-                            <div class="item-media">
-                                <i class="fa  fa-sign-out"></i>
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title">Logout</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <p style="font-size:10px; text-align:center" class="mt-25">Copyright &copy; Traxnet Technologies P/L</p>
-        </div>
-    </div>
+                    {{--<li>--}}
+                        {{--<a href="{{url('reviews')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-star-o"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Review</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="divider">--}}
+                       {{--Setting--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('profile/edit')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-edit"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Edit Profie</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('payment-details')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-credit-card"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Payment Detail</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="divider">--}}
+                        {{--Other--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('logout')}}" class="item-link close-panel item-content">--}}
+                            {{--<div class="item-media">--}}
+                                {{--<i class="fa  fa-sign-out"></i>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">Logout</div>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</nav>--}}
+            {{--<p style="font-size:10px; text-align:center" class="mt-25">Copyright &copy; Traxnet Technologies P/L</p>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 	
 </div>
 

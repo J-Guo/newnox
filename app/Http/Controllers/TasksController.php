@@ -245,6 +245,28 @@ class TasksController extends Controller
     }
 
 
+
+    public function redirectUserTaskPage(){
+
+        //get current user
+        $user = Auth::user();
+        //get task of this user
+        $posted_task = Posted_Task::where('task_poster',$user->id)
+            ->whereIn('status',['assigned','posted'])
+            ->first();
+
+//        dd($posted_task);
+
+        if( count($posted_task) == 0 ||  $posted_task->status =='posted'  )
+            return redirect('date-near-by');
+        elseif($posted_task->status =='assigned')
+            return redirect('assigned-date');
+        else
+            return redirect('main');
+
+    }
+
+
     /**
      * show task nearby page for affiliate
      * affiliate can see all posted and not-make-an-offer task nearby

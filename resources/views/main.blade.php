@@ -20,7 +20,8 @@
             position:fixed; z-index:10000; margin:0; width:100%;height:auto; background:#191919; opacity:0.9;
         }
         .top{
-            top:44px;
+            top:60px;
+            display:block;
         }
         .bottom{
             bottom:0px;
@@ -28,12 +29,7 @@
         .bottom50{
             bottom:50px;
         }
-        .right{
-            right:20px;
-        }
-        .left{
-            left:20px;
-        }
+
         .white
         {
             color:#dbdbdb;
@@ -51,12 +47,10 @@
             width:auto;
             font-weight:100;
         }
-        :optional {
-            opacity: 0.6;
-        }
-        :optional:hover {
+        .optional {
             opacity: 1;
         }
+
         .round-button {
             width:14%;
             right:20px; position:fixed;
@@ -201,20 +195,44 @@
 
 
 
+        <!-- Top Navigation Bar -->
+        <div class="navbar" style="height:60px">
+            <div class="row no-gutter">
 
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="left">
-                    <a href="#" class="link icon-only open-panel">
-                        <span class="kkicon icon-menu"></span>
-                    </a>
-                </div>
-                <div class="center sliding">Main Page</div>
-                <div class="right">
+                <div class="toolbar-inner">
+                    <div class="toolbar-inner">
+                        <a href="{{url('main')}}" class="tab-link link left active">
+                            <i class="fa fa-home fa-2" style="font-size: 30px;  text-align: center"></i>
+                        </a>
 
+                        <a href="{{url('mydate')}}" class="tab-link link">
+                            <i class="fa fa-heartbeat fa-2" style="font-size: 30px; opacity: .6"></i>
+                        </a>
+
+                        <a href="{{url('reviews')}}" class="tab-link link">
+                            <i class="fa fa-star-o fa-2" style="font-size: 30px;  opacity: .6"></i>
+                        </a>
+                        <a href="{{url('profile/edit')}}" class="tab-link link right">
+                            <i class="fa fa-user fa-4x"  style="font-size: xx-large; opacity: .6" ></i>
+
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        {{--<div class="navbar">--}}
+            {{--<div class="navbar-inner">--}}
+                {{--<div class="left">--}}
+                    {{--<a href="#" class="link icon-only open-panel">--}}
+                        {{--<span class="kkicon icon-menu"></span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--<div class="center sliding">Main Page</div>--}}
+                {{--<div class="right">--}}
+
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
 
 

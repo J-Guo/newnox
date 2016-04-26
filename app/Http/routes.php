@@ -108,6 +108,9 @@ Route::group(['middleware'=>'web'],function(){
         //handle payment method modification for user
         Route::post('payment-details', 'PaymentController@editPaymentDetail');
 
+        //handle request for top navigation bar,based on user status
+        Route::get('mydate','TasksController@redirectUserTaskPage');
+
         //show assigned date for user
 //        Route::get('assigned-date', 'TasksController@showAssignedDate'); //socket io version
         Route::get('assigned-date', 'TasksController@showAssignedDatePusher'); //pusher version
