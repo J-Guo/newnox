@@ -3,7 +3,7 @@
 @section('content')
 
         <!--Top Navigation Bar -->
-        @include('layouts.top-nav',['title'=>'Assigned Date'])
+        @include('partials.top-nav',['active' => 2])
 
         <!-- Pages -->
         <div class="pages navbar-fixed toolbar-fixed">
@@ -11,7 +11,6 @@
 
                 <!-- Chat Room-->
                 <div class="page-content">
-
 
                 @if(!isset($assignedDateArray) || empty($assignedDateArray))
                 <h2> You do not have any assigned date</h2>

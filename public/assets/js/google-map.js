@@ -3,6 +3,15 @@
  * Google Map with multip markers, info window and preloader
  */
 
+
+$(document).ready(function(){
+    //clear address search box when first click
+    $('#address').on('focus',function(){
+        $(this).val('');
+    });
+
+});
+
 // Create a marker array to hold  markers
 var markers = [];
 
@@ -14,6 +23,32 @@ var app = new Vue({
     methods: {
         //create Google Map
         createMap: function () {
+
+            //set autocomplete search box
+            var input = document.getElementById('address');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            //handle event when click autocomplete list
+            autocomplete.addListener('place_changed',function(){
+
+                var place = autocomplete.getPlace()
+
+                if (!place.geometry) {
+                    return;
+                }
+                else{
+                    app.locateAddress();
+                }
+
+            });
+
+            /*
+             *Fix cannot pick Google Map Autocomplete pick problem
+             * on framework7
+             */
+            $$('body').on('touchend','.pac-container', function(e){
+                e.stopImmediatePropagation();
+            });
 
             var initialLocation;
             //default location
@@ -31,6 +66,8 @@ var app = new Vue({
                         zoom:12,
                         disableDefaultUI: true
                     });
+
+
 
                     // add maker
                     marker = new google.maps.Marker({
@@ -123,6 +160,8 @@ var app = new Vue({
                     }
 
                 });
+
+
             }
             //broswer does not support Geolocation
             else{
@@ -162,7 +201,11 @@ var app = new Vue({
             //clear all existed markers
             setMapOnAll(null);
 
-            geocoder.geocode({address:this.address},function(results,status){
+            //get the address text from search box
+            var addressText = $('#address').val();
+
+            geocoder.geocode({address: addressText},function(results,status){
+                console.log(addressText);
                 console.log(status,results);
 
                 //image address for info window
